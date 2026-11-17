@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Despiece mini PC</title>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+} }
+</script>
+<style>html,body{margin:0;background:transparent}canvas{display:block}</style>
+</head>
+<body>
+<script type="module">
+import * as THREE from "three";
+import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.js";
+import { LineSegments2 } from "three/addons/lines/LineSegments2.js";
+import { LineSegmentsGeometry } from "three/addons/lines/LineSegmentsGeometry.js";
+import { LineMaterial } from "three/addons/lines/LineMaterial.js";
+import { mergeGeometries } from "three/addons/utils/BufferGeometryUtils.js";
+
+const q = new URLSearchParams(location.search);
+const PAL = q.get("palette") || "neutral";
+const W = Number(q.get("w") || 2200);
+const LINE = Number(q.get("line") || 2.6);
+
+// Each part gets one base colour; the shader derives the three isometric faces from it.
+const PALETTES = {
+  neutral: { ink: "#0D0D0D", lid: "#F2F1F0", shell: "#BFBFBF", board: "#BFAA8F", chip: "#595959",
+             ram: "#F2F1F0", ssd: "#BFBFBF", sink: "#F2F1F0", fan: "#BFBFBF", base: "#595959", port: "#0D0D0D", mark: "#0D0D0D" },
+  red:     { ink: "#0D0D0D", lid: "#F2EFE9", shell: "#DEA6A3", board: "#BF0426", chip: "#0D0D0D",
+             ram: "#F2EFE9", ssd: "#EEEBE2", sink: "#F2EFE9", fan: "#DEA6A3", base: "#BF0426", port: "#0D0D0D", mark: "#BF0426" },
+  plano:   { ink: "#0D0D0D", lid: "#F2EFE9", shell: "#EEEBE2", board: "#BFAA8F", chip: "#BF0426",
+             ram: "#F2EFE9", ssd: "#EEEBE2", sink: "#F2EFE9", fan: "#EEEBE2", base: "#BFAA8F", port: "#0D0D0D", mark: "#0D0D0D" },
+};
+const C = PALETTES[PAL];
+const ink = new THREE.Color(C.ink);
+
+// ---- Flat three-tone isometric shader (threejs-shaders): faces are banded by their angle to one light,
+// so every face lands on an exact palette tone instead of a gradient. Optional architectural hatching (poché).
+const vert = /* glsl */`
+  varying vec3 vN;
+  void main(){
+    vN = normalize(mat3(modelMatrix) * normal);
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+  }`;
+const frag = /* glsl */`
+  uniform vec3 cTop; uniform vec3 cMid; uniform vec3 cDark; uniform vec3 cInk;
+  uniform vec3 uL; uniform float uHatch; uniform float uSpacing;
+  varying vec3 vN;
+  void main(){
+    float d = dot(normalize(vN), normalize(uL));
+    vec3 col = d > 0.70 ? cTop : (d > 0.33 ? cMid : cDark);
+    if (uHatch > 0.5 && d <= 0.70) {
+      float s = mod(gl_FragCoord.x + gl_FragCoord.y, uSpacing);
+      if (s < uSpacing * 0.16) col = mix(col, cInk, 0.55);
+    }
+    gl_FragColor = vec4(col, 1.0);
+    #include <colorspace_fragment>
+  }`;
+const L = new THREE.Vector3(0.28, 1.0, 0.62);
+const matCache = new Map();
+function mat(hex, { hatch = false } = {}) {
+  const key = hex + hatch;
+  if (matCache.has(key)) return matCache.get(key);
+  const base = new THREE.Color(hex);
+  const m = new THREE.ShaderMaterial({
+    uniforms: {
+      cTop: { value: base.clone() },
+      cMid: { value: base.clone().lerp(ink, 0.16) },
+      cDark: { value: base.clone().lerp(ink, 0.34) },
+      cInk: { value: ink.clone() },
+      uL: { value: L },
+      uHatch: { value: hatch ? 1 : 0 },
+      uSpacing: { value: 14.0 },
+    },
+    vertexShader: vert, fragmentShader: frag,
+    polygonOffset: true, polygonOffsetFactor: 1, polygonOffsetUnits: 1,
+  });
+  matCache.set(key, m);
+  return m;
+}
+
+// ---- Scene
+const scene = new THREE.Scene();
+const lineMats = [];
+function lineMat() {
+  const m = new LineMaterial({ color: C.ink, linewidth: LINE, worldUnits: false });
+  lineMats.push(m);
+  return m;
+}
+function add(geom, hex, pos, { edges = true, hatch = false, parent = scene, angle = 25 } = {}) {
+  const mesh = new THREE.Mesh(geom, mat(hex, { hatch }));
+  mesh.position.set(...pos);
+  parent.add(mesh);
+  if (edges) {
+    const eg = new LineSegmentsGeometry().fromEdgesGeometry(new THREE.EdgesGeometry(geom, angle));
+    const lines = new LineSegments2(eg, lineMat());
+    lines.position.copy(mesh.position);
+    parent.add(lines);
+  }
+  return mesh;
+}
+const box = (w, h, d) => new THREE.BoxGeometry(w, h, d);
+const layers = {}; // name -> { group, anchor (local point) }
+function layer(name, y, anchor) {
+  const g = new THREE.Group();
+  g.position.set(y * DX, y * DY, -y * DZ);
+  scene.add(g);
+  layers[name] = { group: g, anchor: new THREE.Vector3(...anchor) };
+  return g;
+}
+
+const S = 112; // footprint in mm
+const GAP = 1; const DY = Number(q.get("dy") || 46), DZ = Number(q.get("dz") || 17), DX = Number(q.get("dx") || 0);
+let y = 0; const ST = (q.get("st") || "1,1.25,1,1.1,1.05,1.7").split(",").map(Number);
+
+// 1. Base plate with feet
+{
+  const g = layer("base", y, [-S / 2, 0, S / 2]);
+  add(new RoundedBoxGeometry(S, 3, S, 2, 1.2), C.base, [0, 0, 0], { parent: g });
+  for (const [x, z] of [[-42, -42], [42, -42], [-42, 42], [42, 42]])
+    add(new THREE.CylinderGeometry(5, 5, 2.5, 24), C.port, [x, -2.7, z], { parent: g, edges: false });
+}
+y += ST[0];
+
+// 2. Chassis shell with front ports and side vents
+{
+  const g = layer("shell", y, [-S / 2, 17, S / 2]);
+  const r = 7, o = S / 2, t = 2.2;
+  const shape = new THREE.Shape();
+  shape.moveTo(-o + r, -o); shape.lineTo(o - r, -o); shape.quadraticCurveTo(o, -o, o, -o + r);
+  shape.lineTo(o, o - r); shape.quadraticCurveTo(o, o, o - r, o); shape.lineTo(-o + r, o);
+  shape.quadraticCurveTo(-o, o, -o, o - r); shape.lineTo(-o, -o + r); shape.quadraticCurveTo(-o, -o, -o + r, -o);
+  const i = o - t, ri = r - t;
+  const hole = new THREE.Path();
+  hole.moveTo(-i + ri, -i); hole.lineTo(i - ri, -i); hole.quadraticCurveTo(i, -i, i, -i + ri);
+  hole.lineTo(i, i - ri); hole.quadraticCurveTo(i, i, i - ri, i); hole.lineTo(-i + ri, i);
+  hole.quadraticCurveTo(-i, i, -i, i - ri); hole.lineTo(-i, -i + ri); hole.quadraticCurveTo(-i, -i, -i + ri, -i);
+  shape.holes.push(hole);
+  const shell = new THREE.ExtrudeGeometry(shape, { depth: 34, bevelEnabled: false, curveSegments: 6 });
+  shell.rotateX(-Math.PI / 2);
+  add(shell, C.shell, [0, 0, 0], { parent: g, angle: 40 });
+  // front (+Z): power button, audio, 2x USB-A, USB-C
+  const fz = o + 0.4;
+  add(new THREE.CylinderGeometry(4, 4, 1, 28).rotateX(Math.PI / 2), C.lid, [-38, 17, fz], { parent: g });
+  add(new THREE.CylinderGeometry(1.8, 1.8, 1, 20).rotateX(Math.PI / 2), C.port, [-24, 17, fz], { parent: g, edges: false });
+  add(box(12, 5, 1), C.port, [-6, 17, fz], { parent: g });
+  add(box(12, 5, 1), C.port, [12, 17, fz], { parent: g });
+  add(new RoundedBoxGeometry(9, 3.4, 1, 2, 1.4), C.port, [28, 17, fz], { parent: g, edges: false });
+  // side vents (+X)
+  for (let k = 0; k < 9; k++) add(box(1, 18, 4.2), C.port, [o + 0.4, 17, -36 + k * 9], { parent: g, edges: false });
+}
+y += ST[1];
+
+// 3. Mainboard with CPU, slots and rear I/O
+{
+  const g = layer("board", y, [-52, 1, 52]);
+  add(box(104, 1.6, 104), C.board, [0, 0, 0], { parent: g, hatch: true });
+  add(box(24, 2.4, 24), C.chip, [-22, 2, 10], { parent: g });            // procesador
+  add(box(10, 1.6, 10), C.chip, [8, 1.6, 26], { parent: g });            // chipset
+  add(box(70, 3.6, 6), C.port, [6, 2.6, -18], { parent: g });            // SO-DIMM slot
+  add(box(70, 3.6, 6), C.port, [6, 2.6, -32], { parent: g });
+  add(box(6, 3, 24), C.port, [36, 2.3, 18], { parent: g });              // M.2 slot
+  // rear I/O on the +X edge
+  add(box(10, 6, 16), C.lid, [47, 4, -36], { parent: g });               // RJ45
+  add(box(8, 5, 14), C.lid, [47, 3.5, -16], { parent: g });              // HDMI
+  add(box(8, 5, 14), C.lid, [47, 3.5, 0], { parent: g });                // HDMI
+  add(box(8, 6, 13), C.lid, [47, 4, 18], { parent: g });                 // USB
+  add(new THREE.CylinderGeometry(3, 3, 8, 20).rotateZ(Math.PI / 2), C.lid, [47, 4, 36], { parent: g }); // DC in
+}
+y += ST[2];
+
+// 4. Memory + SSD
+{
+  const g = layer("ram", y, [-29, 1, -12]);
+  for (const z of [-18, -32]) {
+    add(box(69.6, 1.2, 12), C.ram, [6, 0, z], { parent: g });
+    for (let k = 0; k < 4; k++) add(box(10, 1.2, 7), C.chip, [-20 + k * 15, 1.1, z], { parent: g });
+  }
+  const s = layer("ssd", y + 0.75, [25, 1, 44]);
+  add(box(22, 2.2, 80).translate(0, 0, 0), C.ssd, [36, 0, 4], { parent: s });
+  add(box(14, 1.2, 20), C.chip, [36, 1.6, -18], { parent: s });
+  add(box(14, 1.2, 20), C.chip, [36, 1.6, 6], { parent: s });
+}
+y += ST[3];
+
+// 5. Heatsink: plate + merged fins
+{
+  const g = layer("sink", y, [-45, 0, 33]);
+  add(box(46, 3, 46), C.sink, [-22, 0, 10], { parent: g });
+  const fins = [];
+  for (let k = 0; k < 13; k++) fins.push(box(1.2, 16, 46).translate(-40 + k * 3, 9.5, 10));
+  add(mergeGeometries(fins), C.sink, [-22 + 18 - 0, 0, 0], { parent: g, angle: 40 });
+}
+y += ST[4];
+
+// 6. Blower fan: housing ring, hub and blades
+{
+  const g = layer("fan", y, [-21.2, 0, 21.2]);
+  const ring = new THREE.CylinderGeometry(30, 30, 9, 48, 1, true);
+  add(ring, C.fan, [0, 0, 0], { parent: g, angle: 60 });
+  add(new THREE.RingGeometry(10, 30, 48).rotateX(-Math.PI / 2).translate(0, -4.5, 0), C.fan, [0, 0, 0], { parent: g, edges: false });
+  add(new THREE.CylinderGeometry(9, 9, 8, 36), C.lid, [0, 0.5, 0], { parent: g });
+  const blades = [];
+  for (let k = 0; k < 15; k++) {
+    const b = box(17, 7, 0.9).translate(18.5, 0, 0);
+    b.rotateY((k / 15) * Math.PI * 2 + 0.35);
+    blades.push(b);
+  }
+  add(mergeGeometries(blades), C.lid, [0, 0, 0], { parent: g, angle: 60 });
+}
+y += ST[5];
+
+// 7. Lid with the AĒ monogram inlaid (same stroke construction as the logo)
+{
+  const g = layer("lid", y, [-S / 2, 2, S / 2]);
+  add(new RoundedBoxGeometry(S, 5, S, 3, 3), C.lid, [0, 0, 0], { parent: g, angle: 35 });
+  // logo units -> mm. Monogram = logo's A + Ē (from the approved wordmark geometry).
+  const u = 0.12, cx = 470, cy = 470, top = 2.6;
+  const markMat = new THREE.MeshBasicMaterial({ color: C.mark });
+  const sw = 10.6 * u;
+  const seg = (x1, y1, x2, y2) => {
+    const a = new THREE.Vector2((x1 - cx) * u, (y1 - cy) * u), b = new THREE.Vector2((x2 - cx) * u, (y2 - cy) * u);
+    const len = a.distanceTo(b);
+    const m = new THREE.Mesh(box(len, 0.3, sw), markMat);
+    m.position.set((a.x + b.x) / 2, top, (a.y + b.y) / 2);
+    m.rotation.y = -Math.atan2(b.y - a.y, b.x - a.x);
+    g.add(m);
+  };
+  seg(199, 493, 437, 351);   // A diagonal
+  seg(434, 349, 434, 630);   // A stem
+  seg(303, 425, 439, 425);   // A bar
+  seg(470, 348.5, 537, 348.5); // macron
+  seg(475.3, 420, 475.3, 496); // E vertical
+  seg(470, 425, 537, 425);   // E top
+  seg(470, 490.5, 537, 490.5); // E bottom
+}
+
+// ---- Free layout (screen-space mm): lay=name:sx:sy;...  sx -> screen right, sy -> screen up
+if (q.get("lay")) {
+  const R = new THREE.Vector3(1, 0, -1).normalize();
+  for (const item of q.get("lay").split("|")) {
+    const [name, sx, sy] = item.split(",");
+    const g = layers[name].group;
+    g.position.copy(R.clone().multiplyScalar(Number(sx))).add(new THREE.Vector3(0, Number(sy) / 0.866, 0));
+  }
+  if (!q.get("lay").includes("ssd,")) layers.ssd.group.position.copy(layers.ram.group.position).add(new THREE.Vector3(0, 2, 0));
+}
+// ---- Isometric orthographic camera, framed to the model
+scene.updateMatrixWorld(true);
+const bb = new THREE.Box3();
+scene.traverse((o) => { if (o.isMesh && !o.isLineSegments2) bb.expandByObject(o); });
+const center = bb.getCenter(new THREE.Vector3());
+const dir = new THREE.Vector3(1, 0.82, 1).normalize();
+const cam = new THREE.OrthographicCamera(-1, 1, 1, -1, 1, 5000);
+cam.position.copy(center).addScaledVector(dir, 1500);
+cam.lookAt(center);
+cam.updateMatrixWorld();
+const inv = cam.matrixWorldInverse;
+let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+scene.traverse((o) => {
+  if (!o.isMesh || o.isLineSegments2) return;
+  o.geometry.computeBoundingBox();
+  const b = o.geometry.boundingBox;
+  for (let k = 0; k < 8; k++) {
+    const p = new THREE.Vector3(k & 1 ? b.max.x : b.min.x, k & 2 ? b.max.y : b.min.y, k & 4 ? b.max.z : b.min.z);
+    p.applyMatrix4(o.matrixWorld).applyMatrix4(inv);
+    minX = Math.min(minX, p.x); maxX = Math.max(maxX, p.x); minY = Math.min(minY, p.y); maxY = Math.max(maxY, p.y);
+  }
+});
+const pad = 0.03 * Math.max(maxX - minX, maxY - minY);
+cam.left = minX - pad; cam.right = maxX + pad; cam.top = maxY + pad; cam.bottom = minY - pad;
+cam.updateProjectionMatrix();
+const H = Math.round(W * (cam.top - cam.bottom) / (cam.right - cam.left));
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
+renderer.setPixelRatio(1);
+renderer.setSize(W, H);
+renderer.setClearColor(0x000000, 0);
+document.body.appendChild(renderer.domElement);
+for (const m of lineMats) m.resolution.set(W, H);
+renderer.render(scene, cam);
+
+const labels = {};
+for (const [name, { group, anchor }] of Object.entries(layers)) {
+  const p = anchor.clone().applyMatrix4(group.matrixWorld).project(cam);
+  labels[name] = { x: (p.x + 1) / 2, y: (1 - p.y) / 2 };
+}
+const centers = {};
+for (const [name, { group }] of Object.entries(layers)) {
+  const b = new THREE.Box3().expandByObject(group);
+  const p = b.getCenter(new THREE.Vector3()).project(cam);
+  centers[name] = { x: (p.x + 1) / 2, y: (1 - p.y) / 2 };
+}
+window.__result = { png: renderer.domElement.toDataURL("image/png"), w: W, h: H, labels, centers };
+</script>
+</body>
+</html>

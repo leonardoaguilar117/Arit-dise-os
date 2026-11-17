@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Escenas isométricas Arité</title>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+} }
+</script>
+<style>html,body{margin:0;background:transparent}canvas{display:block}</style>
+</head>
+<body>
+<script type="module">
+import * as THREE from "three";
+import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.js";
+import { LineSegments2 } from "three/addons/lines/LineSegments2.js";
+import { LineSegmentsGeometry } from "three/addons/lines/LineSegmentsGeometry.js";
+import { LineMaterial } from "three/addons/lines/LineMaterial.js";
+
+const q = new URLSearchParams(location.search);
+const PAL = q.get("palette") || "red";
+const SCENE = q.get("scene") || "eco";
+const W = Number(q.get("w") || 2200);
+const LINE = Number(q.get("line") || 2.6);
+
+// Roles -> palette tones. Same flat three-band shader as the despiece (render.html).
+const PALETTES = {
+  neutral: { ink: "#0D0D0D", floor: "#BFBFBF", wall: "#F2F1F0", wood: "#BFAA8F", device: "#BFBFBF", top: "#F2F1F0",
+             drive: "#F2F1F0", dark: "#595959", accent: "#BFAA8F", person: "#595959", head: "#F2F1F0", rug: "#BFAA8F",
+             tile1: "#BFAA8F", tile2: "#595959", tile3: "#BFBFBF", screen: "#F2F1F0", mark: "#0D0D0D", book: "#595959" },
+  red:     { ink: "#0D0D0D", floor: "#DEA6A3", wall: "#F2EFE9", wood: "#EEEBE2", device: "#DEA6A3", top: "#F2EFE9",
+             drive: "#F2EFE9", dark: "#0D0D0D", accent: "#BF0426", person: "#BF0426", head: "#F2EFE9", rug: "#EEEBE2",
+             tile1: "#BF0426", tile2: "#DEA6A3", tile3: "#0D0D0D", screen: "#F2EFE9", mark: "#BF0426", book: "#BF0426" },
+};
+const C = PALETTES[PAL];
+const ink = new THREE.Color(C.ink);
+
+const vert = `varying vec3 vN; void main(){ vN = normalize(mat3(modelMatrix) * normal);
+  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`;
+const frag = `uniform vec3 cTop; uniform vec3 cMid; uniform vec3 cDark; uniform vec3 cInk;
+  uniform vec3 uL; uniform float uHatch; uniform float uSpacing; varying vec3 vN;
+  void main(){ float d = dot(normalize(vN), normalize(uL));
+    vec3 col = d > 0.70 ? cTop : (d > 0.33 ? cMid : cDark);
+    if (uHatch > 0.5 && d <= 0.70) { float s = mod(gl_FragCoord.x + gl_FragCoord.y, uSpacing);
+      if (s < uSpacing * 0.16) col = mix(col, cInk, 0.55); }
+    gl_FragColor = vec4(col, 1.0);
+    #include <colorspace_fragment>
+  }`;
+const L = new THREE.Vector3(0.28, 1.0, 0.62);
+const cache = new Map();
+function mat(hex, hatch = false) {
+  const k = hex + hatch;
+  if (cache.has(k)) return cache.get(k);
+  const b = new THREE.Color(hex);
+  const m = new THREE.ShaderMaterial({
+    uniforms: { cTop: { value: b.clone() }, cMid: { value: b.clone().lerp(ink, 0.16) }, cDark: { value: b.clone().lerp(ink, 0.34) },
+                cInk: { value: ink.clone() }, uL: { value: L }, uHatch: { value: hatch ? 1 : 0 }, uSpacing: { value: 14.0 } },
+    vertexShader: vert, fragmentShader: frag, polygonOffset: true, polygonOffsetFactor: 1, polygonOffsetUnits: 1 });
+  cache.set(k, m);
+  return m;
+}
+const flat = (hex) => new THREE.MeshBasicMaterial({ color: hex });
+
+const scene = new THREE.Scene();
+const lineMats = [];
+const named = {};                       // name -> Object3D, exported as screen-space centers
+function add(geom, hex, pos, { edges = true, hatch = false, parent = scene, angle = 25, hull = false, rot = null, flatc = false } = {}) {
+  const mesh = new THREE.Mesh(geom, flatc ? flat(hex) : mat(hex, hatch));
+  mesh.position.set(...pos);
+  if (rot) mesh.rotation.set(...rot);
+  parent.add(mesh);
+  if (edges) {
+    const pr = geom.parameters || {};
+    // rounded boxes: outline with the bounding box edges (fillets are too shallow for an angle threshold)
+    const src = geom.type === "RoundedBoxGeometry" ? new THREE.EdgesGeometry(box(pr.width, pr.height, pr.depth)) : new THREE.EdgesGeometry(geom, angle);
+    const eg = new LineSegmentsGeometry().fromEdgesGeometry(src);
+    const lm = new LineMaterial({ color: C.ink, linewidth: LINE, worldUnits: false });
+    lineMats.push(lm);
+    const ls = new LineSegments2(eg, lm);
+    ls.position.copy(mesh.position); ls.rotation.copy(mesh.rotation);
+    parent.add(ls);
+  }
+  if (hull) {           // inverted-hull outline for curved solids (silhouettes have no hard edges)
+    const h = new THREE.Mesh(geom, new THREE.MeshBasicMaterial({ color: C.ink, side: THREE.BackSide }));
+    h.position.copy(mesh.position); h.rotation.copy(mesh.rotation); h.scale.setScalar(hull);
+    parent.add(h);
+  }
+  return mesh;
+}
+const box = (w, h, d) => new THREE.BoxGeometry(w, h, d);
+const rbox = (w, h, d, r = 2) => { const g = new RoundedBoxGeometry(w, h, d, 2, r); g.type = "RoundedBoxGeometry"; g.parameters = { width: w, height: h, depth: d }; return g; };
+const grp = (name, pos = [0, 0, 0], parent = scene) => { const g = new THREE.Group(); g.position.set(...pos); parent.add(g); if (name) named[name] = g; return g; };
+function tube(points, r, hex, parent = scene) {
+  const curve = new THREE.CatmullRomCurve3(points.map((p) => new THREE.Vector3(...p)));
+  add(new THREE.TubeGeometry(curve, 64, r, 10, false), hex, [0, 0, 0], { parent, edges: false, hull: 1.0001 });
+  const m = new THREE.Mesh(new THREE.TubeGeometry(curve, 64, r * 1.35, 10, false), new THREE.MeshBasicMaterial({ color: C.ink, side: THREE.BackSide }));
+  parent.add(m);
+}
+
+// AĒ monogram from the approved wordmark geometry, laid flat on a surface (u = logo px -> scene units)
+function monogram(parent, u, y, cx = 470, cy = 470) {
+  const m = flat(C.mark), sw = 10.6 * u;
+  const seg = (x1, y1, x2, y2) => {
+    const a = new THREE.Vector2((x1 - cx) * u, (y1 - cy) * u), b = new THREE.Vector2((x2 - cx) * u, (y2 - cy) * u);
+    const s = new THREE.Mesh(box(a.distanceTo(b), 0.3 * u * 8, sw), m);
+    s.position.set((a.x + b.x) / 2, y, (a.y + b.y) / 2);
+    s.rotation.y = -Math.atan2(b.y - a.y, b.x - a.x);
+    parent.add(s);
+  };
+  seg(199, 493, 437, 351); seg(434, 349, 434, 630); seg(303, 425, 439, 425);
+  seg(470, 348.5, 537, 348.5); seg(475.3, 420, 475.3, 496); seg(470, 425, 537, 425); seg(470, 490.5, 537, 490.5);
+}
+
+// mini PC: rounded shell + lid with monogram + front ports (+Z)
+function miniPC(g, s = 1) {
+  add(rbox(112 * s, 34 * s, 112 * s, 6 * s), C.device, [0, 17 * s, 0], { parent: g, angle: 40 });
+  add(rbox(108 * s, 3 * s, 108 * s, 1.2 * s), C.top, [0, 35 * s, 0], { parent: g, angle: 40 });
+  monogram(g, 0.11 * s, 36.7 * s);
+  const fz = 56 * s + 0.4;
+  add(new THREE.CylinderGeometry(4 * s, 4 * s, 1, 24).rotateX(Math.PI / 2), C.top, [-38 * s, 17 * s, fz], { parent: g });
+  add(box(12 * s, 5 * s, 1), C.dark, [-14 * s, 17 * s, fz], { parent: g, edges: false });
+  add(box(12 * s, 5 * s, 1), C.dark, [4 * s, 17 * s, fz], { parent: g, edges: false });
+  add(box(9 * s, 3.4 * s, 1), C.dark, [22 * s, 17 * s, fz], { parent: g, edges: false });
+  for (let k = 0; k < 8; k++) add(box(1, 16 * s, 4 * s), C.dark, [56 * s + 0.4, 17 * s, -32 * s + k * 9 * s], { parent: g, edges: false });
+}
+
+// 3.5" drive standing on its edge, tray front facing +Z
+function drive(g) {
+  add(box(26, 102, 147), C.drive, [0, 51, 0], { parent: g });
+  add(box(28, 108, 5), C.device, [0, 54, 76], { parent: g });                     // tray front
+  add(box(10, 40, 3), C.dark, [0, 60, 80], { parent: g, edges: false });          // handle slot
+  add(box(0.6, 46, 70), C.accent, [13.3, 58, -10], { parent: g, edges: false });  // label on +X face
+  for (let k = 0; k < 4; k++) add(box(0.6, 3, 40), C.ink, [13.7, 70 - k * 7, -10], { parent: g, edges: false, flatc: true });
+}
+
+if (SCENE === "eco") {
+  // architectural model plinth
+  add(box(620, 14, 360), C.floor, [0, -7, 0], { hatch: true });
+  // drive enclosure: 2 bays, right one empty (its drive is out front)
+  const enc = grp("enclosure", [140, 0, -60]);
+  add(rbox(110, 140, 200, 5), C.device, [0, 70, 0], { parent: enc, angle: 40 });
+  add(rbox(104, 2, 194, 1), C.top, [0, 140.5, 0], { parent: enc, angle: 40 });
+  add(box(36, 116, 2), C.ink, [-24, 66, 100.2], { parent: enc, flatc: true });
+  add(box(36, 116, 2), C.ink, [24, 66, 100.2], { parent: enc, flatc: true });
+  const d1 = grp("drive1", [-24, 12, 24], enc); drive(d1);
+  grp("bay2", [24, 66, 100], enc);
+  for (let k = 0; k < 3; k++) add(new THREE.CylinderGeometry(2.4, 2.4, 1, 16).rotateX(Math.PI / 2), C.accent, [-36 + k * 9, 128, 101], { parent: enc, edges: false });
+  // the pulled-out drive, in front of its bay
+  const d2 = grp("drive2", [164, 0, 150]); drive(d2);
+  // mini PC
+  const pc = grp("minipc", [-80, 0, 10]); miniPC(pc);
+  // router behind
+  const rt = grp("router", [-170, 0, -120]);
+  add(rbox(110, 22, 70, 4), C.top, [0, 11, 0], { parent: rt, angle: 40 });
+  for (const x of [-40, 40]) add(new THREE.CylinderGeometry(3, 3, 80, 16), C.top, [x, 60, -30], { parent: rt, edges: false, hull: 1.35 });
+  for (let k = 0; k < 4; k++) add(box(5, 2.5, 1), C.accent, [-30 + k * 12, 11, 35.4], { parent: rt, edges: false });
+  // cables
+  tube([[-80, 14, -46], [-70, 3, -70], [0, 3, -70], [60, 3, -60], [85, 14, -60]], 3, C.ink);
+  tube([[-140, 12, -85], [-130, 3, -60], [-120, 3, -20], [-136, 12, 0]], 3, C.ink);
+  // phone lying flat with a photo grid
+  const ph = grp("phone", [-190, 0, 110]);
+  add(rbox(72, 8, 148, 7), C.ink, [0, 4, 0], { parent: ph, angle: 40, flatc: false });
+  add(box(64, 0.6, 136), C.screen, [0, 8.3, 0], { parent: ph, edges: false, flatc: true });
+  const tiles = [C.tile1, C.tile2, C.tile3, C.tile2, C.tile1, C.tile2, C.tile3, C.tile1, C.tile2, C.tile2, C.tile1, C.tile3];
+  tiles.forEach((t, i) => add(box(18, 0.6, 18), t, [-21 + (i % 3) * 21, 8.8, -42 + Math.floor(i / 3) * 24], { parent: ph, edges: false, flatc: true }));
+}
+
+if (SCENE === "office") {
+  // floor slab + two cut walls (architectural section)
+  add(box(372, 10, 312), C.floor, [-6, -5, -6], { hatch: true });
+  add(box(372, 210, 8), C.wall, [-6, 105, -158], {});
+  add(box(8, 210, 304), C.wall, [-188, 105, -2], {});
+  add(box(372, 1, 8), C.ink, [-6, 210.6, -158], { edges: false, flatc: true });
+  add(box(8, 1, 304), C.ink, [-188, 210.6, -2], { edges: false, flatc: true });
+  // window on the back wall
+  add(box(96, 80, 2), C.top, [-30, 140, -153], {});
+  add(box(2, 80, 3), C.ink, [-30, 140, -152], { edges: false, flatc: true });
+  add(box(96, 2, 3), C.ink, [-30, 140, -152], { edges: false, flatc: true });
+  // rug
+  add(box(170, 1, 120), C.rug, [40, 0.5, -40], { edges: true });
+  // desk against back wall
+  const desk = grp("desk", [30, 0, -112]);
+  add(box(160, 4, 70), C.wood, [0, 74, 0], { parent: desk });
+  for (const [x, z] of [[-76, -31], [76, -31], [-76, 31], [76, 31]]) add(box(4, 72, 4), C.dark, [x, 36, z], { parent: desk });
+  // laptop: base + tilted screen with a folder/photo grid on its face
+  const lap = grp("laptop", [-10, 76, -116]);
+  add(box(36, 1.8, 24), C.device, [0, 0.9, 0], { parent: lap });
+  const scr = grp("screen", [0, 1.8, -12], lap);
+  scr.rotation.x = -0.22;
+  add(box(36, 24, 1.2), C.device, [0, 12, 0], { parent: scr });
+  add(box(33, 21, 0.4), C.screen, [0, 12, 0.8], { parent: scr, edges: false, flatc: true });
+  const sc = [C.tile1, C.tile2, C.tile3, C.tile2, C.tile1, C.tile2, C.tile3, C.tile1];
+  sc.forEach((t, i) => add(box(6, 4.6, 0.4), t, [-11.5 + (i % 4) * 7.6, 17 - Math.floor(i / 4) * 7, 1.1], { parent: scr, edges: false, flatc: true }));
+  add(box(26, 1.2, 0.4), C.ink, [0, 4.5, 1.1], { parent: scr, edges: false, flatc: true });
+  // mug + papers
+  add(new THREE.CylinderGeometry(4, 4, 10, 24), C.top, [60, 81, -100], { edges: true, angle: 60, hull: 1.06 });
+  add(box(22, 1, 30), C.top, [24, 76.5, -105], { edges: true });
+  // chair + faceless person (volumes only)
+  const ch = grp("chair", [40, 0, -50]);
+  add(new THREE.CylinderGeometry(3, 3, 40, 16), C.dark, [0, 22, 0], { parent: ch, edges: false, hull: 1.25 });
+  add(box(56, 3, 56), C.dark, [0, 2, 0], { parent: ch });
+  add(rbox(48, 7, 46, 3), C.dark, [0, 45, 0], { parent: ch, angle: 40 });
+  add(rbox(46, 36, 6, 3), C.dark, [0, 76, 24], { parent: ch, angle: 40 });
+  const p = grp("person", [40, 0, -54]);
+  add(rbox(36, 50, 22, 9), C.person, [0, 74, 4], { parent: p, angle: 40 });                       // torso
+  add(new THREE.SphereGeometry(11, 32, 16), C.head, [0, 112, 0], { parent: p, edges: false, hull: 1.09 }); // head
+  add(rbox(30, 13, 44, 6), C.ink, [0, 53, -14], { parent: p, angle: 40, flatc: false });          // thighs
+  for (const x of [-9, 9]) add(rbox(12, 50, 13, 5), C.ink, [x, 27, -36], { parent: p, angle: 40 });  // shins
+  for (const x of [-22, 22]) {
+    add(rbox(10, 30, 10, 4), C.person, [x, 84, 0], { parent: p, angle: 40 });                     // upper arm
+    add(rbox(9, 9, 36, 4), C.person, [x * 0.8, 78, -28], { parent: p, angle: 40 });               // forearm to desk
+  }
+  // bookshelf on the left wall with the Arité server on the middle shelf
+  const sh = grp("shelf", [-168, 0, -10]);
+  add(box(32, 176, 3), C.wood, [0, 88, -60], { parent: sh });
+  add(box(32, 176, 3), C.wood, [0, 88, 60], { parent: sh });
+  for (const y of [2, 58, 114, 172]) add(box(32, 4, 120), C.wood, [0, y, 0], { parent: sh });
+  const sv = grp("server", [0, 60, -28], sh);
+  miniPC(sv, 0.26);
+  const enc = grp(null, [0, 0, 16], sv);
+  add(rbox(28, 38, 22, 2), C.device, [0, 19, 0], { parent: enc, angle: 40 });
+  add(box(8, 30, 0.6), C.ink, [-5, 19, 11.2], { parent: enc, edges: false, flatc: true });
+  add(box(8, 30, 0.6), C.ink, [5, 19, 11.2], { parent: enc, edges: false, flatc: true });
+  add(box(2, 2, 0.6), C.accent, [12, 34, 11.4], { parent: enc, edges: false, flatc: true });
+  // books
+  [[-4, 116, 26, 34, C.book], [-4, 116, 34, 30, C.top], [-4, 116, 41, 38, C.dark], [-4, 116, 47, 26, C.book]].forEach(([x, y, z, h, c]) =>
+    add(box(24, h, 6), c, [x, y + h / 2, z], { parent: sh }));
+  [[-4, 4, 30, 40, C.top], [-4, 4, 38, 34, C.book], [-4, 4, 46, 44, C.dark]].forEach(([x, y, z, h, c]) =>
+    add(box(24, h, 7), c, [x, y + h / 2, z], { parent: sh }));
+  add(rbox(24, 12, 30, 2), C.top, [-4, 180, -20], { parent: sh });                                    // router on top
+  add(new THREE.CylinderGeometry(1.5, 1.5, 22, 12), C.top, [-4, 197, -30], { parent: sh, edges: false, hull: 1.5 });
+}
+
+// ---- Isometric orthographic camera framed to the model (same as render.html)
+scene.updateMatrixWorld(true);
+const bb = new THREE.Box3();
+scene.traverse((o) => { if (o.isMesh && !o.isLineSegments2) bb.expandByObject(o); });
+const center = bb.getCenter(new THREE.Vector3());
+const dir = new THREE.Vector3(1, 0.82, 1).normalize();
+const cam = new THREE.OrthographicCamera(-1, 1, 1, -1, 1, 8000);
+cam.position.copy(center).addScaledVector(dir, 3000);
+cam.lookAt(center);
+cam.updateMatrixWorld();
+const inv = cam.matrixWorldInverse;
+let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+scene.traverse((o) => {
+  if (!o.isMesh || o.isLineSegments2) return;
+  o.geometry.computeBoundingBox();
+  const b = o.geometry.boundingBox;
+  for (let k = 0; k < 8; k++) {
+    const pt = new THREE.Vector3(k & 1 ? b.max.x : b.min.x, k & 2 ? b.max.y : b.min.y, k & 4 ? b.max.z : b.min.z);
+    pt.applyMatrix4(o.matrixWorld).applyMatrix4(inv);
+    minX = Math.min(minX, pt.x); maxX = Math.max(maxX, pt.x); minY = Math.min(minY, pt.y); maxY = Math.max(maxY, pt.y);
+  }
+});
+const pad = 0.02 * Math.max(maxX - minX, maxY - minY);
+cam.left = minX - pad; cam.right = maxX + pad; cam.top = maxY + pad; cam.bottom = minY - pad;
+cam.updateProjectionMatrix();
+const H = Math.round(W * (cam.top - cam.bottom) / (cam.right - cam.left));
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
+renderer.setPixelRatio(1);
+renderer.setSize(W, H);
+renderer.setClearColor(0x000000, 0);
+document.body.appendChild(renderer.domElement);
+for (const m of lineMats) m.resolution.set(W, H);
+renderer.render(scene, cam);
+const centers = {};
+for (const [name, g] of Object.entries(named)) {
+  const b = new THREE.Box3().expandByObject(g);
+  const c = b.isEmpty() ? g.getWorldPosition(new THREE.Vector3()) : b.getCenter(new THREE.Vector3());
+  const pt = c.project(cam);
+  centers[name] = { x: (pt.x + 1) / 2, y: (1 - pt.y) / 2 };
+}
+window.__result = { png: renderer.domElement.toDataURL("image/png"), w: W, h: H, centers };
+</script>
+</body>
+</html>

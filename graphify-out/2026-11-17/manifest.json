@@ -1,0 +1,607 @@
+{
+  "Colores/1.png": {
+    "mtime": 1794351629.2205458,
+    "ast_hash": "ee48c83f7ce4c1de08f58bd25e0531c7",
+    "semantic_hash": "ee48c83f7ce4c1de08f58bd25e0531c7"
+  },
+  "Colores/2.png": {
+    "mtime": 1794351714.9934032,
+    "ast_hash": "2ef84d3095c6849329195ebd6b577586",
+    "semantic_hash": "2ef84d3095c6849329195ebd6b577586"
+  },
+  "Ideas/1761322267033.jpg": {
+    "mtime": 1794351890.3723867,
+    "ast_hash": "1f6334b27170bd3d8e6b2115ead89775",
+    "semantic_hash": "1f6334b27170bd3d8e6b2115ead89775"
+  },
+  "Ideas/5-9.png": {
+    "mtime": 1794351866.595023,
+    "ast_hash": "ea6d4ee35369fe7a5cc7e818104d71c0",
+    "semantic_hash": "ea6d4ee35369fe7a5cc7e818104d71c0"
+  },
+  "Ideas/61EWNXRjYIL.jpg": {
+    "mtime": 1794351929.2538292,
+    "ast_hash": "509ed0cf0a00aab9cd51047030e6f2b5",
+    "semantic_hash": "509ed0cf0a00aab9cd51047030e6f2b5"
+  },
+  "Ideas/Captura de pantalla 2026-11-10 165248.png": {
+    "mtime": 1794351188.8289912,
+    "ast_hash": "ab57d28bd750da72444a54464a61baf1",
+    "semantic_hash": "ab57d28bd750da72444a54464a61baf1"
+  },
+  "Ideas/Captura de pantalla 2026-11-10 165337.png": {
+    "mtime": 1794351228.185581,
+    "ast_hash": "0e31027652d5939cffd61673df95f4d7",
+    "semantic_hash": "0e31027652d5939cffd61673df95f4d7"
+  },
+  "Ideas/Captura de pantalla 2026-11-10 165438.png": {
+    "mtime": 1794351287.0817046,
+    "ast_hash": "20d10d22acac0ea7b289ef888d0ec97b",
+    "semantic_hash": "20d10d22acac0ea7b289ef888d0ec97b"
+  },
+  "Ideas/Captura de pantalla 2026-11-10 165819.png": {
+    "mtime": 1794351508.7850318,
+    "ast_hash": "9abb90f762bfa0cf85f34d098372d31a",
+    "semantic_hash": "9abb90f762bfa0cf85f34d098372d31a"
+  },
+  "Ideas/Captura de pantalla 2026-11-10 165844.png": {
+    "mtime": 1794351532.9707217,
+    "ast_hash": "bff5f702d08a35981795cb0a4d167993",
+    "semantic_hash": "bff5f702d08a35981795cb0a4d167993"
+  },
+  "Ideas/nas-server-icon-vector-filled-260nw-1541091866.webp": {
+    "mtime": 1794351905.1344607,
+    "ast_hash": "1f5ac4d600e15ada2e3b38be7480b26e",
+    "semantic_hash": "1f5ac4d600e15ada2e3b38be7480b26e"
+  },
+  "Ideas/nas.webp": {
+    "mtime": 1794351878.9829214,
+    "ast_hash": "34296ebe22acb2797e093be8f81abdd4",
+    "semantic_hash": "34296ebe22acb2797e093be8f81abdd4"
+  },
+  "Ideas/sddefault.jpg": {
+    "mtime": 1794351946.3571913,
+    "ast_hash": "ba8a10928a1dd793e3acf885e5696a94",
+    "semantic_hash": "ba8a10928a1dd793e3acf885e5696a94"
+  },
+  "Logo/1. Base negro@2x.png": {
+    "mtime": 1794350880.9539645,
+    "ast_hash": "39c108b0bb6c4d42685f4f5ea5744611",
+    "semantic_hash": "39c108b0bb6c4d42685f4f5ea5744611"
+  },
+  "Logo/10. Hairline@2x.png": {
+    "mtime": 1794350938.1938882,
+    "ast_hash": "29605823c4ec17c6ac6eab4c08c47a18",
+    "semantic_hash": "29605823c4ec17c6ac6eab4c08c47a18"
+  },
+  "Logo/11. Monograma A\u0112@1x.png": {
+    "mtime": 1794350871.1847475,
+    "ast_hash": "3dff432d27411eb5178cfcad7471e868",
+    "semantic_hash": "3dff432d27411eb5178cfcad7471e868"
+  },
+  "No realizar/Captura de pantalla 2026-11-10 165544.png": {
+    "mtime": 1794351352.85806,
+    "ast_hash": "be288425ecd0cc4afc778c37cc03e7b7",
+    "semantic_hash": "be288425ecd0cc4afc778c37cc03e7b7"
+  },
+  "No realizar/Captura de pantalla 2026-11-10 165625.png": {
+    "mtime": 1794351395.0613227,
+    "ast_hash": "57d906f413746ec67191aee2b557ae2b",
+    "semantic_hash": "57d906f413746ec67191aee2b557ae2b"
+  },
+  "_build/assets/despiece-neutral-c.json": {
+    "mtime": 1794356318.438344,
+    "ast_hash": "42110248a3900a2d9529c0ceb98138c5",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-neutral.json": {
+    "mtime": 1794356269.8157792,
+    "ast_hash": "a34e7a51624e6dcb95184e363606f3bb",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-plano.json": {
+    "mtime": 1794356546.9852965,
+    "ast_hash": "a34e7a51624e6dcb95184e363606f3bb",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-red.json": {
+    "mtime": 1794356270.1777668,
+    "ast_hash": "a34e7a51624e6dcb95184e363606f3bb",
+    "semantic_hash": ""
+  },
+  "_build/build_pdf.py": {
+    "mtime": 1794418288.341013,
+    "ast_hash": "e8beb4a983e685ad6a8c204bddbd4ad4",
+    "semantic_hash": ""
+  },
+  "_build/check_logo.py": {
+    "mtime": 1794356418.7277117,
+    "ast_hash": "3a82ade6a8e16d67509cf40d359651e3",
+    "semantic_hash": ""
+  },
+  "_build/marks.py": {
+    "mtime": 1794356435.2231033,
+    "ast_hash": "128ccef75fcdeee00202e3c2100d3b49",
+    "semantic_hash": ""
+  },
+  "_build/measure.py": {
+    "mtime": 1794356065.0837164,
+    "ast_hash": "746134a67ea7335ecaff22b7f3fc59d6",
+    "semantic_hash": ""
+  },
+  "_build/render3d.py": {
+    "mtime": 1794412135.8349593,
+    "ast_hash": "adea1ba8db1feb0aff332cbd9afdcdc3",
+    "semantic_hash": ""
+  },
+  "_build/doc-neutral.html": {
+    "mtime": 1794356599.802872,
+    "ast_hash": "b4403719df907ddf1c3b3d325e009ecc",
+    "semantic_hash": ""
+  },
+  "_build/doc-plano.html": {
+    "mtime": 1794356602.9888167,
+    "ast_hash": "6c59553cfc10aefa566aeeadb0c7af39",
+    "semantic_hash": ""
+  },
+  "_build/doc-red.html": {
+    "mtime": 1794418289.4068062,
+    "ast_hash": "a331919772f9262eee31ff8f15e7065a",
+    "semantic_hash": ""
+  },
+  "_build/render.html": {
+    "mtime": 1794412135.7461731,
+    "ast_hash": "3a3b487caa15b432715dec610f17ad17",
+    "semantic_hash": ""
+  },
+  "Entregables/Aricloud_Paleta-Neutra.pdf": {
+    "mtime": 1794356601.495685,
+    "ast_hash": "6d99b0975a29bc53f094b9699022ead1",
+    "semantic_hash": ""
+  },
+  "Entregables/Aricloud_Paleta-Roja.pdf": {
+    "mtime": 1794418291.167102,
+    "ast_hash": "d911cdac801e8dcb382f3cae0399c538",
+    "semantic_hash": ""
+  },
+  "Entregables/Aricloud_Plano-de-tu-nube.pdf": {
+    "mtime": 1794356604.462437,
+    "ast_hash": "81efd8a4fcda58e50e4ec2c8dfd40373",
+    "semantic_hash": ""
+  },
+  "Ideas/ddd.png": {
+    "mtime": 1794351798.6732187,
+    "ast_hash": "3990fd1528e80e50f3391662aa85c13b",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-neutral-c.png": {
+    "mtime": 1794356318.4358,
+    "ast_hash": "596ff26c7aac5780991a83efb7b99adf",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-neutral.png": {
+    "mtime": 1794356269.8133752,
+    "ast_hash": "bc463d0ca4d6b72ddfed693307b40fe4",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-plano.png": {
+    "mtime": 1794356546.9828053,
+    "ast_hash": "019c3034dd76c0ccd6cdc9d66980703a",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-red.png": {
+    "mtime": 1794356270.1752527,
+    "ast_hash": "367eae6cfac24702f1a116f8111ed49d",
+    "semantic_hash": ""
+  },
+  "_build/assets/logo-diff.png": {
+    "mtime": 1794356436.71107,
+    "ast_hash": "6971d052579b11c11b9c7c266f7e3ea2",
+    "semantic_hash": ""
+  },
+  "_build/preview/neutral-p1.png": {
+    "mtime": 1794356601.2169628,
+    "ast_hash": "87c27b858f075b6e5e95d0c5733aba71",
+    "semantic_hash": ""
+  },
+  "_build/preview/neutral-p2.png": {
+    "mtime": 1794356601.2873445,
+    "ast_hash": "3275a42d23abcb2d35e95cf488979b4d",
+    "semantic_hash": ""
+  },
+  "_build/preview/plano-p1.png": {
+    "mtime": 1794356604.1493254,
+    "ast_hash": "3786554e628d2fa8c5f7a49ed46ae7a1",
+    "semantic_hash": ""
+  },
+  "_build/preview/plano-p2.png": {
+    "mtime": 1794356604.240698,
+    "ast_hash": "0dcf751799b2614a7cf80a7a8d0b8de1",
+    "semantic_hash": ""
+  },
+  "_build/preview/red-p1.png": {
+    "mtime": 1794418290.8335135,
+    "ast_hash": "c677ded1af133e84cd1ab58418733a82",
+    "semantic_hash": ""
+  },
+  "_build/preview/red-p2.png": {
+    "mtime": 1794418290.9477274,
+    "ast_hash": "4d5f0b159fb3c8c5074f9237f36b3ad8",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-red-w1.json": {
+    "mtime": 1794410004.883852,
+    "ast_hash": "6ec9cca8fc87efc7cbcdef0bbb07df59",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-red-w2.json": {
+    "mtime": 1794410005.1592956,
+    "ast_hash": "dd6a498e8d1d91938abee31a08a26354",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-red-w3.json": {
+    "mtime": 1794410005.3841386,
+    "ast_hash": "b9c8a7aa959123c634405d96e3681790",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-red-w1.png": {
+    "mtime": 1794410004.880815,
+    "ast_hash": "48802641a07e3e6baa7615b32395bff1",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-red-w2.png": {
+    "mtime": 1794410005.157276,
+    "ast_hash": "3f00538e3c7523cb449cd0ff6c5cbf15",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-red-w3.png": {
+    "mtime": 1794410005.3761146,
+    "ast_hash": "4684096b143dbc57a50da34adef0d242",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-red-h1.json": {
+    "mtime": 1794410498.0893035,
+    "ast_hash": "b8a2b1c9202fea9716694159037623c8",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-red-h2.json": {
+    "mtime": 1794410498.3018105,
+    "ast_hash": "da4a7950582708d13dc4ae29487f34a5",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-red-h3.json": {
+    "mtime": 1794410507.566594,
+    "ast_hash": "5dcf2db8f45140b5454d3d747b8b4d4a",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-red-h4.json": {
+    "mtime": 1794410507.794844,
+    "ast_hash": "cdccb2c3623913d613e2db9c34a2e3db",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-red-h5.json": {
+    "mtime": 1794410541.0044353,
+    "ast_hash": "6fc8a0ed2ed48eccb808b057c431e70b",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-red-h6.json": {
+    "mtime": 1794410541.2447107,
+    "ast_hash": "1f2ac3a6504aff13639f287e3e9b4a2f",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-red-h7.json": {
+    "mtime": 1794410554.8739963,
+    "ast_hash": "d03103e74f89c1398d34105cae2eba5c",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-red-h1.png": {
+    "mtime": 1794410498.08823,
+    "ast_hash": "a202173f46e717bd57d5489dcf890236",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-red-h2.png": {
+    "mtime": 1794410498.300809,
+    "ast_hash": "b9509289ca6470ddcfe64a0f54fb95a0",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-red-h3.png": {
+    "mtime": 1794410507.5645952,
+    "ast_hash": "1b33f363bd012fea02c737f89aa8fb2c",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-red-h4.png": {
+    "mtime": 1794410507.7933552,
+    "ast_hash": "f2cb5cc974a18da344ad97637db32b42",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-red-h5.png": {
+    "mtime": 1794410541.003406,
+    "ast_hash": "8190ff8a0c96bd3f39cc6bb795e36e34",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-red-h6.png": {
+    "mtime": 1794410541.2436695,
+    "ast_hash": "ecbed86df852c0483e37884f8a55936b",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-red-h7.png": {
+    "mtime": 1794410554.87296,
+    "ast_hash": "dca0b4f1c5202d2bd48d9ae45ef54ccf",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-red-k1.json": {
+    "mtime": 1794412137.4030266,
+    "ast_hash": "6e0541e53319963bcd930ca8ab4142a6",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-red-k2.json": {
+    "mtime": 1794412148.8789792,
+    "ast_hash": "19868709ab7e76395f5eb75098016594",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-red-k3.json": {
+    "mtime": 1794412209.8963425,
+    "ast_hash": "a6064a12f36c61dae60ec9f48e0cff6e",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-red-k1.png": {
+    "mtime": 1794412137.4020264,
+    "ast_hash": "b795c369ee1e278198303299edda7c99",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-red-k2.png": {
+    "mtime": 1794412148.8774693,
+    "ast_hash": "e7f517fbaaf93745a4e213bf640e7bef",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-red-k3.png": {
+    "mtime": 1794412209.8953106,
+    "ast_hash": "57482dbd7647524a6647a8e96117da9d",
+    "semantic_hash": ""
+  },
+  "_build/build_fb.py": {
+    "mtime": 1794938139.064814,
+    "ast_hash": "79c942ec0d1a33ee2b09c53bbfa4253b",
+    "semantic_hash": ""
+  },
+  "Calculadora imagenes/calculadora.html": {
+    "mtime": 1794414562.6271722,
+    "ast_hash": "80aaec79222dba955d0a4b0688ac90d2",
+    "semantic_hash": ""
+  },
+  "_build/fb-post.html": {
+    "mtime": 1794938139.3491433,
+    "ast_hash": "1902fba75556d027f2d6346d9e591391",
+    "semantic_hash": ""
+  },
+  "Calculadora imagenes/logo-arite.png": {
+    "mtime": 1794413317.4257114,
+    "ast_hash": "4f47cba873a0174b24354df5345a53de",
+    "semantic_hash": ""
+  },
+  "Entregables/Arite_FB_Paleta-Roja.png": {
+    "mtime": 1794938142.8323295,
+    "ast_hash": "327e1b7a7297438798936223b04bfcd2",
+    "semantic_hash": ""
+  },
+  "_build/preview/fb.png": {
+    "mtime": 1794938144.0833757,
+    "ast_hash": "b583771d119e53014bc35fdff038bd73",
+    "semantic_hash": ""
+  },
+  "_build/preview/red-p3.png": {
+    "mtime": 1794418291.011931,
+    "ast_hash": "a2f9bcc9253c00d30120de78ab846126",
+    "semantic_hash": ""
+  },
+  "_build/assets/scene-eco-neutral.json": {
+    "mtime": 1794939085.0926669,
+    "ast_hash": "ec83d74b2834c04ce9f8a383f5a2bbe3",
+    "semantic_hash": ""
+  },
+  "_build/assets/scene-eco-red.json": {
+    "mtime": 1794939084.6969533,
+    "ast_hash": "ec83d74b2834c04ce9f8a383f5a2bbe3",
+    "semantic_hash": ""
+  },
+  "_build/assets/scene-office-neutral.json": {
+    "mtime": 1794939085.9560363,
+    "ast_hash": "25effd0ac20ef18858dedf23302a357a",
+    "semantic_hash": ""
+  },
+  "_build/assets/scene-office-red.json": {
+    "mtime": 1794939085.5702102,
+    "ast_hash": "25effd0ac20ef18858dedf23302a357a",
+    "semantic_hash": ""
+  },
+  "_build/build_more.py": {
+    "mtime": 1794939328.9053326,
+    "ast_hash": "b7ff868599bac568750abe68c77fe605",
+    "semantic_hash": ""
+  },
+  "_build/render_scenes.py": {
+    "mtime": 1794939013.6532397,
+    "ast_hash": "74691fcf1d0395987fdc950535b38d1b",
+    "semantic_hash": ""
+  },
+  "_build/fb-cartel.html": {
+    "mtime": 1794939315.0762267,
+    "ast_hash": "b8b511eb874677226daeb5f2e6ddbd66",
+    "semantic_hash": ""
+  },
+  "_build/fb-negocio.html": {
+    "mtime": 1794939313.0155547,
+    "ast_hash": "43f13a8ad366f84ec6c2d4dd4a72a232",
+    "semantic_hash": ""
+  },
+  "_build/pdf-arma.html": {
+    "mtime": 1794939330.1619122,
+    "ast_hash": "8f3411a2c887f4a71d3f68da0b30d104",
+    "semantic_hash": ""
+  },
+  "_build/pdf-negocio.html": {
+    "mtime": 1794939317.04459,
+    "ast_hash": "9d271d51b44f396cb67dd89809717f2b",
+    "semantic_hash": ""
+  },
+  "_build/scenes.html": {
+    "mtime": 1794939082.4819505,
+    "ast_hash": "56b4f48e238f76fddcd6e5c45b462dac",
+    "semantic_hash": ""
+  },
+  "Entregables/Aricloud_Asi-se-arma-tu-nube_Paleta-Roja.pdf": {
+    "mtime": 1794939332.397295,
+    "ast_hash": "e71b0c73f36fe89673d84d3d80346f8b",
+    "semantic_hash": ""
+  },
+  "Entregables/Arite_Negocios_Paleta-Neutra.pdf": {
+    "mtime": 1794939319.1739469,
+    "ast_hash": "3810fad59ff2ca585613c32d943f805f",
+    "semantic_hash": ""
+  },
+  "Entregables/Arite_FB_Negocio_Paleta-Neutra.png": {
+    "mtime": 1794939315.0617635,
+    "ast_hash": "6ec372c285dfcc3637aa6b4cb8fa1eb2",
+    "semantic_hash": ""
+  },
+  "Entregables/Arite_FB_Tu-nube-en-casa_Paleta-Roja.png": {
+    "mtime": 1794939317.0257156,
+    "ast_hash": "e780bac0d1c2660883a8b37965a34f8f",
+    "semantic_hash": ""
+  },
+  "Ideas/Admitidos/01-poster-duotono-rojo.png": {
+    "mtime": 1794938644.546008,
+    "ast_hash": "a78de587f600c2119e3fb8729a948336",
+    "semantic_hash": ""
+  },
+  "Ideas/Admitidos/02-foto-torre-casera.png": {
+    "mtime": 1794938644.6293278,
+    "ast_hash": "055bd6483512276e432de341a10e7dbc",
+    "semantic_hash": ""
+  },
+  "Ideas/Admitidos/03-foto-nas-bahias.png": {
+    "mtime": 1794938644.7249515,
+    "ast_hash": "ab58a0e8cb6f9be702dbc5cec47886ce",
+    "semantic_hash": ""
+  },
+  "Ideas/Admitidos/04-ilustracion-monolinea-servidores.png": {
+    "mtime": 1794938644.8059464,
+    "ast_hash": "d05b544c65c136f92710874548ac7381",
+    "semantic_hash": ""
+  },
+  "Ideas/Admitidos/05-laptop-interfaz-archivos.png": {
+    "mtime": 1794938644.8896246,
+    "ast_hash": "579b4b753d97cf1879055969714bb712",
+    "semantic_hash": ""
+  },
+  "Ideas/Admitidos/06-persona-videollamada.png": {
+    "mtime": 1794938644.9737673,
+    "ast_hash": "cca69f33a0e504d36da2de12af15388a",
+    "semantic_hash": ""
+  },
+  "Ideas/Admitidos/07-comparativa-velocidad-puerto.png": {
+    "mtime": 1794938645.0453148,
+    "ast_hash": "2a97654a7b8231133d983729ece0ea98",
+    "semantic_hash": ""
+  },
+  "_build/assets/scene-eco-neutral.png": {
+    "mtime": 1794939085.0906408,
+    "ast_hash": "80d7fde6ea12f16b0d90ee9d6c083923",
+    "semantic_hash": ""
+  },
+  "_build/assets/scene-eco-red.png": {
+    "mtime": 1794939084.6943874,
+    "ast_hash": "49dd0ba683b2a6c6708447b39fcfc9de",
+    "semantic_hash": ""
+  },
+  "_build/assets/scene-office-neutral.png": {
+    "mtime": 1794939085.954024,
+    "ast_hash": "614aca9245e70c4248b9c07b2ef9121c",
+    "semantic_hash": ""
+  },
+  "_build/assets/scene-office-red.png": {
+    "mtime": 1794939085.5686972,
+    "ast_hash": "ab20531388b281679cc744b7fdeff93b",
+    "semantic_hash": ""
+  },
+  "_build/preview/chk2.png": {
+    "mtime": 1794939322.5652933,
+    "ast_hash": "e41114ac5dfd5188e6c2800967b9c5aa",
+    "semantic_hash": ""
+  },
+  "_build/preview/chk3.png": {
+    "mtime": 1794939333.3328629,
+    "ast_hash": "053407d56ea886de0c79ab90e1dc4911",
+    "semantic_hash": ""
+  },
+  "_build/preview/fb2.png": {
+    "mtime": 1794939322.3297546,
+    "ast_hash": "809e8f5e4b4daa041240586bf5c06bb0",
+    "semantic_hash": ""
+  },
+  "_build/preview/fb3.png": {
+    "mtime": 1794939322.4644244,
+    "ast_hash": "22948d354e54f5a695a6f52482c89363",
+    "semantic_hash": ""
+  },
+  "_build/preview/pdf-arma-both.png": {
+    "mtime": 1794939292.4751492,
+    "ast_hash": "51e40b97a69564ecdacb61ff7d0d76c7",
+    "semantic_hash": ""
+  },
+  "_build/preview/pdf-arma-p1.png": {
+    "mtime": 1794939332.1016662,
+    "ast_hash": "5aaaeb734381b90ce5ec4f14d86250f1",
+    "semantic_hash": ""
+  },
+  "_build/preview/pdf-arma-p2.png": {
+    "mtime": 1794939332.2009218,
+    "ast_hash": "abff3391605a1c096c75d74dcb8aed69",
+    "semantic_hash": ""
+  },
+  "_build/preview/pdf-negocio-both.png": {
+    "mtime": 1794939292.4210439,
+    "ast_hash": "e2c3a962107fa4d478862437aa967115",
+    "semantic_hash": ""
+  },
+  "_build/preview/pdf-negocio-p1.png": {
+    "mtime": 1794939318.734728,
+    "ast_hash": "a9d7a513d9dcc0925e79f787a216e8b6",
+    "semantic_hash": ""
+  },
+  "_build/preview/pdf-negocio-p2.png": {
+    "mtime": 1794939318.8622644,
+    "ast_hash": "e004d7a32d682cd3d0260749b495badf",
+    "semantic_hash": ""
+  },
+  "_build/preview/scene-eco-neutral.png": {
+    "mtime": 1794939086.9201465,
+    "ast_hash": "0baac33d70e997f8f349b95f1f11820f",
+    "semantic_hash": ""
+  },
+  "_build/preview/scene-eco-red.png": {
+    "mtime": 1794939068.578943,
+    "ast_hash": "95aeffb168bf9ac37fefb639afa159b6",
+    "semantic_hash": ""
+  },
+  "_build/preview/scene-office-neutral.png": {
+    "mtime": 1794939068.839938,
+    "ast_hash": "14cf4ced1c1b70000b6ef00007871f9c",
+    "semantic_hash": ""
+  },
+  "_build/preview/scene-office-red.png": {
+    "mtime": 1794939087.019173,
+    "ast_hash": "1cd58554a158fcaded1eeffd52b4f2c3",
+    "semantic_hash": ""
+  },
+  "_build/preview/scenes-all.png": {
+    "mtime": 1794939068.9347749,
+    "ast_hash": "dfcfafccd861d11f5157ed9048d0638d",
+    "semantic_hash": ""
+  },
+  "_build/preview/scenes-chk.png": {
+    "mtime": 1794939087.0821114,
+    "ast_hash": "0e593784cb4b66feb0cf9bb8d956b315",
+    "semantic_hash": ""
+  }
+}

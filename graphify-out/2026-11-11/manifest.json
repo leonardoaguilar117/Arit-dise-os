@@ -1,0 +1,332 @@
+{
+  "Colores/1.png": {
+    "mtime": 1794351629.2205458,
+    "ast_hash": "ee48c83f7ce4c1de08f58bd25e0531c7",
+    "semantic_hash": "ee48c83f7ce4c1de08f58bd25e0531c7"
+  },
+  "Colores/2.png": {
+    "mtime": 1794351714.9934032,
+    "ast_hash": "2ef84d3095c6849329195ebd6b577586",
+    "semantic_hash": "2ef84d3095c6849329195ebd6b577586"
+  },
+  "Ideas/1761322267033.jpg": {
+    "mtime": 1794351890.3723867,
+    "ast_hash": "1f6334b27170bd3d8e6b2115ead89775",
+    "semantic_hash": "1f6334b27170bd3d8e6b2115ead89775"
+  },
+  "Ideas/5-9.png": {
+    "mtime": 1794351866.595023,
+    "ast_hash": "ea6d4ee35369fe7a5cc7e818104d71c0",
+    "semantic_hash": "ea6d4ee35369fe7a5cc7e818104d71c0"
+  },
+  "Ideas/61EWNXRjYIL.jpg": {
+    "mtime": 1794351929.2538292,
+    "ast_hash": "509ed0cf0a00aab9cd51047030e6f2b5",
+    "semantic_hash": "509ed0cf0a00aab9cd51047030e6f2b5"
+  },
+  "Ideas/Captura de pantalla 2026-11-10 165248.png": {
+    "mtime": 1794351188.8289912,
+    "ast_hash": "ab57d28bd750da72444a54464a61baf1",
+    "semantic_hash": "ab57d28bd750da72444a54464a61baf1"
+  },
+  "Ideas/Captura de pantalla 2026-11-10 165337.png": {
+    "mtime": 1794351228.185581,
+    "ast_hash": "0e31027652d5939cffd61673df95f4d7",
+    "semantic_hash": "0e31027652d5939cffd61673df95f4d7"
+  },
+  "Ideas/Captura de pantalla 2026-11-10 165438.png": {
+    "mtime": 1794351287.0817046,
+    "ast_hash": "20d10d22acac0ea7b289ef888d0ec97b",
+    "semantic_hash": "20d10d22acac0ea7b289ef888d0ec97b"
+  },
+  "Ideas/Captura de pantalla 2026-11-10 165819.png": {
+    "mtime": 1794351508.7850318,
+    "ast_hash": "9abb90f762bfa0cf85f34d098372d31a",
+    "semantic_hash": "9abb90f762bfa0cf85f34d098372d31a"
+  },
+  "Ideas/Captura de pantalla 2026-11-10 165844.png": {
+    "mtime": 1794351532.9707217,
+    "ast_hash": "bff5f702d08a35981795cb0a4d167993",
+    "semantic_hash": "bff5f702d08a35981795cb0a4d167993"
+  },
+  "Ideas/nas-server-icon-vector-filled-260nw-1541091866.webp": {
+    "mtime": 1794351905.1344607,
+    "ast_hash": "1f5ac4d600e15ada2e3b38be7480b26e",
+    "semantic_hash": "1f5ac4d600e15ada2e3b38be7480b26e"
+  },
+  "Ideas/nas.webp": {
+    "mtime": 1794351878.9829214,
+    "ast_hash": "34296ebe22acb2797e093be8f81abdd4",
+    "semantic_hash": "34296ebe22acb2797e093be8f81abdd4"
+  },
+  "Ideas/sddefault.jpg": {
+    "mtime": 1794351946.3571913,
+    "ast_hash": "ba8a10928a1dd793e3acf885e5696a94",
+    "semantic_hash": "ba8a10928a1dd793e3acf885e5696a94"
+  },
+  "Logo/1. Base negro@2x.png": {
+    "mtime": 1794350880.9539645,
+    "ast_hash": "39c108b0bb6c4d42685f4f5ea5744611",
+    "semantic_hash": "39c108b0bb6c4d42685f4f5ea5744611"
+  },
+  "Logo/10. Hairline@2x.png": {
+    "mtime": 1794350938.1938882,
+    "ast_hash": "29605823c4ec17c6ac6eab4c08c47a18",
+    "semantic_hash": "29605823c4ec17c6ac6eab4c08c47a18"
+  },
+  "Logo/11. Monograma A\u0112@1x.png": {
+    "mtime": 1794350871.1847475,
+    "ast_hash": "3dff432d27411eb5178cfcad7471e868",
+    "semantic_hash": "3dff432d27411eb5178cfcad7471e868"
+  },
+  "No realizar/Captura de pantalla 2026-11-10 165544.png": {
+    "mtime": 1794351352.85806,
+    "ast_hash": "be288425ecd0cc4afc778c37cc03e7b7",
+    "semantic_hash": "be288425ecd0cc4afc778c37cc03e7b7"
+  },
+  "No realizar/Captura de pantalla 2026-11-10 165625.png": {
+    "mtime": 1794351395.0613227,
+    "ast_hash": "57d906f413746ec67191aee2b557ae2b",
+    "semantic_hash": "57d906f413746ec67191aee2b557ae2b"
+  },
+  "_build/assets/despiece-neutral-c.json": {
+    "mtime": 1794356318.438344,
+    "ast_hash": "42110248a3900a2d9529c0ceb98138c5",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-neutral.json": {
+    "mtime": 1794356269.8157792,
+    "ast_hash": "a34e7a51624e6dcb95184e363606f3bb",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-plano.json": {
+    "mtime": 1794356546.9852965,
+    "ast_hash": "a34e7a51624e6dcb95184e363606f3bb",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-red.json": {
+    "mtime": 1794356270.1777668,
+    "ast_hash": "a34e7a51624e6dcb95184e363606f3bb",
+    "semantic_hash": ""
+  },
+  "_build/build_pdf.py": {
+    "mtime": 1794410606.8984983,
+    "ast_hash": "99789a91e0a95a96666b3c434b44e9a0",
+    "semantic_hash": ""
+  },
+  "_build/check_logo.py": {
+    "mtime": 1794356418.7277117,
+    "ast_hash": "3a82ade6a8e16d67509cf40d359651e3",
+    "semantic_hash": ""
+  },
+  "_build/marks.py": {
+    "mtime": 1794356435.2231033,
+    "ast_hash": "128ccef75fcdeee00202e3c2100d3b49",
+    "semantic_hash": ""
+  },
+  "_build/measure.py": {
+    "mtime": 1794356065.0837164,
+    "ast_hash": "746134a67ea7335ecaff22b7f3fc59d6",
+    "semantic_hash": ""
+  },
+  "_build/render3d.py": {
+    "mtime": 1794410553.3741083,
+    "ast_hash": "754ddbc7a00276980c1a5fb0f33e8f5b",
+    "semantic_hash": ""
+  },
+  "_build/doc-neutral.html": {
+    "mtime": 1794356599.802872,
+    "ast_hash": "b4403719df907ddf1c3b3d325e009ecc",
+    "semantic_hash": ""
+  },
+  "_build/doc-plano.html": {
+    "mtime": 1794356602.9888167,
+    "ast_hash": "6c59553cfc10aefa566aeeadb0c7af39",
+    "semantic_hash": ""
+  },
+  "_build/doc-red.html": {
+    "mtime": 1794410607.8589194,
+    "ast_hash": "e95a85a1e7e73e2b7dfabbb8b2d3d0c7",
+    "semantic_hash": ""
+  },
+  "_build/render.html": {
+    "mtime": 1794410553.3439403,
+    "ast_hash": "b150d1a5020b074b1fc2f6dbd539d2a8",
+    "semantic_hash": ""
+  },
+  "Entregables/Aricloud_Paleta-Neutra.pdf": {
+    "mtime": 1794356601.495685,
+    "ast_hash": "6d99b0975a29bc53f094b9699022ead1",
+    "semantic_hash": ""
+  },
+  "Entregables/Aricloud_Paleta-Roja.pdf": {
+    "mtime": 1794410609.4717398,
+    "ast_hash": "90a2bcfac22d59da2b6c1dfdc6a3a36c",
+    "semantic_hash": ""
+  },
+  "Entregables/Aricloud_Plano-de-tu-nube.pdf": {
+    "mtime": 1794356604.462437,
+    "ast_hash": "81efd8a4fcda58e50e4ec2c8dfd40373",
+    "semantic_hash": ""
+  },
+  "Ideas/ddd.png": {
+    "mtime": 1794351798.6732187,
+    "ast_hash": "3990fd1528e80e50f3391662aa85c13b",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-neutral-c.png": {
+    "mtime": 1794356318.4358,
+    "ast_hash": "596ff26c7aac5780991a83efb7b99adf",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-neutral.png": {
+    "mtime": 1794356269.8133752,
+    "ast_hash": "bc463d0ca4d6b72ddfed693307b40fe4",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-plano.png": {
+    "mtime": 1794356546.9828053,
+    "ast_hash": "019c3034dd76c0ccd6cdc9d66980703a",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-red.png": {
+    "mtime": 1794356270.1752527,
+    "ast_hash": "367eae6cfac24702f1a116f8111ed49d",
+    "semantic_hash": ""
+  },
+  "_build/assets/logo-diff.png": {
+    "mtime": 1794356436.71107,
+    "ast_hash": "6971d052579b11c11b9c7c266f7e3ea2",
+    "semantic_hash": ""
+  },
+  "_build/preview/neutral-p1.png": {
+    "mtime": 1794356601.2169628,
+    "ast_hash": "87c27b858f075b6e5e95d0c5733aba71",
+    "semantic_hash": ""
+  },
+  "_build/preview/neutral-p2.png": {
+    "mtime": 1794356601.2873445,
+    "ast_hash": "3275a42d23abcb2d35e95cf488979b4d",
+    "semantic_hash": ""
+  },
+  "_build/preview/plano-p1.png": {
+    "mtime": 1794356604.1493254,
+    "ast_hash": "3786554e628d2fa8c5f7a49ed46ae7a1",
+    "semantic_hash": ""
+  },
+  "_build/preview/plano-p2.png": {
+    "mtime": 1794356604.240698,
+    "ast_hash": "0dcf751799b2614a7cf80a7a8d0b8de1",
+    "semantic_hash": ""
+  },
+  "_build/preview/red-p1.png": {
+    "mtime": 1794410609.282082,
+    "ast_hash": "e7db76be7804c380354125610b0c4b08",
+    "semantic_hash": ""
+  },
+  "_build/preview/red-p2.png": {
+    "mtime": 1794410609.3717062,
+    "ast_hash": "62a477b70f8ec72313ae26f7b52b31e5",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-red-w1.json": {
+    "mtime": 1794410004.883852,
+    "ast_hash": "6ec9cca8fc87efc7cbcdef0bbb07df59",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-red-w2.json": {
+    "mtime": 1794410005.1592956,
+    "ast_hash": "dd6a498e8d1d91938abee31a08a26354",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-red-w3.json": {
+    "mtime": 1794410005.3841386,
+    "ast_hash": "b9c8a7aa959123c634405d96e3681790",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-red-w1.png": {
+    "mtime": 1794410004.880815,
+    "ast_hash": "48802641a07e3e6baa7615b32395bff1",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-red-w2.png": {
+    "mtime": 1794410005.157276,
+    "ast_hash": "3f00538e3c7523cb449cd0ff6c5cbf15",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-red-w3.png": {
+    "mtime": 1794410005.3761146,
+    "ast_hash": "4684096b143dbc57a50da34adef0d242",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-red-h1.json": {
+    "mtime": 1794410498.0893035,
+    "ast_hash": "b8a2b1c9202fea9716694159037623c8",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-red-h2.json": {
+    "mtime": 1794410498.3018105,
+    "ast_hash": "da4a7950582708d13dc4ae29487f34a5",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-red-h3.json": {
+    "mtime": 1794410507.566594,
+    "ast_hash": "5dcf2db8f45140b5454d3d747b8b4d4a",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-red-h4.json": {
+    "mtime": 1794410507.794844,
+    "ast_hash": "cdccb2c3623913d613e2db9c34a2e3db",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-red-h5.json": {
+    "mtime": 1794410541.0044353,
+    "ast_hash": "6fc8a0ed2ed48eccb808b057c431e70b",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-red-h6.json": {
+    "mtime": 1794410541.2447107,
+    "ast_hash": "1f2ac3a6504aff13639f287e3e9b4a2f",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-red-h7.json": {
+    "mtime": 1794410554.8739963,
+    "ast_hash": "d03103e74f89c1398d34105cae2eba5c",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-red-h1.png": {
+    "mtime": 1794410498.08823,
+    "ast_hash": "a202173f46e717bd57d5489dcf890236",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-red-h2.png": {
+    "mtime": 1794410498.300809,
+    "ast_hash": "b9509289ca6470ddcfe64a0f54fb95a0",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-red-h3.png": {
+    "mtime": 1794410507.5645952,
+    "ast_hash": "1b33f363bd012fea02c737f89aa8fb2c",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-red-h4.png": {
+    "mtime": 1794410507.7933552,
+    "ast_hash": "f2cb5cc974a18da344ad97637db32b42",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-red-h5.png": {
+    "mtime": 1794410541.003406,
+    "ast_hash": "8190ff8a0c96bd3f39cc6bb795e36e34",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-red-h6.png": {
+    "mtime": 1794410541.2436695,
+    "ast_hash": "ecbed86df852c0483e37884f8a55936b",
+    "semantic_hash": ""
+  },
+  "_build/assets/despiece-red-h7.png": {
+    "mtime": 1794410554.87296,
+    "ast_hash": "dca0b4f1c5202d2bd48d9ae45ef54ccf",
+    "semantic_hash": ""
+  }
+}

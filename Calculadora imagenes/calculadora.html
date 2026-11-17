@@ -1,0 +1,703 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aricloud · ¿Cuándo se llena tu disco?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Antonio:wght@500;700&family=Archivo:wdth,wght@100..125,400..900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0D0D0D;
+  --ink-2:#595959;
+  --line:#BFBFBF;
+  --paper:#EEEBE2;
+  --paper-2:#F2EFE9;
+  --red:#BF0426;
+  --pink:#DEA6A3;
+  --sand:#BFAA8F;
+  --wide:'Archivo','Helvetica Neue',Arial,sans-serif;
+  --cond:'Antonio','Archivo Narrow','Arial Narrow',Impact,sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--wide);font-size:16px;line-height:1.45}
+.sheet{max-width:1120px;margin:0 auto;padding:32px 24px 48px}
+
+/* header */
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-bottom:12px;border-bottom:2px solid var(--ink)}
+.top img{height:44px;display:block;mix-blend-mode:multiply;margin:0 0 4px}
+.top .tag{font-family:var(--cond);text-transform:uppercase;letter-spacing:.06em;font-size:15px;color:var(--ink-2);text-align:right}
+
+h1{font-family:var(--wide);font-stretch:125%;font-weight:800;font-size:clamp(34px,6vw,64px);line-height:1.02;letter-spacing:-.02em;margin:40px 0 16px;max-width:15ch}
+h1 em{font-style:normal;color:var(--red)}
+.lede{max-width:56ch;margin:0 0 40px;font-size:18px}
+
+/* layout */
+.grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,420px);gap:48px;align-items:start}
+@media (max-width:900px){.grid{grid-template-columns:1fr;gap:32px}}
+
+/* form sections */
+fieldset{border:0;margin:0 0 32px;padding:0;min-width:0}
+legend{padding:0;width:100%;display:flex;align-items:baseline;gap:12px;font-family:var(--cond);text-transform:uppercase;font-size:24px;letter-spacing:.03em;font-weight:700;padding-bottom:6px;border-bottom:1px solid var(--ink);margin-bottom:16px}
+legend span{color:var(--red);font-size:16px;letter-spacing:.08em}
+.row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 20px}
+.row.one{grid-template-columns:1fr}
+@media (max-width:520px){.row{grid-template-columns:1fr}}
+label,.lab{display:block;font-size:14px;color:var(--ink);font-weight:500;margin-bottom:6px}
+.hint{display:block;font-size:13px;color:var(--ink-2);font-weight:400;margin-top:4px}
+input[type=number],select{width:100%;height:48px;font:inherit;font-size:16px;color:var(--ink);background:var(--paper-2);border:1px solid var(--ink);border-radius:0;padding:0 12px;appearance:none;-webkit-appearance:none}
+select{background-image:linear-gradient(45deg,transparent 50%,var(--ink) 50%),linear-gradient(135deg,var(--ink) 50%,transparent 50%);background-position:calc(100% - 20px) 21px,calc(100% - 14px) 21px;background-size:6px 6px;background-repeat:no-repeat;padding-right:36px}
+input:focus-visible,select:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+input[type=number]{font-variant-numeric:tabular-nums}
+.unit{position:relative}
+.unit input{padding-right:64px}
+.unit i{position:absolute;right:12px;top:0;height:48px;display:flex;align-items:center;font-style:normal;font-size:13px;color:var(--ink-2);pointer-events:none}
+
+.seg{display:flex;border:1px solid var(--ink);background:var(--paper-2)}
+.seg label{flex:1;margin:0;position:relative}
+.seg input{position:absolute;opacity:0;inset:0;cursor:pointer;width:100%;height:100%}
+.seg span{display:flex;align-items:center;justify-content:center;height:46px;text-align:center;font-size:14px;font-weight:600;padding:0 6px;border-right:1px solid var(--ink);transition:background-color .15s,color .15s}
+.seg label:last-child span{border-right:0}
+.seg input:checked + span{background:var(--ink);color:var(--paper-2)}
+.seg input:focus-visible + span{outline:3px solid var(--red);outline-offset:-3px}
+
+details{border-top:1px solid var(--line);padding-top:12px}
+summary{cursor:pointer;font-family:var(--cond);text-transform:uppercase;letter-spacing:.04em;font-size:18px;list-style:none;min-height:44px;display:flex;align-items:center;gap:8px}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"+";display:inline-block;width:18px;color:var(--red);font-weight:700}
+details[open] summary::before{content:"−"}
+details .row{margin-top:8px}
+
+/* results */
+.out{position:sticky;top:16px}
+@media (max-width:900px){.out{position:static}}
+.big{background:var(--red);color:var(--paper-2);padding:24px;position:relative;overflow:hidden;
+  background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.06) 0 2px,transparent 2px 7px)}
+.big .k{font-family:var(--cond);text-transform:uppercase;letter-spacing:.06em;font-size:16px;opacity:.9}
+.big .date{font-family:var(--cond);font-weight:700;text-transform:uppercase;font-size:clamp(44px,8vw,68px);line-height:1;margin:8px 0 6px;letter-spacing:.01em}
+.big .in{font-size:17px}
+.sub{display:grid;grid-template-columns:1fr 1fr}
+.cell{padding:16px 20px;background:var(--pink);color:var(--ink);
+  background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.12) 0 2px,transparent 2px 7px)}
+.cell + .cell{background:var(--paper-2);border:1px solid var(--line);border-left:0}
+.cell .k{font-size:13px;color:inherit;opacity:.8}
+.cell .v{font-family:var(--cond);font-weight:700;font-size:34px;line-height:1.1;margin-top:2px;font-variant-numeric:tabular-nums}
+.cell .u{font-size:13px;opacity:.8}
+
+.facts{margin:20px 0 0;border-top:2px solid var(--ink)}
+.facts div{display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-bottom:1px solid var(--ink);font-size:15px}
+.facts dt{margin:0}
+.facts dd{margin:0;font-weight:700;font-variant-numeric:tabular-nums;text-align:right}
+
+/* chart + compare */
+.section{margin-top:56px}
+.section h2{font-family:var(--wide);font-stretch:125%;font-weight:800;font-size:clamp(26px,4vw,38px);letter-spacing:-.015em;line-height:1.05;margin:0 0 20px}
+.section h2 em{font-style:normal;color:var(--red)}
+.chart{background:var(--paper-2);border:1px solid var(--ink);padding:8px 8px 4px}
+.chart svg{display:block;width:100%;height:auto}
+.chart text{font-family:var(--wide);fill:var(--ink-2);font-size:12px}
+.legend{display:flex;gap:20px;flex-wrap:wrap;font-size:13px;color:var(--ink-2);margin-top:10px}
+.legend b{display:inline-block;width:22px;height:0;vertical-align:middle;margin-right:6px}
+.legend .a{border-top:3px solid var(--red)}
+.legend .b{border-top:2px dashed var(--ink)}
+
+table{width:100%;border-collapse:collapse;font-size:15px}
+th{font-family:var(--cond);text-transform:uppercase;letter-spacing:.04em;font-size:16px;font-weight:700;text-align:left;padding:8px 8px 8px 0;border-bottom:2px solid var(--ink)}
+td{padding:12px 8px 12px 0;border-bottom:1px solid var(--ink);font-variant-numeric:tabular-nums}
+td.n{font-family:var(--cond);font-weight:700;font-size:20px}
+tr.sel td{color:var(--red)}
+.tw{overflow-x:auto}
+.note{font-size:13px;color:var(--ink-2);margin-top:12px;max-width:80ch}
+
+/* title block */
+.block{margin:56px 0 0 auto;max-width:440px;border:1px solid var(--ink);display:grid;grid-template-columns:110px 1fr;background:var(--paper-2)}
+.block .logo{grid-row:1 / 5;border-right:1px solid var(--ink);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;text-align:center;padding:8px}
+.block .r{display:grid;grid-template-columns:90px 1fr;border-bottom:1px solid var(--ink);font-size:13px}
+.block .r:last-child{border-bottom:0}
+.block .r span{padding:6px 8px;color:var(--ink-2)}
+.block .r b{padding:6px 8px}
+
+/* switch */
+.switch{display:flex;gap:14px;align-items:flex-start;cursor:pointer;margin:0 0 20px;position:relative}
+.switch input{position:absolute;opacity:0;width:44px;height:28px;margin:0;cursor:pointer}
+.trk{flex:none;width:44px;height:26px;border:1px solid var(--ink);background:var(--paper-2);position:relative;margin-top:2px;transition:background-color .15s}
+.trk::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;background:var(--ink);transition:transform .15s,background-color .15s}
+.switch input:checked + .trk{background:var(--red);border-color:var(--red)}
+.switch input:checked + .trk::after{transform:translateX(18px);background:var(--paper-2)}
+.switch input:focus-visible + .trk{outline:3px solid var(--red);outline-offset:2px}
+.swt b{display:block;font-weight:700;font-size:16px}
+.swt small{display:block;font-size:13px;color:var(--ink-2);margin-top:2px}
+/* file rows */
+.fgroup{font-family:var(--cond);text-transform:uppercase;letter-spacing:.05em;font-size:16px;margin:20px 0 4px;display:flex;justify-content:space-between;gap:12px;align-items:baseline;border-bottom:1px solid var(--ink);padding-bottom:4px}
+.fgroup small{font-family:var(--wide);text-transform:none;letter-spacing:0;font-size:12px;color:var(--ink-2)}
+.frow{display:grid;grid-template-columns:minmax(0,1fr) 92px 92px;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line)}
+.frow.head{font-size:12px;color:var(--ink-2);border-bottom:0;padding:8px 0 0}
+.frow.head span:nth-child(n+2){text-align:right}
+.fchk{display:flex;gap:10px;align-items:center;margin:0;min-height:44px;cursor:pointer;font-size:15px;font-weight:500}
+.fchk input{width:20px;height:20px;accent-color:var(--red);margin:0;flex:none}
+.fchk small{display:block;font-size:12px;color:var(--ink-2);font-weight:400}
+.frow input[type=number]{height:40px;padding:0 8px;text-align:right}
+.frow.off input[type=number]{opacity:.4}
+@media (max-width:520px){.frow{grid-template-columns:minmax(0,1fr) 76px 76px;gap:6px}}
+/* share bar */
+.share{margin-top:20px}
+.shk{font-family:var(--cond);text-transform:uppercase;letter-spacing:.05em;font-size:15px;margin-bottom:8px}
+.bar{display:flex;height:16px;border:1px solid var(--ink);background:var(--paper-2)}
+.bar i{display:block;height:100%;transition:width .2s}
+.shl{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13px}
+.shl li{display:flex;gap:6px;align-items:center}
+.shl li::before{content:"";width:10px;height:10px;background:var(--c);display:inline-block}
+.shl b{font-variant-numeric:tabular-nums}
+.warn{margin-top:12px;padding:10px 14px;border-left:4px solid var(--ink);background:var(--paper-2);font-size:14px}
+[hidden]{display:none!important}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<main class="sheet">
+
+<header class="top">
+  <img src="logo-arite.png" alt="Arité">
+  <div class="tag">Aricloud · Calculadora de almacenamiento<br>Immich + NAS</div>
+</header>
+
+<h1>¿Cuándo se <em>llena</em> tu disco?</h1>
+<p class="lede">Cuéntanos cuántas fotos, videos y documentos guarda tu familia y te decimos en qué fecha se acaba el espacio del disco duro de tu NAS con Immich.</p>
+
+<div class="grid">
+
+<form id="f" autocomplete="off" onsubmit="return false">
+
+  <fieldset>
+    <legend><span>01</span> Tu disco</legend>
+    <div class="row">
+      <div>
+        <label for="cap">Capacidad de cada disco</label>
+        <div class="unit"><input id="cap" type="number" min="0.5" step="0.5" value="4" inputmode="decimal"><i>TB</i></div>
+      </div>
+      <div>
+        <label for="n">Número de discos</label>
+        <select id="n"></select>
+      </div>
+      <div class="row one" style="grid-column:1/-1">
+        <div>
+          <span class="lab" id="modeLab">Configuración</span>
+          <div class="seg" role="radiogroup" aria-labelledby="modeLab">
+            <label><input type="radio" name="mode" value="single"><span>Disco solo</span></label>
+            <label><input type="radio" name="mode" value="mirror" checked><span>Espejo</span></label>
+            <label><input type="radio" name="mode" value="raid5"><span>RAID 5</span></label>
+          </div>
+          <span class="hint" id="modeHint"></span>
+        </div>
+      </div>
+      <div style="grid-column:1/-1">
+        <label for="used">Espacio que ya ocupas en Immich</label>
+        <div class="unit"><input id="used" type="number" min="0" step="10" value="0" inputmode="decimal"><i>GB</i></div>
+        <span class="hint">Si empiezas desde cero, déjalo en 0. Lo ves en Immich → Administración → Estadísticas.</span>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend><span>02</span> Celular y fotos</legend>
+    <div class="row">
+      <div style="grid-column:1/-1">
+        <label for="model">Modelo de celular</label>
+        <select id="model"></select>
+        <span class="hint" id="modelHint">Elige el celular más común de tu familia: cargamos el peso típico de sus fotos y los modos de grabación que ofrece. Puedes ajustar todo.</span>
+      </div>
+      <div>
+        <label for="people">Personas que respaldan</label>
+        <select id="people"></select>
+      </div>
+      <div>
+        <label for="ppm">Fotos por persona al mes</label>
+        <input id="ppm" type="number" min="0" step="10" value="300" inputmode="numeric">
+      </div>
+      <div>
+        <label for="pPre">Tipo de foto</label>
+        <select id="pPre"></select>
+      </div>
+      <div>
+        <label for="pmb">Peso por foto</label>
+        <div class="unit"><input id="pmb" type="number" min="0" step="0.5" value="3" inputmode="decimal"><i>MB</i></div>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend><span>03</span> Videos</legend>
+    <div class="row">
+      <div>
+        <label for="vmin">Minutos de video por persona al mes</label>
+        <div class="unit"><input id="vmin" type="number" min="0" step="5" value="30" inputmode="numeric"><i>min</i></div>
+      </div>
+      <div>
+        <label for="vPre">Calidad de grabación</label>
+        <select id="vPre"></select>
+      </div>
+      <div style="grid-column:1/-1">
+        <label for="vmb">Peso por minuto de video</label>
+        <div class="unit"><input id="vmb" type="number" min="0" step="10" value="130" inputmode="decimal"><i>MB/min</i></div>
+        <span class="hint">Valores aproximados: cambian con la escena y los ajustes de la cámara. Los videos pesan mucho más que las fotos: 10 minutos en 4K equivalen a cientos de fotos.</span>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset id="filesSet">
+    <legend><span>04</span> Archivos tipo Drive</legend>
+    <label class="switch" for="filesOn">
+      <input id="filesOn" type="checkbox" role="switch">
+      <span class="trk" aria-hidden="true"></span>
+      <span class="swt"><b>Guardar también documentos y archivos</b>
+        <small>PDF, Word, PowerPoint, Excel y más, como en Google Drive pero dentro de tu casa.</small></span>
+    </label>
+    <div id="filesBox" hidden>
+      <p class="hint" style="margin:0 0 16px">Los documentos viven en una carpeta compartida del mismo disco; Immich se encarga de fotos y videos. Marca solo lo que quieras guardar y ajusta las cantidades.</p>
+      <div id="filesList"></div>
+      <div style="margin-top:20px">
+        <label for="seed">Archivos que ya tienes y quieres subir el primer día</label>
+        <div class="unit"><input id="seed" type="number" min="0" step="10" value="0" inputmode="decimal"><i>GB</i></div>
+        <span class="hint">Una sola vez, entre todos: lo que hoy tienen en computadoras, USB o discos viejos.</span>
+      </div>
+    </div>
+  </fieldset>
+
+  <details>
+    <summary>Ajustes avanzados</summary>
+    <div class="row">
+      <div>
+        <label for="ovh">Extras de Immich (miniaturas y videos convertidos)</label>
+        <div class="unit"><input id="ovh" type="number" min="0" max="100" step="1" value="10" inputmode="decimal"><i>%</i></div>
+        <span class="hint">Immich guarda además miniaturas y versiones ligeras de los videos.</span>
+      </div>
+      <div>
+        <label for="res">Espacio que quieres dejar libre</label>
+        <div class="unit"><input id="res" type="number" min="0" max="50" step="1" value="10" inputmode="decimal"><i>%</i></div>
+        <span class="hint">Un disco al 100 % se vuelve lento y riesgoso. Recomendado: 10 %.</span>
+      </div>
+      <div>
+        <label for="fs">Pérdida por formato del disco</label>
+        <div class="unit"><input id="fs" type="number" min="0" max="30" step="1" value="3" inputmode="decimal"><i>%</i></div>
+        <span class="hint">Sistema de archivos y metadatos.</span>
+      </div>
+      <div>
+        <label for="gr">Crecimiento del uso por año</label>
+        <div class="unit"><input id="gr" type="number" min="0" max="100" step="5" value="0" inputmode="decimal"><i>%</i></div>
+        <span class="hint">Cámaras mejores y más videos cada año. 0 % = uso constante.</span>
+      </div>
+    </div>
+  </details>
+</form>
+
+<aside class="out" aria-live="polite">
+  <div class="big">
+    <div class="k" id="kLab">Tu disco se llena en</div>
+    <div class="date" id="date">—</div>
+    <div class="in" id="in"></div>
+  </div>
+  <div class="sub">
+    <div class="cell"><div class="k">Espacio útil para archivos</div><div class="v" id="usable">—</div><div class="u" id="usableU"></div></div>
+    <div class="cell"><div class="k">Aumenta cada mes</div><div class="v" id="perMonth">—</div><div class="u" id="perMonthU"></div></div>
+  </div>
+  <div id="warn" class="warn" hidden></div>
+  <div class="share" id="shareWrap">
+    <div class="shk">De dónde sale el crecimiento</div>
+    <div class="bar" id="bar" role="img" aria-label="Reparto del crecimiento mensual"></div>
+    <ul class="shl" id="shl"></ul>
+  </div>
+  <dl class="facts">
+    <div><dt>Capacidad total de los discos</dt><dd id="fRaw">—</dd></div>
+    <div><dt>Protección</dt><dd id="fProt">—</dd></div>
+    <div><dt>Fotos que caben, aprox.</dt><dd id="fPhotos">—</dd></div>
+    <div><dt>Horas de video que caben, aprox.</dt><dd id="fHours">—</dd></div>
+    <div><dt>Subes por persona al año</dt><dd id="fYear">—</dd></div>
+  </dl>
+</aside>
+
+</div>
+
+<section class="section" aria-labelledby="hChart">
+  <h2 id="hChart">Así crece tu <em>espacio ocupado.</em></h2>
+  <div class="chart"><svg id="chart" viewBox="0 0 800 320" role="img" aria-label="Gráfica del espacio ocupado contra el tiempo"></svg></div>
+  <div class="legend"><span><b class="a"></b>Espacio ocupado</span><span><b class="b"></b>Límite útil del disco</span></div>
+</section>
+
+<section class="section" aria-labelledby="hCmp">
+  <h2 id="hCmp">Con tu mismo ritmo, <em>¿qué disco te conviene?</em></h2>
+  <div class="tw">
+  <table>
+    <thead><tr><th>Capacidad útil</th><th>Espacio para archivos</th><th>Se llena en</th><th>Fecha</th></tr></thead>
+    <tbody id="cmp"></tbody>
+  </table>
+  </div>
+  <p class="note">Comparación con discos en espejo (el espacio útil es el de un solo disco), usando tus mismos datos de fotos, videos y ajustes. La fila resaltada es la más cercana a tu configuración.</p>
+</section>
+
+<div class="block" aria-label="Datos del cálculo">
+  <div class="logo">Aricloud</div>
+  <div class="r"><span>Proyecto</span><b>Calculadora de espacio</b></div>
+  <div class="r"><span>Software</span><b>Immich en NAS</b></div>
+  <div class="r"><span>Cálculo</span><b id="stamp">—</b></div>
+  <div class="r"><span>Dibujó</span><b>Leonardo Aguilar</b></div>
+</div>
+
+</main>
+
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+
+  // Pesos aproximados (MB por foto, MB por minuto de video). Varían según escena y ajustes.
+  // [foto por defecto, video por defecto] son índices en las listas de cada modelo.
+  const V_IPHONE_OLD = [['1080p 30 fps',130],['1080p 60 fps',200],['4K 30 fps',350]];
+  const V_IPHONE = [['1080p 30 fps',65],['1080p 60 fps',90],['4K 30 fps',170],['4K 60 fps',400]];
+  const V_IPHONE_PRO = V_IPHONE.concat([['4K 30 fps ProRes',6000]]);
+  const V_BASIC = [['720p 30 fps',60],['1080p 30 fps',110]];
+  const V_SAMSUNG = [['1080p 30 fps',130],['1080p 60 fps',210],['4K 30 fps',340],['4K 60 fps',600],['8K 24 fps',700]];
+  const V_SAMSUNG_A = [['1080p 30 fps',130],['1080p 60 fps',200],['4K 30 fps',330]];
+  const V_PIXEL = [['1080p 30 fps',120],['1080p 60 fps',200],['4K 30 fps',375],['4K 60 fps',600]];
+  const V_XIAOMI = [['1080p 30 fps',130],['1080p 60 fps',200],['4K 30 fps',350]];
+  const V_XIAOMI_TOP = [['1080p 30 fps',130],['1080p 60 fps',200],['4K 30 fps',350],['4K 60 fps',600],['8K 24 fps',650]];
+  const V_MOTO = [['1080p 30 fps',110],['1080p 60 fps',170],['4K 30 fps',300]];
+  const V_ONEPLUS = [['1080p 30 fps',130],['1080p 60 fps',200],['4K 30 fps',350],['4K 60 fps',650]];
+  const V_HUAWEI = [['1080p 30 fps',100],['1080p 60 fps',160],['4K 30 fps',300]];
+  const V_SONY = [['1080p 30 fps',130],['4K 30 fps',340],['4K 60 fps',600]];
+  const V_MID = [['1080p 30 fps',120],['1080p 60 fps',190],['4K 30 fps',320]];
+  const P = (a,b,c) => { const r=[['12 MP',a]]; if(b) r.push(['50 MP',b]); if(c) r.push(['108 MP',c]); return r; };
+
+  const MODELS = [
+    {name:'Otro / genérico', photo:[['Celular 12 MP',3],['Celular 48 MP',6],['Cámara con RAW',30]],
+      video:[['720p',40],['1080p HEVC',60],['1080p H.264',130],['4K 30 fps HEVC',190],['4K 60 fps',400]], dp:0, dv:2},
+    {group:'iPhone', items:[
+      {name:'iPhone 6 / 6s / 7', photo:[['8 MP JPG',2.5],['12 MP JPG (6s / 7)',3]], video:V_IPHONE_OLD, dp:0, dv:0},
+      {name:'iPhone 8 / X / XR / XS', photo:[['12 MP HEIC',2],['12 MP JPG',3]], video:V_IPHONE, dp:0, dv:0},
+      {name:'iPhone SE (2.ª y 3.ª gen)', photo:[['12 MP HEIC',2]], video:V_IPHONE, dp:0, dv:0},
+      {name:'iPhone 11 / 12 / 13 / 14', photo:[['12 MP HEIC',2],['12 MP JPG',3.5]], video:V_IPHONE, dp:0, dv:0},
+      {name:'iPhone 11 Pro / 12 Pro / 13 Pro', photo:[['12 MP HEIC',2],['12 MP ProRAW (12 / 13 Pro)',25]], video:V_IPHONE, dp:0, dv:0},
+      {name:'iPhone 15 / 16 / 17', photo:[['24 MP HEIC',3],['48 MP HEIC',5]], video:V_IPHONE, dp:0, dv:0},
+      {name:'iPhone Pro (14 Pro en adelante)', photo:[['12 MP HEIC',2],['48 MP HEIC',5],['48 MP ProRAW',75]], video:V_IPHONE_PRO, dp:1, dv:0}
+    ]},
+    {group:'Samsung', items:[
+      {name:'Galaxy A básicos (A03, A05, A06, A15)', photo:P(3,8), video:V_BASIC.concat([['1080p 60 fps',180]]), dp:0, dv:1},
+      {name:'Galaxy A medios (A25, A35, A55…)', photo:P(4,9), video:V_SAMSUNG_A, dp:0, dv:0},
+      {name:'Galaxy M / F', photo:P(4,9,18), video:V_SAMSUNG_A, dp:0, dv:0},
+      {name:'Galaxy S20 / S21 / S22', photo:P(4,10), video:V_SAMSUNG, dp:0, dv:0},
+      {name:'Galaxy S23 / S24 / S25', photo:P(4,10), video:V_SAMSUNG, dp:0, dv:0},
+      {name:'Galaxy S Ultra', photo:[['12 MP',4],['50 MP',10],['200 MP',25]], video:V_SAMSUNG, dp:0, dv:0},
+      {name:'Galaxy Z Flip / Fold', photo:P(4,10), video:V_SAMSUNG, dp:0, dv:0}
+    ]},
+    {group:'Google', items:[
+      {name:'Pixel 4a / 5a / 6a / 7a', photo:[['12 MP',3.5],['64 MP (7a)',9]], video:V_PIXEL, dp:0, dv:0},
+      {name:'Pixel 6 / 7 / 8 / 9', photo:P(3.5,10), video:V_PIXEL, dp:0, dv:0},
+      {name:'Pixel Pro (6 Pro en adelante)', photo:P(3.5,10), video:V_PIXEL, dp:0, dv:0}
+    ]},
+    {group:'Xiaomi', items:[
+      {name:'Redmi A / Redmi (gama de entrada)', photo:P(3,7), video:V_BASIC.concat([['1080p 60 fps',170]]), dp:0, dv:1},
+      {name:'Redmi Note (11, 12, 13, 14)', photo:P(4,9,20), video:V_XIAOMI, dp:0, dv:0},
+      {name:'POCO (X, M, F)', photo:P(4,9,20), video:V_XIAOMI, dp:0, dv:0},
+      {name:'Xiaomi 12 / 13 / 14 / 15', photo:P(4,10), video:V_XIAOMI_TOP, dp:0, dv:0}
+    ]},
+    {group:'Motorola', items:[
+      {name:'Moto E / G básicos', photo:P(3,8), video:V_BASIC.concat([['1080p 60 fps',150]]), dp:0, dv:1},
+      {name:'Moto G medios (G54, G84…)', photo:P(3.5,9), video:V_MOTO, dp:0, dv:0},
+      {name:'Moto Edge / Razr', photo:P(3.5,9), video:V_MOTO.concat([['4K 60 fps',500]]), dp:0, dv:0}
+    ]},
+    {group:'Otras marcas', items:[
+      {name:'OnePlus (Nord, 11, 12, 13)', photo:P(4,10), video:V_ONEPLUS, dp:0, dv:0},
+      {name:'OPPO (A, Reno, Find)', photo:P(4,9,18), video:V_MID, dp:0, dv:0},
+      {name:'realme', photo:P(4,9,18), video:V_MID, dp:0, dv:0},
+      {name:'vivo (Y, V, X)', photo:P(4,9,18), video:V_MID, dp:0, dv:0},
+      {name:'Honor (Magic, X, 200)', photo:P(4,9), video:V_HUAWEI.concat([['4K 60 fps',500]]), dp:0, dv:0},
+      {name:'Huawei (P, Mate, Nova)', photo:P(4,9), video:V_HUAWEI, dp:0, dv:0},
+      {name:'Sony Xperia', photo:[['12 MP',4],['48 MP',9]], video:V_SONY, dp:0, dv:0},
+      {name:'Nothing Phone / CMF', photo:P(4,10), video:V_ONEPLUS, dp:0, dv:0},
+      {name:'Tecno / Infinix / ZTE', photo:P(3,8,17), video:V_BASIC.concat([['4K 30 fps',280]]), dp:0, dv:1},
+      {name:'Alcatel / Lenovo / TCL', photo:P(3,8), video:V_BASIC, dp:0, dv:1}
+    ]}
+  ];
+  let PHOTO = [], VIDEO = [];
+  const flat = [];
+  MODELS.forEach(m=>{
+    if(m.group){
+      const g = document.createElement('optgroup'); g.label = m.group;
+      m.items.forEach(it=>{ g.appendChild(new Option(it.name, flat.length)); flat.push(it); });
+      $('model').appendChild(g);
+    } else { $('model').add(new Option(m.name, flat.length)); flat.push(m); }
+  });
+  const lab = (n,mb,u) => `${n} · ${mb>=1000 ? fmtN(mb/1000,1)+' GB' : fmtN(mb,1)+' MB'}${u}`;
+  function loadModel(){
+    const m = flat[+$('model').value];
+    PHOTO = m.photo.concat([['Personalizado',null]]);
+    VIDEO = m.video.concat([['Personalizado',null]]);
+    $('pPre').innerHTML = ''; $('vPre').innerHTML = '';
+    PHOTO.forEach((p,i)=> $('pPre').add(new Option(p[1]!=null ? lab(p[0],p[1],'') : p[0], i)));
+    VIDEO.forEach((p,i)=> $('vPre').add(new Option(p[1]!=null ? lab(p[0],p[1],'/min') : p[0], i)));
+    $('pPre').value = m.dp; $('pmb').value = PHOTO[m.dp][1];
+    $('vPre').value = m.dv; $('vmb').value = VIDEO[m.dv][1];
+  }
+  $('model').addEventListener('change', ()=>{ loadModel(); calc(); });
+  for(let i=1;i<=6;i++) $('people').add(new Option(i===1?'1 persona':i+' personas', i));
+  $('people').value = 4;
+  for(let i=1;i<=8;i++) $('n').add(new Option(i===1?'1 disco':i+' discos', i));
+  $('n').value = 2;
+
+  // syncing presets <-> numbers
+  $('pPre').addEventListener('change',()=>{ const v=PHOTO[$('pPre').value][1]; if(v!=null) $('pmb').value=v; calc(); });
+  $('vPre').addEventListener('change',()=>{ const v=VIDEO[$('vPre').value][1]; if(v!=null) $('vmb').value=v; calc(); });
+  $('pmb').addEventListener('input',()=>{ const i=PHOTO.findIndex(p=>p[1]==+$('pmb').value); $('pPre').value = i<0?PHOTO.length-1:i; });
+  $('vmb').addEventListener('input',()=>{ const i=VIDEO.findIndex(p=>p[1]==+$('vmb').value); $('vPre').value = i<0?VIDEO.length-1:i; });
+
+  // Archivos tipo Drive. n = cantidad por persona al mes, mb = peso promedio. kind 'gb' = solo GB por persona al mes.
+  const FILES = [
+    {group:'Documentos de trabajo y escuela', note:'por persona al mes', items:[
+      {id:'pdf',  name:'PDF', sub:'Reportes, manuales, libros', n:30, mb:2, on:true},
+      {id:'docx', name:'Word', sub:'.docx', n:20, mb:0.5, on:true},
+      {id:'xlsx', name:'Excel', sub:'.xlsx', n:15, mb:0.8, on:true},
+      {id:'pptx', name:'PowerPoint', sub:'.pptx, con imágenes', n:5, mb:10, on:false}
+    ]},
+    {group:'Información personal', note:'se queda en tu casa', items:[
+      {id:'scan', name:'Escaneos de documentos', sub:'INE, actas, comprobantes', n:10, mb:3, on:false},
+      {id:'fisc', name:'Facturas y archivos fiscales', sub:'PDF y XML', n:10, mb:0.3, on:false},
+      {id:'med',  name:'Estudios médicos', sub:'Resultados, radiografías', n:2, mb:15, on:false},
+      {id:'cont', name:'Contratos, escrituras y seguros', sub:'Documentos escaneados', n:2, mb:5, on:false}
+    ]},
+    {group:'Otros', note:'', items:[
+      {id:'mus',  name:'Música', sub:'MP3 o FLAC', n:20, mb:8, on:false},
+      {id:'pc',   name:'Respaldo de la computadora', sub:'Escritorio y Documentos', kind:'gb', n:2, on:false}
+    ]}
+  ];
+  (function buildFiles(){
+    let h = '<div class="frow head"><span></span><span>Cantidad</span><span>MB c/u</span></div>';
+    FILES.forEach(g=>{
+      h += `<div class="fgroup">${g.group}${g.note?`<small>${g.note}</small>`:''}</div>`;
+      g.items.forEach(it=>{
+        const gb = it.kind==='gb';
+        h += `<div class="frow ${it.on?'':'off'}" data-id="${it.id}">
+          <label class="fchk"><input type="checkbox" id="fo_${it.id}" ${it.on?'checked':''}><span>${it.name}<small>${it.sub}</small></span></label>
+          <input type="number" min="0" step="${gb?1:5}" id="fn_${it.id}" value="${it.n}" aria-label="${it.name}: ${gb?'GB':'archivos'} por persona al mes">
+          ${gb ? '<span style="text-align:right;font-size:13px;color:var(--ink-2)">GB/mes</span>' : `<input type="number" min="0" step="0.5" id="fm_${it.id}" value="${it.mb}" aria-label="${it.name}: MB por archivo">`}
+        </div>`;
+      });
+    });
+    $('filesList').innerHTML = h;
+  })();
+  $('filesOn').addEventListener('change',()=>{ $('filesBox').hidden = !$('filesOn').checked; });
+  $('filesList').addEventListener('change',e=>{
+    const r = e.target.closest('.frow'); if(!r || !r.dataset.id) return;
+    r.classList.toggle('off', !$('fo_'+r.dataset.id).checked);
+  });
+
+  const mode = () => document.querySelector('input[name=mode]:checked').value;
+
+  // keep disk count consistent with mode
+  function syncMode(){
+    const m = mode(), n = $('n'), cur = +n.value;
+    const min = m==='single' ? 1 : m==='mirror' ? 2 : 3;
+    const opts = [];
+    for(let i=1;i<=8;i++) if(m==='single' ? i===1 : i>=min) opts.push(i);
+    n.innerHTML='';
+    opts.forEach(i=> n.add(new Option(i===1?'1 disco':i+' discos', i)));
+    n.value = opts.includes(cur) ? cur : opts[0];
+    n.disabled = m==='single';
+    $('modeHint').textContent = {
+      single:'Sin protección: si el disco falla, pierdes todo lo que no tengas respaldado aparte.',
+      mirror:'Cada archivo se guarda en dos discos: si uno falla, sigue en el otro. El espacio útil es el de un disco.',
+      raid5:'Los discos reparten los datos y toleran la falla de uno. Pierdes el espacio de un disco.'
+    }[m];
+  }
+
+  const num = (id, d=0) => { const v = parseFloat($(id).value); return isFinite(v) && v>=0 ? v : d; };
+  const fmtN = (x, d=0) => x.toLocaleString('es-MX',{maximumFractionDigits:d,minimumFractionDigits:d});
+  const fmtGB = gb => gb>=1000 ? [fmtN(gb/1000, gb>=10000?1:2),'TB'] : [fmtN(gb, gb>=100?0:1),'GB'];
+  const fmtDate = d => d.toLocaleDateString('es-MX',{month:'long',year:'numeric'});
+  const fmtSpan = m => {
+    if(m<1) return 'menos de un mes';
+    let y = Math.floor(m/12), mo = Math.round(m - y*12);
+    if(mo===12){ y++; mo=0; }
+    const Y = y ? `${y} ${y===1?'año':'años'}` : '';
+    const M = mo ? `${mo} ${mo===1?'mes':'meses'}` : '';
+    return [Y,M].filter(Boolean).join(' y ') || '12 meses';
+  };
+
+  // months until `used + cumulative add` reaches limit; returns Infinity if never
+  function monthsToFill(used, limit, monthly, growth){
+    if(used >= limit) return 0;
+    if(monthly <= 0) return Infinity;
+    const f = Math.pow(1+growth, 1/12);
+    let u = used, add = monthly;
+    for(let m=0; m<1200; m++){
+      const next = u + add;
+      if(next >= limit) return m + (limit-u)/add;
+      u = next; add *= f;
+    }
+    return Infinity;
+  }
+
+  function usableGB(capTB, n, m){
+    const eff = m==='single' ? 1 : m==='mirror' ? 1 : Math.max(n-1,1);
+    return capTB * 1000 * eff;
+  }
+
+  function calc(){
+    syncModeIfNeeded();
+    const m = mode(), n = +$('n').value;
+    const capTB = num('cap',0), fs = num('fs')/100, res = num('res')/100;
+    const ovh = num('ovh')/100, gr = num('gr')/100;
+    const people = +$('people').value;
+    const filesOn = $('filesOn').checked;
+    const used = num('used') + (filesOn ? num('seed') : 0);
+
+    const rawTB = capTB * (m==='single'?1:n);
+    const usableRaw = usableGB(capTB,n,m);
+    const limit = usableRaw * (1-fs) * (1-res);   // GB usables before alert
+    const full = usableRaw * (1-fs);              // GB truly writable
+
+    const photosGB = people * num('ppm') * num('pmb') / 1000;
+    const videoGB  = people * num('vmin') * num('vmb') / 1000;
+    // archivos tipo Drive (sin extras de Immich)
+    let docsGB = 0;
+    if(filesOn) FILES.forEach(g=>g.items.forEach(it=>{
+      if(!$('fo_'+it.id).checked) return;
+      const n = num('fn_'+it.id);
+      docsGB += people * (it.kind==='gb' ? n : n*num('fm_'+it.id)/1000);
+    }));
+    const photosX = photosGB*(1+ovh), videoX = videoGB*(1+ovh);
+    const monthly = photosX + videoX + docsGB;
+
+    // reparto del crecimiento
+    const parts = [['Fotos',photosX,'#BF0426'],['Videos',videoX,'#0D0D0D']];
+    if(filesOn) parts.push(['Archivos',docsGB,'#BFAA8F']);
+    $('bar').innerHTML = monthly>0 ? parts.map(p=>`<i style="width:${p[1]/monthly*100}%;background:${p[2]}"></i>`).join('') : '';
+    $('shl').innerHTML = monthly>0 ? parts.map(p=>`<li style="--c:${p[2]}">${p[0]} <b>${fmtGB(p[1]).join(' ')}/mes</b></li>`).join('') : '';
+    $('shareWrap').hidden = monthly<=0;
+
+    // headline
+    const months = monthsToFill(used, limit, monthly, gr);
+    const now = new Date();
+    const dateEl = $('date'), inEl = $('in'), warn = $('warn');
+    warn.hidden = true;
+    $('kLab').textContent = 'Tu disco se llena en';
+    if(limit<=0){
+      dateEl.textContent='—'; inEl.textContent='Escribe la capacidad de tu disco.';
+    } else if(months===0){
+      $('kLab').textContent = 'Tu disco';
+      dateEl.textContent='Ya está lleno'; inEl.textContent='Lo ocupado supera el límite útil. Necesitas más espacio.';
+    } else if(!isFinite(months)){
+      $('kLab').textContent = 'Tu disco';
+      dateEl.textContent='No se llena'; inEl.textContent = monthly<=0 ? 'Sin archivos nuevos, el espacio no cambia.' : 'En más de 100 años.';
+    } else {
+      const d = new Date(now.getTime() + months*30.4375*864e5);
+      dateEl.textContent = fmtDate(d);
+      inEl.textContent = 'dentro de ' + fmtSpan(months);
+    }
+
+    const u = fmtGB(limit>0?limit:0), pm = fmtGB(monthly);
+    $('usable').textContent = u[0]; $('usableU').textContent = u[1] + (res? ` · ${fmtN(res*100)} % queda libre`:'');
+    $('perMonth').textContent = pm[0]; $('perMonthU').textContent = pm[1] + ' al mes entre todos';
+
+    $('fRaw').textContent = `${fmtN(rawTB,1)} TB`;
+    $('fProt').textContent = m==='single' ? 'Ninguna' : m==='mirror' ? 'Soporta 1 disco caído' : 'Soporta 1 disco caído';
+    const mbPhoto = num('pmb')*(1+ovh) || 0;
+    $('fPhotos').textContent = mbPhoto>0 ? fmtN(Math.max(limit-used,0)*1000/mbPhoto/(1) ,0) : '—';
+    const mbMin = num('vmb')*(1+ovh);
+    $('fHours').textContent = mbMin>0 ? fmtN(Math.max(limit-used,0)*1000/mbMin/60,0)+' h' : '—';
+    const yr = (monthly/people)*12;
+    $('fYear').textContent = monthly>0 ? fmtGB(yr).join(' ') : '—';
+
+    if(m==='single' && capTB>0){
+      warn.hidden=false; warn.textContent='Con un solo disco, una falla significa perder tus fotos. Considera espejo.';
+    } else if(videoGB > (photosGB+docsGB)*3 && videoGB>0){
+      warn.hidden=false; warn.textContent='Los videos son la mayor parte del consumo. Bajar la calidad de grabación alarga mucho la vida del disco.';
+    }
+
+    drawChart(used, limit, full, monthly, gr, months);
+    drawCompare(used, monthly, gr, fs, res, capTB, m, n);
+    $('stamp').textContent = now.toLocaleDateString('es-MX',{day:'numeric',month:'short',year:'numeric'});
+  }
+
+  function drawCompare(used, monthly, gr, fs, res, capTB, m, n){
+    const sizes = [2,4,8,12,16,20];
+    const mine = usableGB(capTB,n,m)/1000;
+    let best = 0, bd = Infinity;
+    sizes.forEach((s,i)=>{ const d=Math.abs(s-mine); if(d<bd){bd=d;best=i;} });
+    const now = new Date();
+    $('cmp').innerHTML = sizes.map((s,i)=>{
+      const lim = s*1000*(1-fs)*(1-res);
+      const mo = monthsToFill(used, lim, monthly, gr);
+      const span = !isFinite(mo) ? 'Más de 100 años' : fmtSpan(mo);
+      const dt = !isFinite(mo) ? '—' : fmtDate(new Date(now.getTime()+mo*30.4375*864e5));
+      return `<tr class="${i===best?'sel':''}"><td class="n">${s} TB</td><td>${fmtN(lim/1000,1)} TB</td><td>${span}</td><td>${dt}</td></tr>`;
+    }).join('');
+  }
+
+  function drawChart(used, limit, full, monthly, gr, months){
+    const svg = $('chart'), W=800, H=320, L=64, R=20, T=16, B=40;
+    if(limit<=0){ svg.innerHTML=''; return; }
+    let span = isFinite(months) && months>0 ? months*1.25 : 120;
+    span = Math.max(12, Math.min(span, 1200));
+    // round span to whole years
+    const years = Math.ceil(span/12); const maxM = years*12;
+    // simulate
+    const f = Math.pow(1+gr,1/12); let u = used, add = monthly; const pts=[[0,u]];
+    for(let k=1;k<=maxM;k++){ u+=add; add*=f; pts.push([k,u]); }
+    const yMax = Math.max(limit*1.12, 1);
+    const X = m => L + (m/maxM)*(W-L-R);
+    const Y = v => T + (1 - Math.min(v,yMax)/yMax)*(H-T-B);
+
+    // nice y ticks
+    const unitTB = yMax>=2000;
+    const step = niceStep(yMax/4);
+    let g = '';
+    for(let v=0; v<=yMax; v+=step){
+      g += `<line x1="${L}" x2="${W-R}" y1="${Y(v)}" y2="${Y(v)}" stroke="#BFBFBF" stroke-width="1"/>`;
+      g += `<text x="${L-8}" y="${Y(v)+4}" text-anchor="end">${unitTB? fmtN(v/1000,1)+' TB' : fmtN(v)+' GB'}</text>`;
+    }
+    const xs = years<=6?1: years<=14?2: years<=30?5:10;
+    for(let y=0;y<=years;y+=xs){
+      g += `<line x1="${X(y*12)}" x2="${X(y*12)}" y1="${H-B}" y2="${H-B+5}" stroke="#0D0D0D"/>`;
+      g += `<text x="${X(y*12)}" y="${H-B+20}" text-anchor="middle">${y===0?'Hoy':y+' '+(y===1?'año':'años')}</text>`;
+    }
+    const line = pts.filter(p=>p[1]<=yMax*1.02 || p[0]===0).map(p=>`${X(p[0]).toFixed(1)},${Y(p[1]).toFixed(1)}`).join(' ');
+    // cut line at limit crossing
+    let path = pts.map(p=>[X(p[0]),Y(p[1])]);
+    const hit = isFinite(months) && months<=maxM;
+    let area='', dot='';
+    if(hit){
+      const idx = Math.ceil(months);
+      const cut = pts.slice(0, idx);
+      cut.push([months, limit]);
+      path = cut.map(p=>[X(p[0]),Y(p[1])]);
+      dot = `<circle cx="${X(months)}" cy="${Y(limit)}" r="6" fill="#BF0426" stroke="#EEEBE2" stroke-width="2"/>
+             <line x1="${X(months)}" x2="${X(months)}" y1="${Y(limit)}" y2="${H-B}" stroke="#BF0426" stroke-dasharray="3 4"/>`;
+    }
+    const d = path.map((p,i)=>(i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' ');
+    area = `<path d="${d} L${path[path.length-1][0].toFixed(1)} ${H-B} L${L} ${H-B} Z" fill="url(#hat)" opacity=".9"/>`;
+    svg.innerHTML = `
+      <defs><pattern id="hat" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="7" stroke="#DEA6A3" stroke-width="2"/></pattern></defs>
+      ${g}
+      <line x1="${L}" x2="${L}" y1="${T}" y2="${H-B}" stroke="#0D0D0D" stroke-width="1.5"/>
+      <line x1="${L}" x2="${W-R}" y1="${H-B}" y2="${H-B}" stroke="#0D0D0D" stroke-width="1.5"/>
+      ${area}
+      <line x1="${L}" x2="${W-R}" y1="${Y(limit)}" y2="${Y(limit)}" stroke="#0D0D0D" stroke-width="2" stroke-dasharray="7 5"/>
+      <path d="${d}" fill="none" stroke="#BF0426" stroke-width="3" stroke-linejoin="round"/>
+      ${dot}`;
+  }
+  function niceStep(x){
+    const p = Math.pow(10, Math.floor(Math.log10(x))), r = x/p;
+    return (r<1.5?1:r<3.5?2:r<7.5?5:10)*p;
+  }
+
+  let lastMode = null;
+  function syncModeIfNeeded(){ if(lastMode!==mode()){ lastMode=mode(); syncMode(); } }
+
+  document.getElementById('f').addEventListener('input', calc);
+  document.getElementById('f').addEventListener('change', calc);
+  loadModel();
+  calc();
+})();
+</script>
+</body>
+</html>

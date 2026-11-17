@@ -1,0 +1,2 @@
+- [Arité brand brief](arite-brand-brief.md) — logo intocable, dos paletas, idea rectora arquitectónica y lista de NO hacer
+- [Arité elementos admitidos](arite-elementos-admitidos.md) — referencias 2026-11-17: traducirlas a isométrico/animación propios, nunca fotos copiadas

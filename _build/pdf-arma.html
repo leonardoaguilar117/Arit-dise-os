@@ -1,0 +1,82 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><title>Aricloud · Así se arma tu nube</title><link href="https://fonts.googleapis.com/css2?family=Antonio:wght@500;700&family=Archivo:wght@400;500;600&display=block" rel="stylesheet"><style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#fff}
+body{-webkit-print-color-adjust:exact;print-color-adjust:exact;font-kerning:normal}
+.abs{position:absolute}
+.render{position:absolute;display:block}
+.over{position:absolute;left:0;top:0;pointer-events:none;overflow:visible}
+.hatch{position:absolute;inset:0;width:100%;height:100%}
+.field{position:absolute;overflow:hidden}
+.field>*:not(.hatch){position:relative}
+
+    @page{size:8.5in 11in;margin:0}
+    :root{--g:#F2EFE9;--ink:#0D0D0D;--red:#BF0426;--pink:#DEA6A3;--cream:#EEEBE2}
+    body{font-family:'Archivo',sans-serif;color:var(--ink);font-size:12px;line-height:1.45}
+    .ant,.lg h3,.fq h3{font-family:'Antonio',sans-serif;font-weight:700;text-transform:uppercase}
+    .page{position:relative;width:816px;height:1056px;overflow:hidden;background:var(--g);break-after:page}
+    .page:last-child{break-after:auto}
+    .lockup{left:40px;top:34px;display:flex;align-items:center;gap:22px}
+    .lockup svg{height:66px;width:auto}
+    .lockup .div{width:1.2px;height:48px;background:var(--ink);margin-bottom:14px}
+    .rule{left:40px;right:40px;top:132px;height:1.2px;background:var(--ink)}
+    .h1{left:40px;top:150px;font-size:64px;line-height:.98;color:var(--red)}
+    .lede{left:40px;top:224px;width:560px;font-size:15px;line-height:1.5;font-weight:500}
+    .tag{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border:1.4px solid var(--ink);border-radius:50%;font-size:12px;font-weight:600;line-height:1;background:var(--g)}
+    .t-on{position:absolute;background:var(--red);border-color:var(--red);color:var(--g)}
+    .legend{left:40px;top:770px;width:736px;display:grid;grid-template-columns:repeat(5,1fr);gap:16px;border-top:1.2px solid var(--ink);padding-top:14px}
+    .lg h3{font-size:19px;margin-top:8px;line-height:1.05}
+    .lg p{font-size:11.5px;line-height:1.4;margin-top:4px}
+    .lg .tag{background:var(--red);border-color:var(--red);color:var(--g)}
+    .band{left:40px;top:924px;width:736px;height:86px;background:var(--red);color:var(--g);display:flex;align-items:center;justify-content:space-between;padding:0 24px}
+    .band .q{font-size:36px;line-height:1;white-space:nowrap}
+    .band p.r{font-size:13px;line-height:1.4;max-width:270px;text-align:right}
+    .by{right:40px;bottom:22px;font-size:10.5px}
+    .h2{left:40px;top:150px;font-size:58px;line-height:.98;color:var(--red)}
+    .lede2{left:40px;top:278px;width:600px;font-size:14.5px;line-height:1.5}
+    .bars{left:40px;top:340px}
+    .bl{font-family:'Archivo',sans-serif;font-size:13px;font-weight:500;fill:#0D0D0D}
+    .bv{font-family:'Antonio',sans-serif;font-weight:700;font-size:24px;fill:#0D0D0D;text-transform:uppercase}
+    .bv.red{fill:#BF0426}
+    .stat{left:40px;top:502px;width:736px;height:86px;border-bottom:1.2px solid var(--ink)}
+    .stat .n{position:absolute;left:0;top:4px;font-size:70px;line-height:.9;color:var(--red);white-space:nowrap}
+    .stat .c{position:absolute;right:0;bottom:16px;font-size:13px;line-height:1.4;width:290px}
+    .mir{left:40px;top:618px;width:736px;display:flex;gap:28px;align-items:center}
+    .mir h3{font-size:30px;line-height:1;color:var(--red)}
+    .mir p{font-size:13.5px;line-height:1.5;margin-top:8px;max-width:380px}
+    .faq{left:40px;top:792px;width:736px;display:grid;grid-template-columns:1fr 1fr;gap:12px 28px}
+    .fq{border-top:1px solid var(--pink);padding-top:8px}
+    .fq h3{font-size:17px;line-height:1.1}
+    .fq p{font-size:11.5px;line-height:1.42;margin-top:4px}
+    .cta{left:0;right:0;top:972px;bottom:0;background:var(--ink);color:var(--g);padding:0 40px;display:flex;align-items:center;justify-content:space-between}
+    .cta p{font-size:14px;line-height:1.35}
+    .cta .tel{font-size:44px;line-height:1}
+    .cta .tel small{font-family:'Archivo',sans-serif;font-size:12px;font-weight:500;text-transform:none;display:block;color:var(--pink);letter-spacing:.12em;margin-bottom:6px;text-align:right}
+    </style></head><body><section class="page">
+  <header class="abs lockup"><svg class="" viewBox="192 322 578 313" role="img" aria-label="Arité" fill="none" stroke="currentColor" stroke-width="11" stroke-linecap="butt"><title>Arité</title><line x1="199" y1="494.6" x2="437.5" y2="352.6"/><line x1="434.5" y1="349" x2="434.5" y2="630"/><line x1="303" y1="425.5" x2="439" y2="425.5"/><line x1="475.5" y1="420" x2="475.5" y2="496"/><line x1="470" y1="425.5" x2="533" y2="425.5"/><line x1="568" y1="420" x2="568" y2="496"/><line x1="660.5" y1="327" x2="660.5" y2="496"/><line x1="604" y1="425.5" x2="666" y2="425.5"/><line x1="696" y1="349" x2="764" y2="349"/><line x1="701.5" y1="420" x2="701.5" y2="496"/><line x1="696" y1="425.5" x2="764" y2="425.5"/><line x1="696" y1="491" x2="764" y2="491"/></svg><span class="div"></span><svg class="" viewBox="192 322 820 313" role="img" aria-label="Aricloud" fill="none" stroke="currentColor" stroke-width="11" stroke-linecap="butt"><title>Aricloud</title><line x1="199" y1="494.6" x2="437.5" y2="352.6"/><line x1="434.5" y1="349" x2="434.5" y2="630"/><line x1="303" y1="425.5" x2="439" y2="425.5"/><line x1="475.5" y1="420" x2="475.5" y2="496"/><line x1="470" y1="425.5" x2="533" y2="425.5"/><line x1="568" y1="420" x2="568" y2="496"/><line x1="609.3" y1="420" x2="609.3" y2="496"/><line x1="604" y1="425.5" x2="671" y2="425.5"/><line x1="604" y1="491" x2="671" y2="491"/><line x1="707.3" y1="327" x2="707.3" y2="496"/><line x1="749.3" y1="420" x2="749.3" y2="496"/><line x1="805.7" y1="420" x2="805.7" y2="496"/><line x1="744" y1="425.5" x2="811" y2="425.5"/><line x1="744" y1="491" x2="811" y2="491"/><line x1="847.3" y1="420" x2="847.3" y2="496"/><line x1="903.7" y1="420" x2="903.7" y2="496"/><line x1="842" y1="491" x2="909" y2="491"/><line x1="945.3" y1="420" x2="945.3" y2="496"/><line x1="940" y1="425.5" x2="1007" y2="425.5"/><line x1="940" y1="491" x2="1007" y2="491"/><line x1="1001.7" y1="327" x2="1001.7" y2="496"/></svg></header><div class="abs rule"></div>
+  <h1 class="abs h1 ant">Así se arma tu nube.</h1>
+  <p class="abs lede">Tu Aricloud no es una caja cerrada: son piezas elegidas para ti, armadas y probadas por nosotros antes de llegar a tu casa.</p>
+  <img class="render" src="../_build/assets/scene-eco-red.png" style="left:40px;top:290px;width:736px;height:452.3px" alt="Isométrico del ecosistema Aricloud: mini PC, bahía de discos con un disco afuera, router y celular">
+  <svg class="over" width="816" height="1056" viewBox="0 0 816 1056" fill="none" stroke="#BF0426" stroke-width="1.6" stroke-dasharray="4 4"><defs><marker id="ahBF0426" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10" fill="none" stroke="#BF0426" stroke-width="1.6" stroke-dasharray="none"/></marker></defs><line x1="441.2" y1="575.7" x2="511.5" y2="577.8" marker-end="url(#ahBF0426)"/></svg>
+  <span class="tag t-on" style="left:270.0px;top:463.9px">1</span><span class="tag t-on" style="left:597.4px;top:432.7px">2</span><span class="tag t-on" style="left:342.2px;top:542.7px">3</span><span class="tag t-on" style="left:408.6px;top:330.0px">4</span><span class="tag t-on" style="left:148.4px;top:442.2px">5</span>
+  <div class="abs legend"><div class="lg"><span class="tag">1</span><h3>Mini PC</h3><p>El cerebro: corre el sistema y la app de fotos.</p></div><div class="lg"><span class="tag">2</span><h3>Bahía de discos</h3><p>Donde viven tus fotos, videos y archivos.</p></div><div class="lg"><span class="tag">3</span><h3>Discos en espejo</h3><p>Si uno falla, el otro tiene la copia.</p></div><div class="lg"><span class="tag">4</span><h3>Router</h3><p>Conecta tu nube a la casa y a tu VPN.</p></div><div class="lg"><span class="tag">5</span><h3>Tu celular</h3><p>Respalda cada foto nueva, solo.</p></div></div>
+  <div class="abs band"><p class="q ant">Si lo pagas, debe ser tuyo.</p><p class="r">Tú defines tu producto como quieras: capacidad, discos y cuentas por persona.</p></div>
+  <p class="abs by">By: Leonardo Aguilar</p>
+</section>
+<section class="page">
+  <header class="abs lockup"><svg class="" viewBox="192 322 578 313" role="img" aria-label="Arité" fill="none" stroke="currentColor" stroke-width="11" stroke-linecap="butt"><title>Arité</title><line x1="199" y1="494.6" x2="437.5" y2="352.6"/><line x1="434.5" y1="349" x2="434.5" y2="630"/><line x1="303" y1="425.5" x2="439" y2="425.5"/><line x1="475.5" y1="420" x2="475.5" y2="496"/><line x1="470" y1="425.5" x2="533" y2="425.5"/><line x1="568" y1="420" x2="568" y2="496"/><line x1="660.5" y1="327" x2="660.5" y2="496"/><line x1="604" y1="425.5" x2="666" y2="425.5"/><line x1="696" y1="349" x2="764" y2="349"/><line x1="701.5" y1="420" x2="701.5" y2="496"/><line x1="696" y1="425.5" x2="764" y2="425.5"/><line x1="696" y1="491" x2="764" y2="491"/></svg><span class="div"></span><svg class="" viewBox="192 322 820 313" role="img" aria-label="Aricloud" fill="none" stroke="currentColor" stroke-width="11" stroke-linecap="butt"><title>Aricloud</title><line x1="199" y1="494.6" x2="437.5" y2="352.6"/><line x1="434.5" y1="349" x2="434.5" y2="630"/><line x1="303" y1="425.5" x2="439" y2="425.5"/><line x1="475.5" y1="420" x2="475.5" y2="496"/><line x1="470" y1="425.5" x2="533" y2="425.5"/><line x1="568" y1="420" x2="568" y2="496"/><line x1="609.3" y1="420" x2="609.3" y2="496"/><line x1="604" y1="425.5" x2="671" y2="425.5"/><line x1="604" y1="491" x2="671" y2="491"/><line x1="707.3" y1="327" x2="707.3" y2="496"/><line x1="749.3" y1="420" x2="749.3" y2="496"/><line x1="805.7" y1="420" x2="805.7" y2="496"/><line x1="744" y1="425.5" x2="811" y2="425.5"/><line x1="744" y1="491" x2="811" y2="491"/><line x1="847.3" y1="420" x2="847.3" y2="496"/><line x1="903.7" y1="420" x2="903.7" y2="496"/><line x1="842" y1="491" x2="909" y2="491"/><line x1="945.3" y1="420" x2="945.3" y2="496"/><line x1="940" y1="425.5" x2="1007" y2="425.5"/><line x1="940" y1="491" x2="1007" y2="491"/><line x1="1001.7" y1="327" x2="1001.7" y2="496"/></svg></header><div class="abs rule"></div>
+  <h2 class="abs h2 ant">Rápido, porque<br>está en tu casa.</h2>
+  <p class="abs lede2">Lo que tarda copiar 50 GB de fotos, unas 12,000 de celular, a tu Aricloud por cable de red, contra subirlas a una nube por internet.</p>
+  <div class="abs bars"><svg width="736" height="150" viewBox="0 0 736 150" aria-label="Tiempo para copiar 50 GB: 8 min por cable a Aricloud contra 5 h 33 min subiendo a internet">
+      <defs><pattern id="bh" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="7" stroke="#0D0D0D" stroke-width="1" stroke-opacity=".35"/></pattern></defs>
+      <text x="0" y="14" class="bl">Aricloud, por cable de red en tu casa</text>
+      <rect x="0" y="24" width="16.7" height="34" fill="#BF0426"/>
+      <text x="28.7" y="50" class="bv red">8 min</text>
+      <text x="0" y="92" class="bl">Nube por internet, con una subida de 20 Mbps</text>
+      <rect x="0" y="102" width="736" height="34" fill="#DEA6A3"/><rect x="0" y="102" width="736" height="34" fill="url(#bh)"/>
+      <text x="726" y="128" text-anchor="end" class="bv">5 h 33 min</text>
+    </svg></div>
+  <div class="abs stat"><p class="n ant">44× más rápido</p><p class="c">Tus fotos no viajan por internet para guardarse: van directo de tu celular o tu computadora al equipo de tu casa.</p></div>
+  <div class="abs mir"><svg width="300" height="140" viewBox="0 0 300 140" aria-label="Dos discos con las mismas fotos: espejo"><rect x="0" y="10" width="108" height="118" fill="#F2EFE9" stroke="#0D0D0D" stroke-width="1.4"/><rect x="18" y="30" width="20" height="20" fill="#BF0426"/><rect x="42" y="30" width="20" height="20" fill="#DEA6A3"/><rect x="66" y="30" width="20" height="20" fill="#0D0D0D"/><rect x="18" y="54" width="20" height="20" fill="#DEA6A3"/><rect x="42" y="54" width="20" height="20" fill="#BF0426"/><rect x="66" y="54" width="20" height="20" fill="#DEA6A3"/><rect x="18" y="78" width="20" height="20" fill="#0D0D0D"/><rect x="42" y="78" width="20" height="20" fill="#BF0426"/><rect x="66" y="78" width="20" height="20" fill="#DEA6A3"/><line x1="18" y1="112" x2="90" y2="112" stroke="#0D0D0D" stroke-width="1.4"/><rect x="192" y="10" width="108" height="118" fill="#F2EFE9" stroke="#0D0D0D" stroke-width="1.4"/><rect x="210" y="30" width="20" height="20" fill="#BF0426"/><rect x="234" y="30" width="20" height="20" fill="#DEA6A3"/><rect x="258" y="30" width="20" height="20" fill="#0D0D0D"/><rect x="210" y="54" width="20" height="20" fill="#DEA6A3"/><rect x="234" y="54" width="20" height="20" fill="#BF0426"/><rect x="258" y="54" width="20" height="20" fill="#DEA6A3"/><rect x="210" y="78" width="20" height="20" fill="#0D0D0D"/><rect x="234" y="78" width="20" height="20" fill="#BF0426"/><rect x="258" y="78" width="20" height="20" fill="#DEA6A3"/><line x1="210" y1="112" x2="282" y2="112" stroke="#0D0D0D" stroke-width="1.4"/><line x1="118" y1="58" x2="182" y2="58" stroke="#BF0426" stroke-width="1.6" stroke-dasharray="4 4" marker-end="url(#mh)"/><line x1="182" y1="80" x2="118" y2="80" stroke="#BF0426" stroke-width="1.6" stroke-dasharray="4 4" marker-end="url(#mh)"/><defs><marker id="mh" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10" fill="none" stroke="#BF0426" stroke-width="1.6"/></marker></defs></svg><div><h3 class="ant">Cada foto, guardada dos veces</h3><p>Tu Aricloud escribe todo en dos discos distintos al mismo tiempo. Si uno falla, el otro sigue con todo y lo reponemos sin que pierdas nada.</p></div></div>
+  <div class="abs faq"><div class="fq"><h3>¿Qué pasa si un disco se descompone?</h3><p>Tus discos trabajan en espejo: el otro tiene una copia idéntica. Cambiamos el disco y la información se vuelve a copiar sola.</p></div><div class="fq"><h3>¿Puedo ver mis fotos fuera de casa?</h3><p>Sí. Desde tu celular o tu computadora, por tu VPN personal, como si estuvieras en casa.</p></div><div class="fq"><h3>¿Necesito saber de computadoras?</h3><p>No. Lo armamos, lo instalamos y te enseñamos a usarlo en una sesión.</p></div><div class="fq"><h3>¿Puedo crecer después?</h3><p>Sí. Agregas o cambias discos por unos más grandes, sin pagar mensualidades.</p></div></div>
+  <div class="abs cta"><p>Agenda una presentación de nuestros servicios.<br>Pago único desde $15,890.</p><p class="tel ant"><small>Para más información</small>55 7196 2228</p></div>
+</section></body></html>

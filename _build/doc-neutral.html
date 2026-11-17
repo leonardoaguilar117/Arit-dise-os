@@ -1,0 +1,159 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><title>Aricloud</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&display=block" rel="stylesheet">
+<style>
+@page{size:8.5in 11in;margin:0}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#fff}
+body{-webkit-print-color-adjust:exact;print-color-adjust:exact;color:var(--ink);font-size:12px;line-height:1.45;font-kerning:normal}
+.page{position:relative;width:816px;height:1056px;overflow:hidden;background:var(--ground);page-break-after:always;break-after:page}
+.page:last-child{page-break-after:auto;break-after:auto}
+.abs{position:absolute}
+.lockup{display:flex;align-items:center;gap:22px;color:var(--ink)}
+.lockup .div{width:1.2px;align-self:stretch;background:var(--ink);opacity:.9;margin:6px 0 22px}
+.hatch{position:absolute;inset:0;width:100%;height:100%}
+.field{position:absolute;overflow:hidden}
+.field>*:not(.hatch){position:relative}
+.render{position:absolute;display:block}
+.leaders{position:absolute;left:0;top:0;overflow:visible;pointer-events:none}
+.callout{position:absolute;font-size:10.5px;line-height:16px;white-space:nowrap;text-align:right}
+.frame{position:absolute;border:1px solid var(--rule)}
+.tag{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border:1.2px solid currentColor;border-radius:50%;font-size:11px;font-weight:600;line-height:1}
+
+        :root{--ground:#F2F1F0;--ink:#0D0D0D;--ink2:#595959;--rule:#BFBFBF;--accent:#BFAA8F;--field:#BFAA8F;--field-ink:#0D0D0D;
+              --field2:#BFBFBF;--field2-ink:#0D0D0D;--p2-ground:#F2F1F0;--p2-ink:#0D0D0D;--p2-ink2:#595959;--p2-rule:#BFBFBF;--hi:#0D0D0D;}
+        body{font-family:'Jost',sans-serif}
+        .display{font-family:'Jost',sans-serif;font-weight:300;letter-spacing:-0.01em}
+        .h-sec{font-weight:400;letter-spacing:-0.01em}
+        .vtext{font-weight:300}
+        .vtext em{font-weight:600}
+        .price td{font-weight:500}
+        
+    .p1-head{left:40px;top:34px;height:84px}
+    .p1-head svg{height:84px;width:auto}
+    .p1-rule{left:40px;right:40px;top:132px;height:1.2px;background:var(--ink)}
+    .points{left:40px;top:150px;width:176px;display:flex;flex-direction:column;gap:15px}
+    .point .pt-head{display:flex;align-items:flex-start;justify-content:space-between;color:var(--ink)}
+    .point h3{font-size:18px;line-height:1.1;margin-top:8px;font-weight:500}
+    .point p{font-size:11.5px;line-height:1.42;margin-top:4px;color:var(--ink)}
+    .box2{left:240px;top:156px;width:536px}
+    .box2 p{font-size:19.5px;line-height:1.38;letter-spacing:-0.005em}
+    .box4{left:240px;top:288px;width:352px;height:326px}
+    .box4 .stmt{position:absolute;left:18px;top:16px;right:18px;font-size:22.5px;line-height:1.25}
+    .box4 .field{left:0;right:0;bottom:0;height:128px;background:var(--field);color:var(--field-ink)}
+    .box4 .field .row{display:flex;align-items:flex-end;gap:14px;padding:14px 18px 0}
+    .big-n{font-size:64px;line-height:.82;font-weight:500;letter-spacing:-0.03em}
+    .box4 .field .lbl{font-size:13px;line-height:1.25;padding-bottom:2px}
+    .people{display:flex;gap:4px;padding:12px 14px 0}
+    .box3{left:606px;top:288px;width:170px;height:326px}
+    .box3 .txt{position:absolute;left:14px;right:14px;top:16px;font-size:15px;line-height:1.36}
+    .box3 .field{left:0;right:0;bottom:0;height:128px;background:var(--field2);color:var(--field2-ink);padding:14px}
+    .box3 .field .lbl{font-size:12px;line-height:1.3;margin-top:8px}
+    .philo{left:40px;top:664px;width:250px}
+    .philo h2{font-size:24px;line-height:1.05}
+    .philo .bracket{display:block;margin-top:26px;margin-left:2px;color:var(--ink)}
+    .vtext{writing-mode:vertical-rl;font-size:41px;line-height:1.06;height:290px;margin-left:24px;margin-top:6px;letter-spacing:0.005em}
+    .vtext em{font-style:normal;text-decoration:underline;text-decoration-thickness:3.5px;text-underline-offset:7px;text-decoration-color:var(--hi)}
+    .sign{right:40px;bottom:26px;font-size:10.5px;color:var(--ink2)}
+    .callout{color:var(--ink)}
+    /* page 2 */
+    .p2{background:var(--p2-ground);color:var(--p2-ink)}
+    .p2 .lockup{color:var(--p2-ink)} .p2 .lockup .div{background:var(--p2-ink)}
+    .p2-head{left:40px;top:34px;height:42px}
+    .p2-head svg{height:42px;width:auto}
+    .p2-rule{left:40px;right:40px;top:92px;height:1.2px;background:var(--p2-ink)}
+    .opts{left:40px;top:116px;width:736px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .opt{border:1px solid var(--p2-rule);padding:14px 18px 12px}
+    .opt .draw{color:var(--p2-ink);height:96px}
+    .opt .draw svg{width:100%;height:96px}
+    .opt h3{font-size:22px;line-height:1.1;margin-top:12px;font-weight:500}
+    .opt .kicker{font-size:11.5px;color:var(--p2-ink2);margin-top:2px}
+    .opt .desc{font-size:12.5px;line-height:1.42;margin-top:8px}
+    .opt ul{list-style:none;margin-top:10px}
+    .opt li{font-size:11.5px;line-height:1.3;padding:4px 0;border-top:1px solid var(--p2-rule)}
+    .includes{left:40px;top:484px;width:736px;font-size:12.5px}
+    .p2 .h-sec.big{left:40px;top:526px;font-size:46px;line-height:1}
+    .prices-wrap{left:40px;top:588px;width:640px}
+    table.prices{width:100%;border-collapse:collapse;color:var(--p2-ink)}
+    .prices th,.prices td{text-align:left;padding:9px 10px 9px 0;border-top:1px solid var(--p2-rule);font-size:13px;vertical-align:baseline}
+    .prices thead td,.prices thead th{border-top:none}
+    .prices thead th{font-size:16px;font-weight:500;padding-bottom:8px}
+    .prices tbody th{font-weight:400;color:var(--p2-ink2);width:30%}
+    .prices tr.price td{font-size:26px;letter-spacing:-0.01em;padding-top:12px}
+    .prices tr.price th{padding-top:16px}
+    .note{left:40px;top:872px;width:640px;font-size:10.5px;line-height:1.45;color:var(--p2-ink2)}
+    .p2 .vtext{position:absolute;left:auto;right:34px;top:590px;height:330px;font-size:27px;line-height:1.12;margin:0;white-space:nowrap;color:var(--p2-ink)}
+    .cta{left:40px;top:930px;width:736px;border-top:1.2px solid var(--p2-ink);padding-top:16px;display:flex;justify-content:space-between;align-items:flex-end}
+    .cta p{font-size:15px;line-height:1.3}
+    .cta .tel{display:block;font-size:34px;line-height:1.1;margin-top:2px}
+    </style></head><body>
+<section class="page p1">
+  <header class="abs p1-head lockup"><svg class="" viewBox="192 322 578 313" role="img" aria-label="Arité" fill="none" stroke="currentColor" stroke-width="11" stroke-linecap="butt"><title>Arité</title><line x1="199" y1="494.6" x2="437.5" y2="352.6"/><line x1="434.5" y1="349" x2="434.5" y2="630"/><line x1="303" y1="425.5" x2="439" y2="425.5"/><line x1="475.5" y1="420" x2="475.5" y2="496"/><line x1="470" y1="425.5" x2="533" y2="425.5"/><line x1="568" y1="420" x2="568" y2="496"/><line x1="660.5" y1="327" x2="660.5" y2="496"/><line x1="604" y1="425.5" x2="666" y2="425.5"/><line x1="696" y1="349" x2="764" y2="349"/><line x1="701.5" y1="420" x2="701.5" y2="496"/><line x1="696" y1="425.5" x2="764" y2="425.5"/><line x1="696" y1="491" x2="764" y2="491"/></svg><span class="div"></span><svg class="" viewBox="192 322 820 313" role="img" aria-label="Aricloud" fill="none" stroke="currentColor" stroke-width="11" stroke-linecap="butt"><title>Aricloud</title><line x1="199" y1="494.6" x2="437.5" y2="352.6"/><line x1="434.5" y1="349" x2="434.5" y2="630"/><line x1="303" y1="425.5" x2="439" y2="425.5"/><line x1="475.5" y1="420" x2="475.5" y2="496"/><line x1="470" y1="425.5" x2="533" y2="425.5"/><line x1="568" y1="420" x2="568" y2="496"/><line x1="609.3" y1="420" x2="609.3" y2="496"/><line x1="604" y1="425.5" x2="671" y2="425.5"/><line x1="604" y1="491" x2="671" y2="491"/><line x1="707.3" y1="327" x2="707.3" y2="496"/><line x1="749.3" y1="420" x2="749.3" y2="496"/><line x1="805.7" y1="420" x2="805.7" y2="496"/><line x1="744" y1="425.5" x2="811" y2="425.5"/><line x1="744" y1="491" x2="811" y2="491"/><line x1="847.3" y1="420" x2="847.3" y2="496"/><line x1="903.7" y1="420" x2="903.7" y2="496"/><line x1="842" y1="491" x2="909" y2="491"/><line x1="945.3" y1="420" x2="945.3" y2="496"/><line x1="940" y1="425.5" x2="1007" y2="425.5"/><line x1="940" y1="491" x2="1007" y2="491"/><line x1="1001.7" y1="327" x2="1001.7" y2="496"/></svg></header>
+  <div class="abs p1-rule"></div>
+  <div class="abs box2"><p>Aricloud es una solución de almacenamiento local que te permite guardar fotos, videos y archivos sin depender de suscripciones a servicios como Google Fotos o iCloud.</p></div>
+  <div class="abs points"><div class="point"><div class="pt-head"><svg class="icon" width="40" height="40" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M24 9 C21.3 10.6 19.9 14.4 19.5 19 L18.7 26.4 C18.4 28.8 17 30.7 14.9 32.2 L11.2 35"/>
+      <path d="M24 9 C26.7 10.6 28.1 14.4 28.5 19 L29.3 26.4 C29.6 28.8 31 30.7 33.1 32.2 L36.8 35"/>
+      <path d="M24 9 V33.5"/>
+      <path d="M24 30.5 L21.6 25"/><path d="M24 30.5 L26.4 25"/>
+      <path d="M9.2 33 L15 38.8 L11 42.8 L5.2 37 Z"/><path d="M38.8 33 L33 38.8 L37 42.8 L42.8 37 Z"/>
+      <path d="M24 33.5 C21 35.2 18 36.6 15 38.8"/><path d="M24 33.5 C27 35.2 30 36.6 33 38.8"/>
+      <path d="M24 2.8 V5"/><path d="M17.6 4.6 L18.8 6.4"/><path d="M30.4 4.6 L29.2 6.4"/></svg><span class="tag" aria-hidden="true">A</span></div>
+            <h3>Confía</h3><p>Tus fotos viven en un equipo que es tuyo, dentro de tu casa.</p></div><div class="point"><div class="pt-head"><svg class="icon" width="40" height="40" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M14.5 35.5 H34.5 C39 35.5 42 32.3 42 28.3 C42 24.4 39.1 21.4 35.3 21.1 C34.4 15.3 29.6 11 23.7 11 C18.6 11 14.3 14.2 12.8 18.9 C8.8 19.6 6 22.9 6 26.9 C6 31.6 9.8 35.5 14.5 35.5 Z"/>
+      <path d="M19 28 H29"/><path d="M19 23.5 H29"/></svg><span class="tag" aria-hidden="true">B</span></div>
+            <h3>Almacena</h3><p>Fotos, videos y archivos de toda la familia en un solo lugar.</p></div><div class="point"><div class="pt-head"><svg class="icon" width="40" height="40" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M38.2 19.5 A15 15 0 0 0 11.8 15.6"/><path d="M11 8.8 V16.2 H18.4"/>
+      <path d="M9.8 28.5 A15 15 0 0 0 36.2 32.4"/><path d="M37 39.2 V31.8 H29.6"/></svg><span class="tag" aria-hidden="true">C</span></div>
+            <h3>Sincroniza</h3><p>Tu celular y tu computadora respaldan solos cada foto nueva.</p></div><div class="point"><div class="pt-head"><svg class="icon" width="40" height="40" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="24" cy="24" r="17"/>
+      <circle cx="18.2" cy="20.2" r="0.9" fill="currentColor"/><circle cx="29.8" cy="20.2" r="0.9" fill="currentColor"/>
+      <path d="M16.5 27.5 C19 33 29 33 31.5 27.5"/></svg><span class="tag" aria-hidden="true">D</span></div>
+            <h3>Disfruta</h3><p>Mira tus recuerdos cuando quieras, ordenados por fecha y lugar.</p></div></div>
+  <div class="frame" style="left:240px;top:288px;width:352px;height:326px"></div>
+                    <div class="frame" style="left:606px;top:288px;width:170px;height:326px"></div>
+  <div class="abs box4"><p class="stmt display">Ten la seguridad y la confianza de que tu información está verdaderamente en tus manos y no en el servidor de una corporación.</p>
+    <div class="field"><svg class="hatch" aria-hidden="true"><defs><pattern id="h1" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="7" stroke="#0D0D0D" stroke-width="1" stroke-opacity="0.22"/></pattern></defs><rect width="100%" height="100%" fill="url(#h1)"/></svg><div class="row"><span class="big-n">1–6</span><span class="lbl">Funciona para<br>1 a 6 personas</span></div><div class="people"><svg class="icon" width="30" height="30" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="24" cy="15" r="5.2"/><path d="M12.5 39 C12.5 30.5 17.6 26.2 24 26.2 C30.4 26.2 35.5 30.5 35.5 39"/></svg><svg class="icon" width="30" height="30" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="24" cy="15" r="5.2"/><path d="M12.5 39 C12.5 30.5 17.6 26.2 24 26.2 C30.4 26.2 35.5 30.5 35.5 39"/></svg><svg class="icon" width="30" height="30" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="24" cy="15" r="5.2"/><path d="M12.5 39 C12.5 30.5 17.6 26.2 24 26.2 C30.4 26.2 35.5 30.5 35.5 39"/></svg><svg class="icon" width="30" height="30" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="24" cy="15" r="5.2"/><path d="M12.5 39 C12.5 30.5 17.6 26.2 24 26.2 C30.4 26.2 35.5 30.5 35.5 39"/></svg><svg class="icon" width="30" height="30" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="24" cy="15" r="5.2"/><path d="M12.5 39 C12.5 30.5 17.6 26.2 24 26.2 C30.4 26.2 35.5 30.5 35.5 39"/></svg><svg class="icon" width="30" height="30" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="24" cy="15" r="5.2"/><path d="M12.5 39 C12.5 30.5 17.6 26.2 24 26.2 C30.4 26.2 35.5 30.5 35.5 39"/></svg></div></div></div>
+  <div class="abs box3"><p class="txt">Tú diseñas y eliges, nosotros armamos el Aricloud según tus necesidades.</p>
+    <div class="field"><svg class="hatch" aria-hidden="true"><defs><pattern id="h2" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="7" stroke="#0D0D0D" stroke-width="1" stroke-opacity="0.18"/></pattern></defs><rect width="100%" height="100%" fill="url(#h2)"/></svg><span class="big-n">0</span><p class="lbl">suscripciones mensuales. Pagas una vez y es tuyo.</p></div></div>
+  <div class="abs philo"><h2 class="h-sec">Nuestra filosofía</h2><svg class="bracket" viewBox="0 0 150 30" width="150" height="30" fill="none" stroke="currentColor" stroke-width="3.52" stroke-linecap="butt" aria-hidden="true"><path d="M1.8 30 V1.8 H148.2 V30"/></svg>
+    <p class="vtext">Si lo pagas,<br>debe ser<br><em>tuyo</em></p></div>
+  <img class="render" src="../_build/assets/despiece-neutral.png" style="left:528.0428289659059px;top:630px;height:400px;width:248.0px" alt="Despiece isométrico de un mini PC: base, chasis, tarjeta madre, memoria, SSD, disipador, ventilador y tapa"><svg class="leaders" width="816" height="1056" viewBox="0 0 816 1056" fill="none" stroke="currentColor" stroke-width="0.9"><polyline points="530.0428289659059,678.4 544.0428289659059,678.4 618.3,678.4" /><circle cx="618.3" cy="678.4" r="2.6" fill="currentColor" stroke="none"/><polyline points="530.0428289659059,752.0 544.0428289659059,752.0 644.9,752.0" /><circle cx="644.9" cy="752.0" r="2.6" fill="currentColor" stroke="none"/><polyline points="530.0428289659059,792.6 544.0428289659059,792.6 609.9,792.6" /><circle cx="609.9" cy="792.6" r="2.6" fill="currentColor" stroke="none"/><polyline points="530.0428289659059,828.9 544.0428289659059,828.9 637.6,828.9" /><circle cx="637.6" cy="828.9" r="2.6" fill="currentColor" stroke="none"/><polyline points="530.0428289659059,850.9 544.0428289659059,850.9 644.6,833.2" /><circle cx="644.6" cy="833.2" r="2.6" fill="currentColor" stroke="none"/><polyline points="530.0428289659059,884.7 544.0428289659059,884.7 569.6,884.7" /><circle cx="569.6" cy="884.7" r="2.6" fill="currentColor" stroke="none"/><polyline points="530.0428289659059,924.8 544.0428289659059,924.8 550.5,924.8" /><circle cx="550.5" cy="924.8" r="2.6" fill="currentColor" stroke="none"/><polyline points="530.0428289659059,980.8 544.0428289659059,980.8 539.4,980.8" /><circle cx="539.4" cy="980.8" r="2.6" fill="currentColor" stroke="none"/></svg><div class="callout" style="right:293.95717103409413px;top:670.4px">Tapa</div><div class="callout" style="right:293.95717103409413px;top:744.0px">Ventilador</div><div class="callout" style="right:293.95717103409413px;top:784.6px">Disipador</div><div class="callout" style="right:293.95717103409413px;top:820.9px">Memoria RAM</div><div class="callout" style="right:293.95717103409413px;top:842.9px">SSD del sistema</div><div class="callout" style="right:293.95717103409413px;top:876.7px">Tarjeta madre y procesador</div><div class="callout" style="right:293.95717103409413px;top:916.8px">Chasis con puertos</div><div class="callout" style="right:293.95717103409413px;top:972.8px">Base</div>
+  <p class="abs sign">By: Leonardo Aguilar</p>
+</section>
+<section class="page p2">
+  <header class="abs p2-head lockup"><svg class="" viewBox="192 322 578 313" role="img" aria-label="Arité" fill="none" stroke="currentColor" stroke-width="11" stroke-linecap="butt"><title>Arité</title><line x1="199" y1="494.6" x2="437.5" y2="352.6"/><line x1="434.5" y1="349" x2="434.5" y2="630"/><line x1="303" y1="425.5" x2="439" y2="425.5"/><line x1="475.5" y1="420" x2="475.5" y2="496"/><line x1="470" y1="425.5" x2="533" y2="425.5"/><line x1="568" y1="420" x2="568" y2="496"/><line x1="660.5" y1="327" x2="660.5" y2="496"/><line x1="604" y1="425.5" x2="666" y2="425.5"/><line x1="696" y1="349" x2="764" y2="349"/><line x1="701.5" y1="420" x2="701.5" y2="496"/><line x1="696" y1="425.5" x2="764" y2="425.5"/><line x1="696" y1="491" x2="764" y2="491"/></svg><span class="div"></span><svg class="" viewBox="192 322 820 313" role="img" aria-label="Aricloud" fill="none" stroke="currentColor" stroke-width="11" stroke-linecap="butt"><title>Aricloud</title><line x1="199" y1="494.6" x2="437.5" y2="352.6"/><line x1="434.5" y1="349" x2="434.5" y2="630"/><line x1="303" y1="425.5" x2="439" y2="425.5"/><line x1="475.5" y1="420" x2="475.5" y2="496"/><line x1="470" y1="425.5" x2="533" y2="425.5"/><line x1="568" y1="420" x2="568" y2="496"/><line x1="609.3" y1="420" x2="609.3" y2="496"/><line x1="604" y1="425.5" x2="671" y2="425.5"/><line x1="604" y1="491" x2="671" y2="491"/><line x1="707.3" y1="327" x2="707.3" y2="496"/><line x1="749.3" y1="420" x2="749.3" y2="496"/><line x1="805.7" y1="420" x2="805.7" y2="496"/><line x1="744" y1="425.5" x2="811" y2="425.5"/><line x1="744" y1="491" x2="811" y2="491"/><line x1="847.3" y1="420" x2="847.3" y2="496"/><line x1="903.7" y1="420" x2="903.7" y2="496"/><line x1="842" y1="491" x2="909" y2="491"/><line x1="945.3" y1="420" x2="945.3" y2="496"/><line x1="940" y1="425.5" x2="1007" y2="425.5"/><line x1="940" y1="491" x2="1007" y2="491"/><line x1="1001.7" y1="327" x2="1001.7" y2="496"/></svg></header>
+  <div class="abs p2-rule"></div>
+  <div class="abs opts"><article class="opt"><div class="draw"><svg viewBox="0 0 320 132" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-label="Alzado: mini PC con bahía de dos discos">
+  <path d="M132 100 C150 100 150 64 180 64" stroke-dasharray="0" />
+  <rect x="20" y="78" width="112" height="40" rx="6" fill="var(--p2-ground)"/>
+  <circle cx="34" cy="98" r="4.2"/><circle cx="48" cy="98" r="1.8"/>
+  <rect x="58" y="95" width="12" height="5"/><rect x="76" y="95" width="12" height="5"/><rect x="94" y="96.3" width="9" height="3.4" rx="1.7"/>
+  <rect x="180" y="30" width="120" height="88" rx="4" fill="var(--p2-ground)"/>
+  <rect x="192" y="42" width="96" height="28" rx="2"/><rect x="192" y="78" width="96" height="28" rx="2"/>
+  <path d="M200 56 H232"/><path d="M200 92 H232"/><circle cx="278" cy="56" r="2.2"/><circle cx="278" cy="92" r="2.2"/>
+  <path d="M6 118.8 H314" stroke-width="2.6"/>
+</svg></div><h3>A la medida</h3><p class="kicker">La opción ideal</p>
+                    <p class="desc">Un mini PC de bajo consumo conectado a una bahía para dos o cuatro discos duros. Compacto, silencioso y fácil de crecer.</p><ul><li>Mini PC con procesador de bajo consumo</li><li>Memoria RAM y SSD para el sistema</li><li>Bahía externa de 2 o 4 discos</li><li>Discos duros de 2 a 8 TB</li></ul></article><article class="opt"><div class="draw"><svg viewBox="0 0 320 132" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-label="Alzado: NAS convencional de dos bahías">
+  <rect x="96" y="20" width="128" height="98" rx="6" fill="var(--p2-ground)"/>
+  <rect x="108" y="32" width="38" height="74" rx="2"/><rect x="154" y="32" width="38" height="74" rx="2"/>
+  <circle cx="127" cy="96" r="3"/><circle cx="173" cy="96" r="3"/>
+  <path d="M118 44 H136"/><path d="M164 44 H182"/>
+  <circle cx="208" cy="38" r="2.2"/><circle cx="208" cy="50" r="2.2"/><circle cx="208" cy="62" r="2.2"/><circle cx="208" cy="98" r="5"/>
+  <path d="M6 118.8 H314" stroke-width="2.6"/>
+</svg></div><h3>NAS convencional</h3><p class="kicker">También disponible</p>
+                    <p class="desc">Un gabinete NAS de dos o cuatro bahías, elegido según tu presupuesto y configurado por nosotros.</p><ul><li>Gabinete NAS de 2 o 4 bahías</li><li>Discos duros de 2 a 8 TB</li><li>El mismo sistema y apps de fotos</li><li>Armado y probado antes de entregarse</li></ul></article></div>
+  <p class="abs includes">Ambas incluyen instalación en tu casa, respaldo automático de celulares, una cuenta por persona y una sesión para enseñarte a usarlo.</p>
+  <h2 class="abs h-sec big display">Precios</h2>
+  <div class="abs prices-wrap"><table class='prices'><thead><tr><td></td><th scope='col'>Personal</th><th scope='col'>Familiar</th><th scope='col'>Familia completa</th></tr></thead><tbody><tr><th scope='row'>Personas</th><td>1 a 2</td><td>3 a 4</td><td>5 a 6</td></tr><tr><th scope='row'>Espacio para tus archivos</th><td>2 TB</td><td>4 TB</td><td>8 TB</td></tr><tr><th scope='row'>Discos en espejo</th><td>2 × 2 TB</td><td>2 × 4 TB</td><td>2 × 8 TB</td></tr><tr><th scope='row'>Fotos de celular, aprox.</th><td>400 mil</td><td>800 mil</td><td>1.6 millones</td></tr><tr class='price'><th scope='row'>Pago único</th><td>$7,900</td><td>$10,900</td><td>$15,900</td></tr></tbody></table></div>
+  <p class="abs note">Precios en pesos mexicanos con la opción a la medida: armado, instalación y configuración incluidos, sin mensualidades. En espejo, cada archivo se guarda en dos discos: si uno falla, sigue en el otro. Con NAS convencional, el precio depende del gabinete que elijas.</p>
+  <p class="vtext">“Tú defines tu producto<br>como quieras”</p>
+  <div class="abs cta"><p>Para más información, agenda con nosotros al<a class="display tel" href="tel:+525571962228" style="color:inherit;text-decoration:none">55 7196 2228</a></p><svg class="" viewBox="192 322 352 313" height="54" role="img" aria-label="AĒ" fill="none" stroke="currentColor" stroke-width="11" stroke-linecap="butt"><title>AĒ</title><line x1="199" y1="494.6" x2="437.5" y2="352.6"/><line x1="434.5" y1="349" x2="434.5" y2="630"/><line x1="303" y1="425.5" x2="439" y2="425.5"/><line x1="470" y1="349" x2="537" y2="349"/><line x1="475.5" y1="420" x2="475.5" y2="496"/><line x1="470" y1="425.5" x2="537" y2="425.5"/><line x1="470" y1="491" x2="537" y2="491"/></svg></div>
+</section>
+</body></html>

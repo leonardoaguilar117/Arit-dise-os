@@ -1,0 +1,82 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><title>Arité Negocios</title><link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&display=block" rel="stylesheet"><style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#fff}
+body{-webkit-print-color-adjust:exact;print-color-adjust:exact;font-kerning:normal}
+.abs{position:absolute}
+.render{position:absolute;display:block}
+.over{position:absolute;left:0;top:0;pointer-events:none;overflow:visible}
+.hatch{position:absolute;inset:0;width:100%;height:100%}
+.field{position:absolute;overflow:hidden}
+.field>*:not(.hatch){position:relative}
+
+    @page{size:8.5in 11in;margin:0}
+    :root{--g:#F2F1F0;--ink:#0D0D0D;--ink2:#595959;--tan:#BFAA8F;--grey:#BFBFBF}
+    body{font-family:'Jost',sans-serif;color:var(--ink);font-size:12px;line-height:1.45}
+    .page{position:relative;width:816px;height:1056px;overflow:hidden;background:var(--g);break-after:page}
+    .page:last-child{break-after:auto}
+    .lockup{left:40px;top:34px;display:flex;align-items:center;gap:22px}
+    .lockup svg{height:78px;width:auto}
+    .lockup .div{width:1.2px;height:52px;background:var(--ink);margin-bottom:12px}
+    .lk{font-size:40px;font-weight:300;letter-spacing:-.01em;margin-bottom:14px}
+    .rule{left:40px;right:40px;top:132px;height:1px;background:var(--ink)}
+    .h1{left:40px;top:156px;font-size:44px;line-height:1.08;font-weight:300;letter-spacing:-.015em}
+    .h1 b{font-weight:600}
+    .lede{left:40px;top:270px;width:600px;font-size:16px;line-height:1.5;color:var(--ink)}
+    .col{left:40px;top:356px;width:200px}
+    .pt{margin-bottom:22px}
+    .pt h3{font-size:18px;font-weight:500;margin-top:8px;line-height:1.1}
+    .pt p{font-size:11.5px;line-height:1.42;margin-top:4px}
+    .tag{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border:1.2px solid var(--ink);border-radius:50%;font-size:11.5px;font-weight:600;line-height:1;background:var(--g)}
+    .t-on{position:absolute;background:var(--ink);color:var(--g)}
+    .phil{left:40px;top:846px;width:420px;padding-left:30px}
+    .phil .br{position:absolute;left:0;top:4px;bottom:4px;width:12px;border:2px solid var(--ink);border-right:0}
+    .phil h4{font-size:13px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2)}
+    .phil p{font-size:34px;line-height:1.12;font-weight:300;margin-top:6px}
+    .phil p b{font-weight:600}
+    .ideal{left:500px;top:846px;width:276px;border-top:1px solid var(--ink);padding-top:10px}
+    .ideal h4{font-size:13px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2)}
+    .ideal li{list-style:none;font-size:14px;line-height:1.3;padding:7px 0;border-bottom:1px solid var(--grey)}
+    .by{right:40px;bottom:26px;font-size:10.5px;color:var(--ink2)}
+    .h2{left:40px;top:156px;font-size:40px;line-height:1.08;font-weight:300;letter-spacing:-.015em}
+    .steps{left:40px;top:226px;width:736px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+    .step{border-top:1.2px solid var(--ink);padding-top:10px}
+    .step .n{font-size:44px;font-weight:300;line-height:1;letter-spacing:-.02em}
+    .step h3{font-size:17px;font-weight:500;margin-top:8px}
+    .step p{font-size:11.5px;line-height:1.42;margin-top:4px}
+    .eqh{left:40px;top:410px;width:200px}
+    .eqh h3{font-size:22px;font-weight:300;line-height:1.15}
+    .callout{font-size:11.5px;line-height:18px;white-space:nowrap;text-align:right}
+    .f1{left:40px;top:780px;width:450px;height:150px;background:var(--tan);padding:18px 20px}
+    .f2{left:506px;top:780px;width:270px;height:150px;background:var(--grey);padding:18px 20px}
+    .f1 h3{font-size:22px;font-weight:500}
+    .f1 p{font-size:13px;line-height:1.45;margin-top:8px;max-width:400px}
+    .f2 .n{font-size:64px;font-weight:300;line-height:.9;letter-spacing:-.03em}
+    .f2 p{font-size:12px;line-height:1.4;margin-top:8px}
+    .cta{left:40px;right:40px;top:956px;display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid var(--ink);padding-top:12px}
+    .cta p{font-size:15px;line-height:1.35}
+    .cta .tel{font-size:34px;font-weight:300;letter-spacing:-.01em;line-height:1}
+    </style></head><body><section class="page">
+  <header class="abs lockup"><svg class="" viewBox="192 322 578 313" role="img" aria-label="Arité" fill="none" stroke="currentColor" stroke-width="11" stroke-linecap="butt"><title>Arité</title><line x1="199" y1="494.6" x2="437.5" y2="352.6"/><line x1="434.5" y1="349" x2="434.5" y2="630"/><line x1="303" y1="425.5" x2="439" y2="425.5"/><line x1="475.5" y1="420" x2="475.5" y2="496"/><line x1="470" y1="425.5" x2="533" y2="425.5"/><line x1="568" y1="420" x2="568" y2="496"/><line x1="660.5" y1="327" x2="660.5" y2="496"/><line x1="604" y1="425.5" x2="666" y2="425.5"/><line x1="696" y1="349" x2="764" y2="349"/><line x1="701.5" y1="420" x2="701.5" y2="496"/><line x1="696" y1="425.5" x2="764" y2="425.5"/><line x1="696" y1="491" x2="764" y2="491"/></svg><span class="div"></span><span class="lk">Negocios</span></header><div class="abs rule"></div>
+  <h1 class="abs h1">Los archivos de tu negocio,<br>en <b>tu</b> negocio.</h1>
+  <p class="abs lede">Arité diseña, arma e instala un servidor privado para tu oficina. Tu equipo guarda, comparte y respalda su trabajo sin depender de servicios como Google Drive, OneDrive o Dropbox.</p>
+  <div class="abs col"><div class="pt"><span class="tag">A</span><h3>Comparte</h3><p>Las carpetas del equipo en un solo lugar, con permisos por persona.</p></div><div class="pt"><span class="tag">B</span><h3>Respalda</h3><p>Copias automáticas cada noche, en dos discos en espejo.</p></div><div class="pt"><span class="tag">C</span><h3>Accede</h3><p>Desde fuera de la oficina, por tu VPN privada.</p></div><div class="pt"><span class="tag">D</span><h3>Controla</h3><p>Tú decides quién entra, qué ve y cuánto tiempo se guarda.</p></div></div>
+  <img class="render" src="../_build/assets/scene-office-neutral.png" style="left:262px;top:344px;width:520px;height:468.5px" alt="Oficina isométrica con una persona en su laptop y el servidor Arité en el librero">
+  <svg class="over" width="816" height="1056" viewBox="0 0 816 1056" fill="none" stroke="#0D0D0D" stroke-width="1.2" stroke-dasharray="3 4"><defs><marker id="ah0D0D0D" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10" fill="none" stroke="#0D0D0D" stroke-width="1.6" stroke-dasharray="none"/></marker></defs><line x1="610.1" y1="541.0" x2="422.5" y2="529.0"/><line x1="422.5" y1="529.0" x2="418.0" y2="436.3"/></svg>
+  <span class="tag t-on" style="left:638.1px;top:507.0px">A</span><span class="tag t-on" style="left:406.5px;top:471.0px">B</span><span class="tag t-on" style="left:442.0px;top:418.3px">C</span><span class="tag t-on" style="left:624.0px;top:583.4px">D</span>
+  <div class="abs phil"><span class="br"></span><h4>Nuestra filosofía</h4><p>Si lo pagas,<br>debe ser <b>tuyo</b>.</p></div>
+  <div class="abs ideal"><h4>Ideal para</h4><ul><li>Despachos contables y legales</li><li>Consultorios y clínicas</li><li>Estudios de diseño y arquitectura</li><li>Tiendas, talleres y oficinas pequeñas</li></ul></div>
+  <p class="abs by">By: Leonardo Aguilar</p>
+</section>
+<section class="page">
+  <header class="abs lockup"><svg class="" viewBox="192 322 578 313" role="img" aria-label="Arité" fill="none" stroke="currentColor" stroke-width="11" stroke-linecap="butt"><title>Arité</title><line x1="199" y1="494.6" x2="437.5" y2="352.6"/><line x1="434.5" y1="349" x2="434.5" y2="630"/><line x1="303" y1="425.5" x2="439" y2="425.5"/><line x1="475.5" y1="420" x2="475.5" y2="496"/><line x1="470" y1="425.5" x2="533" y2="425.5"/><line x1="568" y1="420" x2="568" y2="496"/><line x1="660.5" y1="327" x2="660.5" y2="496"/><line x1="604" y1="425.5" x2="666" y2="425.5"/><line x1="696" y1="349" x2="764" y2="349"/><line x1="701.5" y1="420" x2="701.5" y2="496"/><line x1="696" y1="425.5" x2="764" y2="425.5"/><line x1="696" y1="491" x2="764" y2="491"/></svg><span class="div"></span><span class="lk">Negocios</span></header><div class="abs rule"></div>
+  <h2 class="abs h2">Así trabajamos</h2>
+  <div class="abs steps"><div class="step"><p class="n">01</p><h3>Diagnóstico</h3><p>Visitamos tu negocio y vemos cuánta información manejan y quién la usa.</p></div><div class="step"><p class="n">02</p><h3>Diseño</h3><p>Elegimos las piezas a tu medida: discos, capacidad y cuentas por persona.</p></div><div class="step"><p class="n">03</p><h3>Armado</h3><p>Ensamblamos y probamos el servidor en nuestro taller antes de entregarlo.</p></div><div class="step"><p class="n">04</p><h3>Instalación</h3><p>Lo conectamos en tu oficina y capacitamos a tu equipo en una sesión.</p></div></div>
+  <div class="abs eqh"><h3>Lo que llega a tu oficina</h3></div>
+  <img class="render" src="../_build/assets/scene-eco-neutral.png" style="left:262px;top:432px;width:514px;height:315.9px" alt="Isométrico del equipo: router, mini PC, bahía de discos con un disco afuera y un celular">
+  <svg class="over" width="816" height="1056" viewBox="0 0 816 1056" fill="none" stroke="#0D0D0D" stroke-width="0.9" stroke-dasharray="none"><defs><marker id="ah0D0D0D" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10" fill="none" stroke="#0D0D0D" stroke-width="1.6" stroke-dasharray="none"/></marker></defs><polyline points="236,506.9 250,506.9 481.6,506.9"/><circle cx="481.6" cy="506.9" r="2.6" fill="#0D0D0D" stroke="none"/><polyline points="236,542.6 250,542.6 618.5,542.6"/><circle cx="618.5" cy="542.6" r="2.6" fill="#0D0D0D" stroke="none"/><polyline points="236,576.5 250,576.5 473.6,576.5"/><circle cx="473.6" cy="576.5" r="2.6" fill="#0D0D0D" stroke="none"/><polyline points="236,606.5 250,606.5 367.7,582.3"/><circle cx="367.7" cy="582.3" r="2.6" fill="#0D0D0D" stroke="none"/><polyline points="236,652.5 250,652.5 514.0,652.5"/><circle cx="514.0" cy="652.5" r="2.6" fill="#0D0D0D" stroke="none"/></svg>
+  <div class="abs callout" style="right:588px;top:497.9px">Router y VPN</div><div class="abs callout" style="right:588px;top:533.6px">Bahía de discos</div><div class="abs callout" style="right:588px;top:567.5px">Mini PC: el servidor</div><div class="abs callout" style="right:588px;top:597.5px">Tu celular y tu laptop</div><div class="abs callout" style="right:588px;top:643.5px">Discos en espejo</div>
+  <div class="field f1"><svg class="hatch" aria-hidden="true"><defs><pattern id="n1" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="7" stroke="#0D0D0D" stroke-width="1" stroke-opacity="0.18"/></pattern></defs><rect width="100%" height="100%" fill="url(#n1)"/></svg><h3>Software a la medida</h3><p>También desarrollamos sistemas para tu negocio, como inventarios, citas, cotizaciones o punto de venta, que viven en tu propio servidor y no en la nube de alguien más.</p></div>
+  <div class="field f2"><svg class="hatch" aria-hidden="true"><defs><pattern id="n2" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="7" stroke="#0D0D0D" stroke-width="1" stroke-opacity="0.16"/></pattern></defs><rect width="100%" height="100%" fill="url(#n2)"/></svg><p class="n">0</p><p>mensualidades de nube. Pagas una vez el equipo y la instalación.</p></div>
+  <div class="abs cta"><p>Agenda una presentación de nuestros servicios</p><p class="tel">55 7196 2228</p></div>
+  <p class="abs by">By: Leonardo Aguilar</p>
+</section></body></html>
