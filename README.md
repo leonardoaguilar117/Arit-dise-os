@@ -36,6 +36,9 @@ Detalle completo: [`_contexto/claude-memoria/arite-brand-brief.md`](_contexto/cl
 | `Arite_FB_Lamina-tecnica_Paleta-Neutra.png` | 1080×1350 | Lámina técnica: alzado, planta e isométrico del AriCloud con cotas en mm y cajetín. "Cabe en un librero." |
 | `Arite_FB_Axonometria-noche.png` | 1080×1350 | Axonometría invertida (línea crema sobre negro): "Tus fotos no deberían vivir en la casa de alguien más." |
 | `Arite_FB_Ensamble-animado_Paleta-Roja.gif` | 1080×1350, GIF en bucle | El despiece del mini PC se arma pieza por pieza y se vuelve a abrir (unos 5 s) |
+| `Arite_FB_Corte-casa_Paleta-Roja.png` | 1080×1350 | **Sin isométrico.** Corte arquitectónico A–A' de una casa con poché: celular, tablet, tele y laptop guardan en el AriCloud del estudio; la nube de alguien más, tachada |
+| `Arite_FB_Cifras_Paleta-Neutra.png` | 1080×1350 | **Sin isométrico.** Cartel suizo de retícula: 0 mensualidades · 2 discos en espejo · 1–6 personas |
+| `Arite_FB_Pictogramas_Paleta-Roja.png` | 1080×1350 | **Sin isométrico.** 9 pictogramas dibujados con la regla del logo (solo trazos rectos, remate cuadrado): "Tu nube en casa, sin letras chiquitas" |
 
 Contacto que aparece en las piezas: **55 7196 2228**.
 
@@ -69,6 +72,7 @@ CLAUDE.md          Instrucciones para Claude Code en este proyecto.
 | `build_more.py` | Publicaciones 2 y 3, PDF Negocios (neutra y roja) y PDF "Así se arma tu nube" |
 | `render_anim.py` | Cuadros de la animación de ensamble (modo `t=` y cámara fija de `render.html`) → `assets/anim/` |
 | `build_tanda3.py` | Lámina técnica, axonometría noche y GIF de ensamble (ideas de la investigación de estilos) |
+| `build_tanda4.py` | Tres direcciones 2D sin isométrico: corte arquitectónico, cartel suizo de cifras y pictogramas |
 
 **Requisitos:** Python 3.13, `pip install playwright` y Google Chrome instalado en `C:\Program Files\Google\Chrome\Application\chrome.exe`. Las fuentes (Jost, Antonio, Archivo) y three.js se cargan desde internet al generar.
 
@@ -80,6 +84,7 @@ python build_more.py pdf-negocio-roja   # solo una: fb-negocio | fb-cartel | pdf
 python build_pdf.py red            # PDFs AriCloud: neutral | red | plano
 python render_scenes.py unit:neutral eco:night && python render_anim.py red 30 1100
 python build_tanda3.py             # fb-lamina | fb-noche | fb-ensamble
+python build_tanda4.py             # fb-corte | fb-numeros | fb-pictogramas
 ```
 
 ---

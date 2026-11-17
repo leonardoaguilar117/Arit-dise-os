@@ -630,27 +630,27 @@
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1794940959.738013,
-    "ast_hash": "0c6f740608696bbfb71ebdd874856f22",
+    "mtime": 1794941183.901686,
+    "ast_hash": "091c9927476e597e05ee6b10c18a993f",
     "semantic_hash": ""
   },
   "_contexto/claude-memoria/MEMORY.md": {
-    "mtime": 1794940482.727532,
+    "mtime": 1794940963.6042867,
     "ast_hash": "41d5aa51cef740ffb442096d109c5d9e",
     "semantic_hash": ""
   },
   "_contexto/claude-memoria/arite-brand-brief.md": {
-    "mtime": 1794940482.7284882,
+    "mtime": 1794940963.6063724,
     "ast_hash": "ccfe5599e0f4ce63f579a9d2fca1b7eb",
     "semantic_hash": ""
   },
   "_contexto/claude-memoria/arite-elementos-admitidos.md": {
-    "mtime": 1794940482.7299721,
+    "mtime": 1794940963.6082878,
     "ast_hash": "1f161936c8e109d7d97002d64fff4009",
     "semantic_hash": ""
   },
   "_contexto/claude-memoria/arite-respaldo-repo.md": {
-    "mtime": 1794940482.7315185,
+    "mtime": 1794940963.6103194,
     "ast_hash": "f22c860fd2e583835c15706e52631ce5",
     "semantic_hash": ""
   },
@@ -912,6 +912,61 @@
   "_build/preview/fb5.png": {
     "mtime": 1794940897.6590402,
     "ast_hash": "e9f4db043352f9b397816a2c97de5cd9",
+    "semantic_hash": ""
+  },
+  "_build/build_tanda4.py": {
+    "mtime": 1794941165.6396143,
+    "ast_hash": "574575447f7c6336a46fb4247acc3449",
+    "semantic_hash": ""
+  },
+  "_build/fb-corte.html": {
+    "mtime": 1794941166.8492675,
+    "ast_hash": "f2c3de0070c50a5e2e53166d692fa5c5",
+    "semantic_hash": ""
+  },
+  "_build/fb-numeros.html": {
+    "mtime": 1794941168.7073574,
+    "ast_hash": "9b5cbac27caafe8a66327a2fe26b2a2e",
+    "semantic_hash": ""
+  },
+  "_build/fb-pictogramas.html": {
+    "mtime": 1794941142.3417392,
+    "ast_hash": "fde679a6284a99dd68683517ceafe8c6",
+    "semantic_hash": ""
+  },
+  "Entregables/Arite_FB_Cifras_Paleta-Neutra.png": {
+    "mtime": 1794941170.3835204,
+    "ast_hash": "cfcbc38bd28a650c2e9acbea7b5630aa",
+    "semantic_hash": ""
+  },
+  "Entregables/Arite_FB_Corte-casa_Paleta-Roja.png": {
+    "mtime": 1794941168.6910813,
+    "ast_hash": "27ee5aecc29b1ec28e9dba290c83b78e",
+    "semantic_hash": ""
+  },
+  "Entregables/Arite_FB_Pictogramas_Paleta-Roja.png": {
+    "mtime": 1794941144.0146475,
+    "ast_hash": "baeb295dfeec5dd54e4e7a55744ddfa3",
+    "semantic_hash": ""
+  },
+  "_build/preview/chk9.png": {
+    "mtime": 1794941171.2899134,
+    "ast_hash": "634375ecd2577a98b2f3621a7b144764",
+    "semantic_hash": ""
+  },
+  "_build/preview/t4-0.png": {
+    "mtime": 1794941145.0737422,
+    "ast_hash": "e8ff0391f12cce2a93f15d91aa196761",
+    "semantic_hash": ""
+  },
+  "_build/preview/t4-1.png": {
+    "mtime": 1794941145.0900412,
+    "ast_hash": "464331a65070f244b68d4567a6161f9a",
+    "semantic_hash": ""
+  },
+  "_build/preview/t4-2.png": {
+    "mtime": 1794941145.1087134,
+    "ast_hash": "4b3f9425c5e5b391efc8d3854cf6aeeb",
     "semantic_hash": ""
   }
 }

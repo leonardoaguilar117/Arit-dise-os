@@ -1,16 +1,16 @@
 # Graph Report - Arité  (2026-11-17)
 
 ## Corpus Check
-- 40 files · ~1,040,350 words
+- 41 files · ~1,082,893 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 238 nodes · 442 edges · 13 communities (10 shown, 3 thin omitted)
-- Extraction: 75% EXTRACTED · 25% INFERRED · 0% AMBIGUOUS · INFERRED: 111 edges (avg confidence: 0.83)
+- 246 nodes · 462 edges · 13 communities (10 shown, 3 thin omitted)
+- Extraction: 75% EXTRACTED · 25% INFERRED · 0% AMBIGUOUS · INFERRED: 114 edges (avg confidence: 0.82)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `6c777c9b`
+- Built from commit: `2f207d17`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -29,16 +29,16 @@
 - render_anim.py
 
 ## God Nodes (most connected - your core abstractions)
-1. `arite()` - 18 edges
+1. `arite()` - 22 edges
 2. `Anti-reference: generic commercial tech design` - 14 edges
-3. `Arité wordmark (approved logo, base version)` - 13 edges
-4. `NAS Unit (2-bay, dark grey, centre of diagram)` - 13 edges
-5. `Anti-reference screenshot 165625: Canva-style grid of generic AI/tech templates` - 13 edges
-6. `doc_a()` - 12 edges
-7. `AĒ monogram (first and last letters of the wordmark, E tucked against the A stem)` - 11 edges
-8. `Candidate palette 1: neutral warm (beige + grays + near-black)` - 10 edges
-9. `Candidate palette 2: red + cream + pink + near-black` - 10 edges
-10. `Conjunto Residencial Architectural Project Sheet (reference image)` - 10 edges
+3. `page_doc()` - 13 edges
+4. `Arité wordmark (approved logo, base version)` - 13 edges
+5. `NAS Unit (2-bay, dark grey, centre of diagram)` - 13 edges
+6. `Anti-reference screenshot 165625: Canva-style grid of generic AI/tech templates` - 13 edges
+7. `doc_a()` - 12 edges
+8. `AĒ monogram (first and last letters of the wordmark, E tucked against the A stem)` - 11 edges
+9. `Candidate palette 1: neutral warm (beige + grays + near-black)` - 10 edges
+10. `Candidate palette 2: red + cream + pink + near-black` - 10 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `Two candidate color palettes for Arité (choice pending)` --conceptually_related_to--> `Arité (brand: home-server integral solutions + software development for SMEs)`  [INFERRED]
@@ -69,16 +69,16 @@
 ## Communities (13 total, 3 thin omitted)
 
 ### Community 0 - "NAS y topologia de red"
-Cohesion: 0.10
-Nodes (34): NAS File Server Hub-and-Spoke Diagram (flat line illustration), Cloud (dashed link above NAS), Desktop Client with Folder, Two Front Drive Bays, Flat Outline Illustration Style (grey + light blue, thick strokes), Hub-and-Spoke Topology (NAS as central hub), Laptop Client with Folder, NAS Unit (2-bay, dark grey, centre of diagram) (+26 more)
+Cohesion: 0.09
+Nodes (37): NAS File Server Hub-and-Spoke Diagram (flat line illustration), Cloud (dashed link above NAS), Desktop Client with Folder, Two Front Drive Bays, Flat Outline Illustration Style (grey + light blue, thick strokes), Hub-and-Spoke Topology (NAS as central hub), Laptop Client with Folder, NAS Unit (2-bay, dark grey, centre of diagram) (+29 more)
 
 ### Community 1 - "Lenguaje editorial arquitectonico"
 Cohesion: 0.11
 Nodes (32): Conjunto Residencial Architectural Project Sheet (reference image), Black and White Architecture Photography, Bold Uppercase Sans Heading with Small Uppercase Section Labels, Floor Plans (Plantas) in black line work, Isometric Cutaway View (Vista Isometrica), gray render, Circular Location Map Callout (Ubicacion), Main Elevation Line Drawing (Fachada Principal), Circular Material Swatches (Madera, Concreto, Acero, Piedra) (+24 more)
 
 ### Community 2 - "Mini PC y puertos"
-Cohesion: 0.10
-Nodes (25): File Server (role label under NAS), Palm-Sized Mini PC Product Photo (held in hand), Red '3 Year Warranty' Shield Badge, Audio Jack (front), Silver Angular Chevron Logo Mark on Lid, Compactness / 'Fits in a Hand' Idea, Front I/O Panel (power button, audio jack, 2x USB-A, USB Type-C), Open Hand Holding the Device (+17 more)
+Cohesion: 0.12
+Nodes (22): File Server (role label under NAS), Palm-Sized Mini PC Product Photo (held in hand), Red '3 Year Warranty' Shield Badge, Audio Jack (front), Silver Angular Chevron Logo Mark on Lid, Compactness / 'Fits in a Hand' Idea, Front I/O Panel (power button, audio jack, 2x USB-A, USB Type-C), Open Hand Holding the Device (+14 more)
 
 ### Community 3 - "Logo Arite y paleta roja"
 Cohesion: 0.10
@@ -93,8 +93,8 @@ Cohesion: 0.33
 Nodes (15): Anti-reference: generic commercial tech design, AVOID: 3D cartoon robot mascots, AVOID: glowing AI brains, cyborg heads and robotic hands, AVOID: Canva stock-template look (placeholder copy, interchangeable 'AI / Future Technology' headlines), AVOID: dense tall tech infographic layouts (numbered boxes + icons), AVOID: futuristic / sci-fi display fonts, AVOID: glowing circuit-board trace lines, AVOID: pastel halftone-dot gradient blobs (+7 more)
 
 ### Community 6 - "build_more.py"
-Cohesion: 0.19
-Nodes (24): arrow(), hms(), line(), overlay(), page_doc(), pdf_aricloud(), pdf_negocio(), post_cartel() (+16 more)
+Cohesion: 0.14
+Nodes (30): arrow(), hms(), line(), overlay(), page_doc(), pdf_aricloud(), pdf_negocio(), post_cartel() (+22 more)
 
 ### Community 10 - "Investigación de estilos afines a Arité"
 Cohesion: 0.13
@@ -112,10 +112,12 @@ Nodes (4): Antes de diseñar, Arité — contexto del proyecto, Estructura, grap
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `NAS Unit (2-bay, dark grey, centre of diagram)` connect `NAS y topologia de red` to `Mini PC y puertos`?**
-  _High betweenness centrality (0.020) - this node is a cross-community bridge._
 - **Why does `arite()` connect `build_more.py` to `Paleta neutra y principios de color`?**
-  _High betweenness centrality (0.013) - this node is a cross-community bridge._
+  _High betweenness centrality (0.019) - this node is a cross-community bridge._
+- **Why does `Mini PC (black square chassis, rounded corners)` connect `Mini PC y puertos` to `NAS y topologia de red`?**
+  _High betweenness centrality (0.019) - this node is a cross-community bridge._
+- **Why does `NAS Unit (2-bay, dark grey, centre of diagram)` connect `NAS y topologia de red` to `Mini PC y puertos`?**
+  _High betweenness centrality (0.018) - this node is a cross-community bridge._
 - **Are the 12 inferred relationships involving `Anti-reference: generic commercial tech design` (e.g. with `AVOID: 3D cartoon robot mascots` and `AVOID: glowing AI brains, cyborg heads and robotic hands`) actually correct?**
   _`Anti-reference: generic commercial tech design` has 12 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 2 inferred relationships involving `Arité wordmark (approved logo, base version)` (e.g. with `AĒ monogram (first and last letters of the wordmark, E tucked against the A stem)` and `Design principle: approved logo must be respected (no redrawing, no alteration)`) actually correct?**
@@ -124,5 +126,3 @@ _Questions this graph is uniquely positioned to answer:_
   _`NAS Unit (2-bay, dark grey, centre of diagram)` has 4 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `Antes de diseñar`, `Estructura`, `graphify` to the rest of the system?**
   _41 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `NAS y topologia de red` be split into smaller, more focused modules?**
-  _Cohesion score 0.10160427807486631 - nodes in this community are weakly interconnected._

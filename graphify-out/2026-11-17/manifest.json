@@ -150,8 +150,8 @@
     "semantic_hash": ""
   },
   "_build/render.html": {
-    "mtime": 1794412135.7461731,
-    "ast_hash": "3a3b487caa15b432715dec610f17ad17",
+    "mtime": 1794940669.2618582,
+    "ast_hash": "a1f611a0af3f3d4004f2741da09abfe5",
     "semantic_hash": ""
   },
   "Entregables/Aricloud_Paleta-Roja.pdf": {
@@ -390,8 +390,8 @@
     "semantic_hash": ""
   },
   "_build/assets/scene-eco-red.json": {
-    "mtime": 1794939084.6969533,
-    "ast_hash": "ec83d74b2834c04ce9f8a383f5a2bbe3",
+    "mtime": 1794940743.8602376,
+    "ast_hash": "c6536ef21a9c12a82b79850829830db0",
     "semantic_hash": ""
   },
   "_build/assets/scene-office-neutral.json": {
@@ -435,8 +435,8 @@
     "semantic_hash": ""
   },
   "_build/scenes.html": {
-    "mtime": 1794939082.4819505,
-    "ast_hash": "56b4f48e238f76fddcd6e5c45b462dac",
+    "mtime": 1794940756.642106,
+    "ast_hash": "2689bf348e64398282864e526659eec3",
     "semantic_hash": ""
   },
   "Entregables/Aricloud_Asi-se-arma-tu-nube_Paleta-Roja.pdf": {
@@ -500,8 +500,8 @@
     "semantic_hash": ""
   },
   "_build/assets/scene-eco-red.png": {
-    "mtime": 1794939084.6943874,
-    "ast_hash": "49dd0ba683b2a6c6708447b39fcfc9de",
+    "mtime": 1794940743.857725,
+    "ast_hash": "3dec2a6d4431d5cf9dc71c0bd71f32f8",
     "semantic_hash": ""
   },
   "_build/assets/scene-office-neutral.png": {
@@ -630,33 +630,288 @@
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1794940470.8194053,
-    "ast_hash": "1987f6b57916e912f645db3d915e3dc1",
+    "mtime": 1794940959.738013,
+    "ast_hash": "0c6f740608696bbfb71ebdd874856f22",
     "semantic_hash": ""
   },
   "_contexto/claude-memoria/MEMORY.md": {
-    "mtime": 1794940262.044867,
+    "mtime": 1794940482.727532,
     "ast_hash": "41d5aa51cef740ffb442096d109c5d9e",
     "semantic_hash": ""
   },
   "_contexto/claude-memoria/arite-brand-brief.md": {
-    "mtime": 1794940262.045864,
+    "mtime": 1794940482.7284882,
     "ast_hash": "ccfe5599e0f4ce63f579a9d2fca1b7eb",
     "semantic_hash": ""
   },
   "_contexto/claude-memoria/arite-elementos-admitidos.md": {
-    "mtime": 1794940262.0468638,
+    "mtime": 1794940482.7299721,
     "ast_hash": "1f161936c8e109d7d97002d64fff4009",
     "semantic_hash": ""
   },
   "_contexto/claude-memoria/arite-respaldo-repo.md": {
-    "mtime": 1794940262.049883,
+    "mtime": 1794940482.7315185,
     "ast_hash": "f22c860fd2e583835c15706e52631ce5",
     "semantic_hash": ""
   },
   "_contexto/investigacion-estilos.md": {
     "mtime": 1794940470.4736242,
     "ast_hash": "2ca50a319575609b0408ff085bbe4785",
+    "semantic_hash": ""
+  },
+  "_build/assets/scene-eco-night.json": {
+    "mtime": 1794940758.9902012,
+    "ast_hash": "c6536ef21a9c12a82b79850829830db0",
+    "semantic_hash": ""
+  },
+  "_build/assets/scene-unit-neutral.json": {
+    "mtime": 1794940743.0741625,
+    "ast_hash": "dcd491b0d97d8fb489009d3b958b9724",
+    "semantic_hash": ""
+  },
+  "_build/build_tanda3.py": {
+    "mtime": 1794940929.9322891,
+    "ast_hash": "7d4752e2ec33489a21bd6c9bce4c4e5e",
+    "semantic_hash": ""
+  },
+  "_build/render_anim.py": {
+    "mtime": 1794940681.5509455,
+    "ast_hash": "0bbbc5888b42c7146c02ae55fa445482",
+    "semantic_hash": ""
+  },
+  "_build/fb-ensamble.html": {
+    "mtime": 1794940934.8132937,
+    "ast_hash": "435487276be98b843860ba2d6fe97e1c",
+    "semantic_hash": ""
+  },
+  "_build/fb-lamina.html": {
+    "mtime": 1794940931.312067,
+    "ast_hash": "6f467db08accee1cf4e8bb44a59aeaca",
+    "semantic_hash": ""
+  },
+  "_build/fb-noche.html": {
+    "mtime": 1794940933.0913284,
+    "ast_hash": "778ed07a215a4239935db6312080efb3",
+    "semantic_hash": ""
+  },
+  "Entregables/Arite_FB_Axonometria-noche.png": {
+    "mtime": 1794940934.7999358,
+    "ast_hash": "f7f3b31108d72502c96548949f811e92",
+    "semantic_hash": ""
+  },
+  "Entregables/Arite_FB_Ensamble-animado_Paleta-Roja.gif": {
+    "mtime": 1794940943.5798764,
+    "ast_hash": "c575c92e59656b496dcaec6fda4484b9",
+    "semantic_hash": ""
+  },
+  "Entregables/Arite_FB_Lamina-tecnica_Paleta-Neutra.png": {
+    "mtime": 1794940933.0760646,
+    "ast_hash": "1f145d2adc65d9d4ed79dcaf3904727c",
+    "semantic_hash": ""
+  },
+  "_build/assets/anim/ensamble-red-00.png": {
+    "mtime": 1794940767.0976813,
+    "ast_hash": "45071b6815f41cb624b4e62e78183128",
+    "semantic_hash": ""
+  },
+  "_build/assets/anim/ensamble-red-01.png": {
+    "mtime": 1794940767.3944788,
+    "ast_hash": "4a904e05f63ec14950d24e39e9de9e14",
+    "semantic_hash": ""
+  },
+  "_build/assets/anim/ensamble-red-02.png": {
+    "mtime": 1794940767.6829596,
+    "ast_hash": "a3d7b23a50d80d157c268dd0c61c2d8d",
+    "semantic_hash": ""
+  },
+  "_build/assets/anim/ensamble-red-03.png": {
+    "mtime": 1794940768.0181134,
+    "ast_hash": "288148cca56c43d81381f9fa053df9b4",
+    "semantic_hash": ""
+  },
+  "_build/assets/anim/ensamble-red-04.png": {
+    "mtime": 1794940768.4056282,
+    "ast_hash": "faf193964631987aa1bf19586bd1438d",
+    "semantic_hash": ""
+  },
+  "_build/assets/anim/ensamble-red-05.png": {
+    "mtime": 1794940768.7685049,
+    "ast_hash": "fcb9e6c087cace09fcfab9398070f56b",
+    "semantic_hash": ""
+  },
+  "_build/assets/anim/ensamble-red-06.png": {
+    "mtime": 1794940769.1220016,
+    "ast_hash": "a0af6c04a39cca5d9ed28447e1892d9a",
+    "semantic_hash": ""
+  },
+  "_build/assets/anim/ensamble-red-07.png": {
+    "mtime": 1794940769.50938,
+    "ast_hash": "b386d2cae8e8dd2593fa5282aedfbb1d",
+    "semantic_hash": ""
+  },
+  "_build/assets/anim/ensamble-red-08.png": {
+    "mtime": 1794940769.8427289,
+    "ast_hash": "dab58528734fdbc81589fd24b6f5ea56",
+    "semantic_hash": ""
+  },
+  "_build/assets/anim/ensamble-red-09.png": {
+    "mtime": 1794940770.157535,
+    "ast_hash": "46f744b9ea23630c446d899a1c7f312b",
+    "semantic_hash": ""
+  },
+  "_build/assets/anim/ensamble-red-10.png": {
+    "mtime": 1794940770.560566,
+    "ast_hash": "7f1d31d76b8c13e121895b2f1378175a",
+    "semantic_hash": ""
+  },
+  "_build/assets/anim/ensamble-red-11.png": {
+    "mtime": 1794940770.894264,
+    "ast_hash": "d260d1bb4879cbf7afed2040cb20a052",
+    "semantic_hash": ""
+  },
+  "_build/assets/anim/ensamble-red-12.png": {
+    "mtime": 1794940771.2057264,
+    "ast_hash": "97b76aba6452b03928cad0eb7f24c138",
+    "semantic_hash": ""
+  },
+  "_build/assets/anim/ensamble-red-13.png": {
+    "mtime": 1794940771.5679617,
+    "ast_hash": "80dd8b738bd01208ce54287c441a6d61",
+    "semantic_hash": ""
+  },
+  "_build/assets/anim/ensamble-red-14.png": {
+    "mtime": 1794940771.9324775,
+    "ast_hash": "f066a6bcc16bd81018012a93a9a5f58e",
+    "semantic_hash": ""
+  },
+  "_build/assets/anim/ensamble-red-15.png": {
+    "mtime": 1794940772.3438637,
+    "ast_hash": "cd391ddfd9e527d5dc7461e4c13591f8",
+    "semantic_hash": ""
+  },
+  "_build/assets/anim/ensamble-red-16.png": {
+    "mtime": 1794940772.7254922,
+    "ast_hash": "c8cf0444f46da6a59b7d429b0136b74e",
+    "semantic_hash": ""
+  },
+  "_build/assets/anim/ensamble-red-17.png": {
+    "mtime": 1794940773.087116,
+    "ast_hash": "ff38ce1e1ea5cdb672b4297266d9f3ad",
+    "semantic_hash": ""
+  },
+  "_build/assets/anim/ensamble-red-18.png": {
+    "mtime": 1794940773.4418435,
+    "ast_hash": "af0bb4ae75ede495a9f033b2717b96b2",
+    "semantic_hash": ""
+  },
+  "_build/assets/anim/ensamble-red-19.png": {
+    "mtime": 1794940773.7721784,
+    "ast_hash": "3b78f415b4b32bbee7c85231a564cafa",
+    "semantic_hash": ""
+  },
+  "_build/assets/anim/ensamble-red-20.png": {
+    "mtime": 1794940774.16229,
+    "ast_hash": "ed31a591e273a920d61487de02f722e9",
+    "semantic_hash": ""
+  },
+  "_build/assets/anim/ensamble-red-21.png": {
+    "mtime": 1794940774.5208912,
+    "ast_hash": "8837535e1d4236bff91dd2c97c4722ce",
+    "semantic_hash": ""
+  },
+  "_build/assets/anim/ensamble-red-22.png": {
+    "mtime": 1794940774.96433,
+    "ast_hash": "8a0d7a67e588a4a54490ab76886b6cdc",
+    "semantic_hash": ""
+  },
+  "_build/assets/anim/ensamble-red-23.png": {
+    "mtime": 1794940775.3379686,
+    "ast_hash": "962737bbc8794fae1f4ed283efec6c90",
+    "semantic_hash": ""
+  },
+  "_build/assets/anim/ensamble-red-24.png": {
+    "mtime": 1794940775.7511466,
+    "ast_hash": "6114ac52454194bb83d77fcc68a16ca0",
+    "semantic_hash": ""
+  },
+  "_build/assets/anim/ensamble-red-25.png": {
+    "mtime": 1794940776.1837296,
+    "ast_hash": "93eadcea2d33d1092fd83d4874844220",
+    "semantic_hash": ""
+  },
+  "_build/assets/anim/ensamble-red-26.png": {
+    "mtime": 1794940776.5887418,
+    "ast_hash": "09016c585edb9d5ffdaa5eadc99d88e9",
+    "semantic_hash": ""
+  },
+  "_build/assets/anim/ensamble-red-27.png": {
+    "mtime": 1794940776.9494083,
+    "ast_hash": "da055bae580c69fef8fe8b070142c94b",
+    "semantic_hash": ""
+  },
+  "_build/assets/anim/ensamble-red-28.png": {
+    "mtime": 1794940777.3171146,
+    "ast_hash": "21f208549c26bcc211c36892442210dc",
+    "semantic_hash": ""
+  },
+  "_build/assets/anim/ensamble-red-29.png": {
+    "mtime": 1794940777.7110755,
+    "ast_hash": "70d44f3676f1aed680dc56993199f053",
+    "semantic_hash": ""
+  },
+  "_build/assets/scene-eco-night.png": {
+    "mtime": 1794940758.9873748,
+    "ast_hash": "483675b7273fb090627b6387850656c6",
+    "semantic_hash": ""
+  },
+  "_build/assets/scene-unit-neutral.png": {
+    "mtime": 1794940743.0706499,
+    "ast_hash": "ba55d1c297ab101354c45388324fe966",
+    "semantic_hash": ""
+  },
+  "_build/preview/anim-test.png": {
+    "mtime": 1794940686.3957987,
+    "ast_hash": "caedfa309ca6a00b2a5afd017aeff8d4",
+    "semantic_hash": ""
+  },
+  "_build/preview/chk5.png": {
+    "mtime": 1794940744.9906912,
+    "ast_hash": "71f48364b07f2f6185ab6462f6943441",
+    "semantic_hash": ""
+  },
+  "_build/preview/chk6.png": {
+    "mtime": 1794940759.8047442,
+    "ast_hash": "b52177304ee1d7605ccde5e917255cce",
+    "semantic_hash": ""
+  },
+  "_build/preview/chk7.png": {
+    "mtime": 1794940916.9048905,
+    "ast_hash": "ddc8c39c8dfd3c7085f975a7e6a67c93",
+    "semantic_hash": ""
+  },
+  "_build/preview/chk8.png": {
+    "mtime": 1794940944.858557,
+    "ast_hash": "5cb41a1ca2c3ae2b2ac757f1e8078b68",
+    "semantic_hash": ""
+  },
+  "_build/preview/fb-ensamble-base.png": {
+    "mtime": 1794940936.4375021,
+    "ast_hash": "39d0e3a613a4168e768c10e6b43e70d9",
+    "semantic_hash": ""
+  },
+  "_build/preview/fb-ensamble-final.png": {
+    "mtime": 1794940943.6091597,
+    "ast_hash": "733dfee3b6c7c98661f022ca3a6ff330",
+    "semantic_hash": ""
+  },
+  "_build/preview/fb4.png": {
+    "mtime": 1794940897.5662851,
+    "ast_hash": "06c37aebc36b73f6d9f584f59d20208d",
+    "semantic_hash": ""
+  },
+  "_build/preview/fb5.png": {
+    "mtime": 1794940897.6590402,
+    "ast_hash": "e9f4db043352f9b397816a2c97de5cd9",
     "semantic_hash": ""
   }
 }
