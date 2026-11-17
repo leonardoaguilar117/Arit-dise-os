@@ -1,7 +1,7 @@
 # Graph Report - Arité  (2026-11-17)
 
 ## Corpus Check
-- 29 files · ~622,494 words
+- 29 files · ~648,868 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary

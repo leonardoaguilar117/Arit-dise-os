@@ -154,19 +154,9 @@
     "ast_hash": "3a3b487caa15b432715dec610f17ad17",
     "semantic_hash": ""
   },
-  "Entregables/Aricloud_Paleta-Neutra.pdf": {
-    "mtime": 1794356601.495685,
-    "ast_hash": "6d99b0975a29bc53f094b9699022ead1",
-    "semantic_hash": ""
-  },
   "Entregables/Aricloud_Paleta-Roja.pdf": {
     "mtime": 1794418291.167102,
     "ast_hash": "d911cdac801e8dcb382f3cae0399c538",
-    "semantic_hash": ""
-  },
-  "Entregables/Aricloud_Plano-de-tu-nube.pdf": {
-    "mtime": 1794356604.462437,
-    "ast_hash": "81efd8a4fcda58e50e4ec2c8dfd40373",
     "semantic_hash": ""
   },
   "Ideas/ddd.png": {
@@ -415,8 +405,8 @@
     "semantic_hash": ""
   },
   "_build/build_more.py": {
-    "mtime": 1794939328.9053326,
-    "ast_hash": "b7ff868599bac568750abe68c77fe605",
+    "mtime": 1794939859.974277,
+    "ast_hash": "8242f16c0638c179b29b7a90151575fc",
     "semantic_hash": ""
   },
   "_build/render_scenes.py": {
@@ -435,8 +425,8 @@
     "semantic_hash": ""
   },
   "_build/pdf-arma.html": {
-    "mtime": 1794939330.1619122,
-    "ast_hash": "8f3411a2c887f4a71d3f68da0b30d104",
+    "mtime": 1794939358.4517653,
+    "ast_hash": "08f0b6bb7d2a3eda8d9b6651968fc3f5",
     "semantic_hash": ""
   },
   "_build/pdf-negocio.html": {
@@ -450,8 +440,8 @@
     "semantic_hash": ""
   },
   "Entregables/Aricloud_Asi-se-arma-tu-nube_Paleta-Roja.pdf": {
-    "mtime": 1794939332.397295,
-    "ast_hash": "e71b0c73f36fe89673d84d3d80346f8b",
+    "mtime": 1794939361.3899662,
+    "ast_hash": "92a71e9d9a7fbb619d1f66ee05bee57a",
     "semantic_hash": ""
   },
   "Entregables/Arite_Negocios_Paleta-Neutra.pdf": {
@@ -530,8 +520,8 @@
     "semantic_hash": ""
   },
   "_build/preview/chk3.png": {
-    "mtime": 1794939333.3328629,
-    "ast_hash": "053407d56ea886de0c79ab90e1dc4911",
+    "mtime": 1794939362.3323312,
+    "ast_hash": "418f489f9f7573945637ad94774a992b",
     "semantic_hash": ""
   },
   "_build/preview/fb2.png": {
@@ -550,13 +540,13 @@
     "semantic_hash": ""
   },
   "_build/preview/pdf-arma-p1.png": {
-    "mtime": 1794939332.1016662,
+    "mtime": 1794939361.1458678,
     "ast_hash": "5aaaeb734381b90ce5ec4f14d86250f1",
     "semantic_hash": ""
   },
   "_build/preview/pdf-arma-p2.png": {
-    "mtime": 1794939332.2009218,
-    "ast_hash": "abff3391605a1c096c75d74dcb8aed69",
+    "mtime": 1794939361.2309556,
+    "ast_hash": "ac39999e05ffaf2d10d09f2582f7fb8e",
     "semantic_hash": ""
   },
   "_build/preview/pdf-negocio-both.png": {
@@ -602,6 +592,36 @@
   "_build/preview/scenes-chk.png": {
     "mtime": 1794939087.0821114,
     "ast_hash": "0e593784cb4b66feb0cf9bb8d956b315",
+    "semantic_hash": ""
+  },
+  "_build/pdf-negocio-roja.html": {
+    "mtime": 1794939861.2780912,
+    "ast_hash": "770cbfbd1f0d461190fe42db67c943e1",
+    "semantic_hash": ""
+  },
+  "Entregables/Arite_Negocios_Paleta-Roja.pdf": {
+    "mtime": 1794939868.031231,
+    "ast_hash": "307d05f4def6105029fdfbbbf294308d",
+    "semantic_hash": ""
+  },
+  "_build/preview/chk4.png": {
+    "mtime": 1794939366.8423474,
+    "ast_hash": "e31fba2b6b326193dfdfb3415b95fd82",
+    "semantic_hash": ""
+  },
+  "_build/preview/pdf-negocio-roja-both.png": {
+    "mtime": 1794939868.9643872,
+    "ast_hash": "dd986ecd1ed58a55dc5402d31a7d57c2",
+    "semantic_hash": ""
+  },
+  "_build/preview/pdf-negocio-roja-p1.png": {
+    "mtime": 1794939867.6613998,
+    "ast_hash": "d874bc90ff268535622f976b90bba0c7",
+    "semantic_hash": ""
+  },
+  "_build/preview/pdf-negocio-roja-p2.png": {
+    "mtime": 1794939867.7727132,
+    "ast_hash": "26186dbea305d4ed49c6d671969afe18",
     "semantic_hash": ""
   }
 }

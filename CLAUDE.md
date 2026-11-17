@@ -5,6 +5,7 @@ Marca de servidores caseros (AriCloud) y desarrollo de software para pymes.
 ## Antes de diseñar
 - Lee `_contexto/claude-memoria/` (brief de marca, elementos admitidos). Si la memoria local de Claude se perdió, copia esos archivos a
   `~/.claude/projects/<carpeta-del-proyecto>/memory/`.
+- Lee `_contexto/investigacion-estilos.md` (linaje axonométrico, reglas isométricas, poché, riesgos de cliché).
 - El logo no se toca; solo se usan las dos paletas (neutra y roja); el estilo propio es isométrico o animado, nunca fotos copiadas.
 
 ## Estructura
