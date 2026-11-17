@@ -623,5 +623,40 @@
     "mtime": 1794939867.7727132,
     "ast_hash": "26186dbea305d4ed49c6d671969afe18",
     "semantic_hash": ""
+  },
+  "CLAUDE.md": {
+    "mtime": 1794940478.788563,
+    "ast_hash": "207e6357dfc57799b35640c2b9ce6214",
+    "semantic_hash": ""
+  },
+  "README.md": {
+    "mtime": 1794940470.8194053,
+    "ast_hash": "1987f6b57916e912f645db3d915e3dc1",
+    "semantic_hash": ""
+  },
+  "_contexto/claude-memoria/MEMORY.md": {
+    "mtime": 1794940262.044867,
+    "ast_hash": "41d5aa51cef740ffb442096d109c5d9e",
+    "semantic_hash": ""
+  },
+  "_contexto/claude-memoria/arite-brand-brief.md": {
+    "mtime": 1794940262.045864,
+    "ast_hash": "ccfe5599e0f4ce63f579a9d2fca1b7eb",
+    "semantic_hash": ""
+  },
+  "_contexto/claude-memoria/arite-elementos-admitidos.md": {
+    "mtime": 1794940262.0468638,
+    "ast_hash": "1f161936c8e109d7d97002d64fff4009",
+    "semantic_hash": ""
+  },
+  "_contexto/claude-memoria/arite-respaldo-repo.md": {
+    "mtime": 1794940262.049883,
+    "ast_hash": "f22c860fd2e583835c15706e52631ce5",
+    "semantic_hash": ""
+  },
+  "_contexto/investigacion-estilos.md": {
+    "mtime": 1794940470.4736242,
+    "ast_hash": "2ca50a319575609b0408ff085bbe4785",
+    "semantic_hash": ""
   }
 }

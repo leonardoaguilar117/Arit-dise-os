@@ -248,11 +248,19 @@ if (q.get("lay")) {
   }
   if (!q.get("lay").includes("ssd,")) layers.ssd.group.position.copy(layers.ram.group.position).add(new THREE.Vector3(0, 2, 0));
 }
+// ---- Animation mode (2026-11-17): t=0 assembled, t=1 exploded straight up (ensamble loop for the FB GIF)
+if (q.has("t")) {
+  const t = Number(q.get("t"));
+  const A = { base: 0, shell: 1.5, board: 5, ram: 7.5, ssd: 8.2, sink: 8, fan: 24, lid: 38.5 };
+  const E = { base: 0, shell: 46, board: 108, ram: 150, ssd: 156, sink: 196, fan: 252, lid: 318 };
+  for (const [name, { group }] of Object.entries(layers)) group.position.set(0, A[name] + t * E[name], 0);
+}
 // ---- Isometric orthographic camera, framed to the model
 scene.updateMatrixWorld(true);
 const bb = new THREE.Box3();
 scene.traverse((o) => { if (o.isMesh && !o.isLineSegments2) bb.expandByObject(o); });
-const center = bb.getCenter(new THREE.Vector3());
+const FIX = q.get("fix") ? q.get("fix").split(",").map(Number) : null;   // cx,cy,cz,minX,maxX,minY,maxY: fixed frame across frames
+const center = FIX ? new THREE.Vector3(FIX[0], FIX[1], FIX[2]) : bb.getCenter(new THREE.Vector3());
 const dir = new THREE.Vector3(1, 0.82, 1).normalize();
 const cam = new THREE.OrthographicCamera(-1, 1, 1, -1, 1, 5000);
 cam.position.copy(center).addScaledVector(dir, 1500);
@@ -270,6 +278,8 @@ scene.traverse((o) => {
     minX = Math.min(minX, p.x); maxX = Math.max(maxX, p.x); minY = Math.min(minY, p.y); maxY = Math.max(maxY, p.y);
   }
 });
+const raw = [center.x, center.y, center.z, minX, maxX, minY, maxY];
+if (FIX) [minX, maxX, minY, maxY] = FIX.slice(3);
 const pad = 0.03 * Math.max(maxX - minX, maxY - minY);
 cam.left = minX - pad; cam.right = maxX + pad; cam.top = maxY + pad; cam.bottom = minY - pad;
 cam.updateProjectionMatrix();
@@ -294,7 +304,7 @@ for (const [name, { group }] of Object.entries(layers)) {
   const p = b.getCenter(new THREE.Vector3()).project(cam);
   centers[name] = { x: (p.x + 1) / 2, y: (1 - p.y) / 2 };
 }
-window.__result = { png: renderer.domElement.toDataURL("image/png"), w: W, h: H, labels, centers };
+window.__result = { png: renderer.domElement.toDataURL("image/png"), w: W, h: H, labels, centers, frame: raw };
 </script>
 </body>
 </html>

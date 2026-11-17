@@ -1,16 +1,16 @@
 # Graph Report - Arité  (2026-11-17)
 
 ## Corpus Check
-- 36 files · ~651,808 words
+- 40 files · ~1,040,350 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 223 nodes · 407 edges · 12 communities (10 shown, 2 thin omitted)
-- Extraction: 73% EXTRACTED · 27% INFERRED · 0% AMBIGUOUS · INFERRED: 108 edges (avg confidence: 0.83)
+- 238 nodes · 442 edges · 13 communities (10 shown, 3 thin omitted)
+- Extraction: 75% EXTRACTED · 25% INFERRED · 0% AMBIGUOUS · INFERRED: 111 edges (avg confidence: 0.83)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `4093e6d6`
+- Built from commit: `6c777c9b`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -26,9 +26,10 @@
 - render_scenes.py
 - Investigación de estilos afines a Arité
 - Arité — contexto del proyecto
+- render_anim.py
 
 ## God Nodes (most connected - your core abstractions)
-1. `arite()` - 14 edges
+1. `arite()` - 18 edges
 2. `Anti-reference: generic commercial tech design` - 14 edges
 3. `Arité wordmark (approved logo, base version)` - 13 edges
 4. `NAS Unit (2-bay, dark grey, centre of diagram)` - 13 edges
@@ -65,11 +66,11 @@
 - **Compact Mini PC as Home-Server Hardware (palm-sized, full port set)** — ideas_61ewnxrjyil_mini_pc, ideas_61ewnxrjyil_fits_in_a_hand, ideas_sddefault_mini_pc, ideas_sddefault_rear_ports, ideas_sddefault_fingers_for_scale [INFERRED 0.85]
 - **Rejected visual tropes that together form the generic commercial tech look Arité must avoid** — anti_reference_generic_commercial_tech_design, avoid_neon_blue_purple_gradient, avoid_glowing_circuit_board_lines, avoid_3d_robot_mascots, avoid_ai_brain_and_cyborg_head_imagery, avoid_hexagon_grid_patterns, avoid_particle_network_backgrounds, avoid_teal_flat_tech_icon_clutter, avoid_futuristic_display_fonts, avoid_neon_glow_sign_effects, avoid_dense_tech_infographic_layouts, avoid_halftone_pastel_gradient_blobs, avoid_canva_stock_template_look [INFERRED 0.85]
 
-## Communities (12 total, 2 thin omitted)
+## Communities (13 total, 3 thin omitted)
 
 ### Community 0 - "NAS y topologia de red"
 Cohesion: 0.10
-Nodes (33): NAS File Server Hub-and-Spoke Diagram (flat line illustration), Cloud (dashed link above NAS), Desktop Client with Folder, Two Front Drive Bays, Flat Outline Illustration Style (grey + light blue, thick strokes), Hub-and-Spoke Topology (NAS as central hub), Laptop Client with Folder, NAS Unit (2-bay, dark grey, centre of diagram) (+25 more)
+Nodes (34): NAS File Server Hub-and-Spoke Diagram (flat line illustration), Cloud (dashed link above NAS), Desktop Client with Folder, Two Front Drive Bays, Flat Outline Illustration Style (grey + light blue, thick strokes), Hub-and-Spoke Topology (NAS as central hub), Laptop Client with Folder, NAS Unit (2-bay, dark grey, centre of diagram) (+26 more)
 
 ### Community 1 - "Lenguaje editorial arquitectonico"
 Cohesion: 0.11
@@ -77,23 +78,23 @@ Nodes (32): Conjunto Residencial Architectural Project Sheet (reference image), 
 
 ### Community 2 - "Mini PC y puertos"
 Cohesion: 0.10
-Nodes (26): File Server (role label under NAS), Network Switch, Palm-Sized Mini PC Product Photo (held in hand), Red '3 Year Warranty' Shield Badge, Audio Jack (front), Silver Angular Chevron Logo Mark on Lid, Compactness / 'Fits in a Hand' Idea, Front I/O Panel (power button, audio jack, 2x USB-A, USB Type-C) (+18 more)
+Nodes (25): File Server (role label under NAS), Palm-Sized Mini PC Product Photo (held in hand), Red '3 Year Warranty' Shield Badge, Audio Jack (front), Silver Angular Chevron Logo Mark on Lid, Compactness / 'Fits in a Hand' Idea, Front I/O Panel (power button, audio jack, 2x USB-A, USB Type-C), Open Hand Holding the Device (+17 more)
 
 ### Community 3 - "Logo Arite y paleta roja"
 Cohesion: 0.10
 Nodes (39): Palette file: Colores/1.png (neutral warm palette screenshot with hex codes), #0D0D0D near-black (primary text / dark ground, palette 1), #595959 dark gray (secondary text), #BFAA8F warm beige / sand (accent of palette 1), #BFBFBF light-mid gray (borders, dividers, muted elements), Two candidate color palettes for Arité (choice pending), #F2F1F0 off-white (light background of palette 1), Design principle: near-black anchor + light neutral ground + one accent color (+31 more)
 
 ### Community 4 - "Paleta neutra y principios de color"
-Cohesion: 0.14
-Nodes (29): despiece(), main(), post(), Facebook sales-group post (1080x1350, 4:5) in the red palette. Output: Entregabl, Constellation render with dashed assembly arrows converging on the chassis., compare_page(), compare_page_table(), doc_a() (+21 more)
+Cohesion: 0.13
+Nodes (28): despiece(), main(), post(), Facebook sales-group post (1080x1350, 4:5) in the red palette. Output: Entregabl, Constellation render with dashed assembly arrows converging on the chassis., compare_page(), compare_page_table(), doc_a() (+20 more)
 
 ### Community 5 - "Anti-referencias (No realizar)"
 Cohesion: 0.33
 Nodes (15): Anti-reference: generic commercial tech design, AVOID: 3D cartoon robot mascots, AVOID: glowing AI brains, cyborg heads and robotic hands, AVOID: Canva stock-template look (placeholder copy, interchangeable 'AI / Future Technology' headlines), AVOID: dense tall tech infographic layouts (numbered boxes + icons), AVOID: futuristic / sci-fi display fonts, AVOID: glowing circuit-board trace lines, AVOID: pastel halftone-dot gradient blobs (+7 more)
 
 ### Community 6 - "build_more.py"
-Cohesion: 0.32
-Nodes (13): arrow(), hms(), line(), overlay(), page_doc(), pdf_aricloud(), pdf_negocio(), post_cartel() (+5 more)
+Cohesion: 0.19
+Nodes (24): arrow(), hms(), line(), overlay(), page_doc(), pdf_aricloud(), pdf_negocio(), post_cartel() (+16 more)
 
 ### Community 10 - "Investigación de estilos afines a Arité"
 Cohesion: 0.13
@@ -106,13 +107,15 @@ Nodes (4): Antes de diseñar, Arité — contexto del proyecto, Estructura, grap
 ## Knowledge Gaps
 - **41 isolated node(s):** `Antes de diseñar`, `Estructura`, `graphify`, `Identidad en una página`, `Entregables (`Entregables/`)` (+36 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **2 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **3 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `NAS Unit (2-bay, dark grey, centre of diagram)` connect `NAS y topologia de red` to `Mini PC y puertos`?**
-  _High betweenness centrality (0.023) - this node is a cross-community bridge._
+  _High betweenness centrality (0.020) - this node is a cross-community bridge._
+- **Why does `arite()` connect `build_more.py` to `Paleta neutra y principios de color`?**
+  _High betweenness centrality (0.013) - this node is a cross-community bridge._
 - **Are the 12 inferred relationships involving `Anti-reference: generic commercial tech design` (e.g. with `AVOID: 3D cartoon robot mascots` and `AVOID: glowing AI brains, cyborg heads and robotic hands`) actually correct?**
   _`Anti-reference: generic commercial tech design` has 12 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 2 inferred relationships involving `Arité wordmark (approved logo, base version)` (e.g. with `AĒ monogram (first and last letters of the wordmark, E tucked against the A stem)` and `Design principle: approved logo must be respected (no redrawing, no alteration)`) actually correct?**
@@ -122,6 +125,4 @@ _Questions this graph is uniquely positioned to answer:_
 - **What connects `Antes de diseñar`, `Estructura`, `graphify` to the rest of the system?**
   _41 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `NAS y topologia de red` be split into smaller, more focused modules?**
-  _Cohesion score 0.10227272727272728 - nodes in this community are weakly interconnected._
-- **Should `Lenguaje editorial arquitectonico` be split into smaller, more focused modules?**
-  _Cohesion score 0.11088709677419355 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.10160427807486631 - nodes in this community are weakly interconnected._

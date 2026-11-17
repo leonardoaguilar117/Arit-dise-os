@@ -33,8 +33,13 @@ const PALETTES = {
   red:     { ink: "#0D0D0D", floor: "#DEA6A3", wall: "#F2EFE9", wood: "#EEEBE2", device: "#DEA6A3", top: "#F2EFE9",
              drive: "#F2EFE9", dark: "#0D0D0D", accent: "#BF0426", person: "#BF0426", head: "#F2EFE9", rug: "#EEEBE2",
              tile1: "#BF0426", tile2: "#DEA6A3", tile3: "#0D0D0D", screen: "#F2EFE9", mark: "#BF0426", book: "#BF0426" },
+  // axonometría invertida: línea crema sobre negro, acento rojo (2026-11-17)
+  night:   { ink: "#F2EFE9", floor: "#0D0D0D", wall: "#0D0D0D", wood: "#0D0D0D", device: "#0D0D0D", top: "#0D0D0D",
+             drive: "#0D0D0D", dark: "#0D0D0D", accent: "#BF0426", person: "#BF0426", head: "#0D0D0D", rug: "#0D0D0D",
+             tile1: "#BF0426", tile2: "#DEA6A3", tile3: "#F2EFE9", screen: "#0D0D0D", mark: "#BF0426", book: "#BF0426" },
 };
 const C = PALETTES[PAL];
+const HT = { eco: 0.8, office: 0.5, unit: 0.34 }[SCENE] || 0.6;   // outline thickness (world units) for rounded boxes
 const ink = new THREE.Color(C.ink);
 
 const vert = `varying vec3 vN; void main(){ vN = normalize(mat3(modelMatrix) * normal);
@@ -55,7 +60,7 @@ function mat(hex, hatch = false) {
   if (cache.has(k)) return cache.get(k);
   const b = new THREE.Color(hex);
   const m = new THREE.ShaderMaterial({
-    uniforms: { cTop: { value: b.clone() }, cMid: { value: b.clone().lerp(ink, 0.16) }, cDark: { value: b.clone().lerp(ink, 0.34) },
+    uniforms: { cTop: { value: b.clone() }, cMid: { value: b.clone().lerp(ink, PAL === 'night' ? 0.012 : 0.16) }, cDark: { value: b.clone().lerp(ink, PAL === 'night' ? 0.035 : 0.34) },
                 cInk: { value: ink.clone() }, uL: { value: L }, uHatch: { value: hatch ? 1 : 0 }, uSpacing: { value: 14.0 } },
     vertexShader: vert, fragmentShader: frag, polygonOffset: true, polygonOffsetFactor: 1, polygonOffsetUnits: 1 });
   cache.set(k, m);
@@ -74,13 +79,19 @@ function add(geom, hex, pos, { edges = true, hatch = false, parent = scene, angl
   if (edges) {
     const pr = geom.parameters || {};
     // rounded boxes: outline with the bounding box edges (fillets are too shallow for an angle threshold)
-    const src = geom.type === "RoundedBoxGeometry" ? new THREE.EdgesGeometry(box(pr.width, pr.height, pr.depth)) : new THREE.EdgesGeometry(geom, angle);
-    const eg = new LineSegmentsGeometry().fromEdgesGeometry(src);
-    const lm = new LineMaterial({ color: C.ink, linewidth: LINE, worldUnits: false });
-    lineMats.push(lm);
-    const ls = new LineSegments2(eg, lm);
-    ls.position.copy(mesh.position); ls.rotation.copy(mesh.rotation);
-    parent.add(ls);
+    if (geom.type === "RoundedBoxGeometry") {
+      const h = new THREE.Mesh(geom, new THREE.MeshBasicMaterial({ color: C.ink, side: THREE.BackSide }));
+      h.position.copy(mesh.position); h.rotation.copy(mesh.rotation);
+      h.scale.set(1 + 2 * HT / pr.width, 1 + 2 * HT / pr.height, 1 + 2 * HT / pr.depth);
+      parent.add(h);
+    } else {
+      const eg = new LineSegmentsGeometry().fromEdgesGeometry(new THREE.EdgesGeometry(geom, angle));
+      const lm = new LineMaterial({ color: C.ink, linewidth: LINE, worldUnits: false });
+      lineMats.push(lm);
+      const ls = new LineSegments2(eg, lm);
+      ls.position.copy(mesh.position); ls.rotation.copy(mesh.rotation);
+      parent.add(ls);
+    }
   }
   if (hull) {           // inverted-hull outline for curved solids (silhouettes have no hard edges)
     const h = new THREE.Mesh(geom, new THREE.MeshBasicMaterial({ color: C.ink, side: THREE.BackSide }));
@@ -231,6 +242,24 @@ if (SCENE === "office") {
     add(box(24, h, 7), c, [x, y + h / 2, z], { parent: sh }));
   add(rbox(24, 12, 30, 2), C.top, [-4, 180, -20], { parent: sh });                                    // router on top
   add(new THREE.CylinderGeometry(1.5, 1.5, 22, 12), C.top, [-4, 197, -30], { parent: sh, edges: false, hull: 1.5 });
+}
+
+if (SCENE === "unit") {
+  // the AriCloud unit alone, fronts aligned on z = 56, with named corners for dimension lines (cotas)
+  const pc = grp("minipc", [85, 0, 0]); miniPC(pc);
+  const enc = grp("enclosure", [-56, 0, -44]);
+  add(rbox(110, 140, 200, 5), C.device, [0, 70, 0], { parent: enc, angle: 40 });
+  add(rbox(104, 2, 194, 1), C.top, [0, 140.5, 0], { parent: enc, angle: 40 });
+  for (const x of [-24, 24]) {
+    add(box(36, 116, 2), C.ink, [x, 66, 100.2], { parent: enc, flatc: true });
+    add(box(28, 108, 3), C.drive, [x, 66, 101.4], { parent: enc });
+    add(box(10, 40, 1), C.dark, [x, 72, 103.2], { parent: enc, edges: false });
+  }
+  for (let k = 0; k < 3; k++) add(new THREE.CylinderGeometry(2.4, 2.4, 1, 16).rotateX(Math.PI / 2), C.accent, [-36 + k * 9, 128, 101], { parent: enc, edges: false });
+  tube([[1, 14, -30], [12, 3, -30], [22, 3, -30], [29, 14, -30]], 3, C.ink);
+  const P = { pc_fl: [29, 0, 56], pc_fr: [141, 0, 56], pc_br: [141, 0, -56], pc_tr: [141, 36, 56],
+              enc_fl: [-111, 0, 56], enc_fr: [-1, 0, 56], enc_bl: [-111, 0, -144], enc_tl: [-111, 140, 56] };
+  for (const [k, v] of Object.entries(P)) grp(k, v);
 }
 
 // ---- Isometric orthographic camera framed to the model (same as render.html)
